@@ -83,4 +83,8 @@ const init = () => {
 	new StudentController()
 }
 
-init()
+// init()
+
+recipes.forEach((recipe) => {
+	
+})
