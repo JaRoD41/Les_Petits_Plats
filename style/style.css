@@ -1,0 +1,35 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', 'Roboto', sans-serif;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box i {
+    position: absolute;
+    right: 13px;
+    top: 22%;
+    color: #000;
+}
+
+.form-control {
+    /* height: 69px; */
+    background-color: #E7E7E7;
+}
+
+.form-control:hover,
+.form-control:focus {
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
+    box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
+    border-color: #ED6454;
+    background-color: #E7E7E7;
+}
