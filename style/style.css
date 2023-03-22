@@ -9,11 +9,13 @@
     font-family: 'Lato', 'Roboto', sans-serif;
 }
 
+/* Barre de recherche */
+
 .input-box {
     position: relative;
 }
 
-.input-box svg {
+.input-box img {
     position: absolute;
     right: 13px;
     top: 24%;
@@ -32,4 +34,14 @@
     box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
     border-color: #ED6454;
     background-color: #E7E7E7;
+}
+
+/* Adaptation de la taille de l'icone de recherche en petit écran */
+
+@media (width <=600px) {
+    .input-box img {
+        height: 25px;
+        width: 25px;
+        top: 32%;
+    }
 }
