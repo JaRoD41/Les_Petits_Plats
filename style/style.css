@@ -13,15 +13,15 @@
     position: relative;
 }
 
-.input-box i {
+.input-box svg {
     position: absolute;
     right: 13px;
-    top: 22%;
+    top: 24%;
     color: #000;
 }
 
 .form-control {
-    /* height: 69px; */
+    height: 69px;
     background-color: #E7E7E7;
 }
 
