@@ -21,7 +21,7 @@ class ViewRecipes {
 		this.addEventListeners()
 	}
 
-	displayRecipesList(recipes) {
+	displayRecipesList(recipesToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
 	}
 
@@ -84,9 +84,50 @@ class Recipes {
 			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
 		)
 	}
+
+	ustensilSearch(recipes, tag) {
+		return recipes.filter((recipe) =>
+			recipe.ustensils.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
+		)
+	}
+
+	ingredientSearch(recipes, tag) {
+		return recipes.filter((recipe) =>
+			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
+		)
+	}
 }
 
 const controller = new ControllerRecipes({ recipes: recipes })
 
 controller.mainSearch('verres')
 controller.ingredientSearch('huile')
+
+const testRecipe = new Recipes(
+	51,
+	'recette test',
+	4,
+	[
+		{
+			ingredient: 'ingrédient 1',
+			quantity: 1,
+		},
+		{
+			ingredient: 'ingrédient 2',
+		},
+		{
+			ingredient: 'ingrédient 3',
+			quantity: 250,
+			unit: 'grammes',
+		},
+		{
+			ingredient: 'ingrédient 4',
+		},
+	],
+	17,
+	'tout simplement une description de la recette',
+	'Four',
+	'papier cuisson, verres'
+)
+
+console.log(testRecipe);
