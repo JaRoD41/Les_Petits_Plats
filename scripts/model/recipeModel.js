@@ -23,7 +23,41 @@ class ViewRecipes {
 
 	displayRecipesList(recipesToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
-    
+		const recipeSnippet = document.getElementById('recipes-zone')
+		recipeSnippet.innerHTML = `
+    <div class="row">
+                <div class="col-12 col-lg-4">
+                    <article class="card border-0">
+                        <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top">
+                        <div class="card-body px-3 rounded-bottom">
+                            <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
+                                <h5 class="card-title">${recipesToShow.name}</h5>
+                                <div class="recipe-time">
+                                    <span class="timeIcon me-1">
+                                        <img src="./assets/icons/time.svg" alt="icone d'horloge">
+                                    </span>
+                                    <span id="timeValue">${recipesToShow.time} min</span>
+                                </div>
+                            </div>
+                            <div class="card-text py-3 d-flex flex-row justify-content-between">
+                                <ul class="ingredients-list w-50 pl-0">
+    ${testRecipe.ingredients
+			.map((ingredient) => {
+				return `<li>${ingredient.ingredient}: ${ingredient.quantity ? ingredient.quantity : ''} ${
+					ingredient.unit ? ingredient.unit : ''
+				}</li>`
+			})
+			.join('')}
+</ul>
+                                <div class="recipe-description w-50">
+                                    <p>${recipesToShow.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            `
 	}
 
 	displayUpdate() {
@@ -131,4 +165,6 @@ const testRecipe = new Recipes(
 	'papier cuisson, verres'
 )
 
-console.log(testRecipe);
+console.log(testRecipe)
+const displayTest = new ViewRecipes()
+displayTest.displayRecipesList(testRecipe)
