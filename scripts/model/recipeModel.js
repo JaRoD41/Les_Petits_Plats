@@ -23,6 +23,7 @@ class ViewRecipes {
 
 	displayRecipesList(recipesToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
+    
 	}
 
 	displayUpdate() {
