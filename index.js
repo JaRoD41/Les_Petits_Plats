@@ -1,6 +1,14 @@
 // objectif: afficher la liste des etudiants d'une classe en particulier
 const studentTable = []
 
+class Student {
+	constructor(params) {
+		this.name = params.name
+		this.firstName = params.firstName
+		this.classroom = params.classroom
+	}
+}
+
 class StudentView {
 	display(studentList) {
 		const container = document.createElement('div')
@@ -58,13 +66,6 @@ class StudentController {
 	}
 }
 
-class Student {
-	constructor(params) {
-		this.name = params.name
-		this.firstName = params.firstName
-		this.classroom = params.classroom
-	}
-}
 
 class StudentModel {
 	add(student /*de type Student*/) {
@@ -85,6 +86,3 @@ const init = () => {
 
 // init()
 
-recipes.forEach((recipe) => {
-	
-})
