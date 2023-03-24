@@ -2,19 +2,6 @@ import { recipes } from '../data/recipes.js'
 
 console.log('recettes :', recipes)
 
-// class Recipe {
-// 	constructor(id, name, servings, ingredients, time, description, appliance, ustensils) {
-// 		this.id = id
-// 		this.name = name
-// 		this.servings = servings
-// 		this.ingredients = ingredients
-// 		this.time = time
-// 		this.description = description
-// 		this.appliance = appliance
-// 		this.ustensils = ustensils
-// 	}
-// }
-
 class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
@@ -41,14 +28,14 @@ class ViewRecipes {
                             </div>
                             <div class="card-text py-3 d-flex flex-row justify-content-between">
                                 <ul class="ingredients-list w-50 pl-0">
-    ${testRecipe.ingredients
-			.map((ingredient) => {
-				return `<li>${ingredient.ingredient}: ${ingredient.quantity ? ingredient.quantity : ''} ${
-					ingredient.unit ? ingredient.unit : ''
-				}</li>`
-			})
-			.join('')}
-</ul>
+                                    ${testRecipe.ingredients
+																			.map((ingredient) => {
+																				return `<li>${ingredient.ingredient}: ${
+																					ingredient.quantity ? ingredient.quantity : ''
+																				} ${ingredient.unit ? ingredient.unit : ''}</li>`
+																			})
+																			.join('')}
+                                </ul>
                                 <div class="recipe-description w-50">
                                     <p>${recipesToShow.description}</p>
                                 </div>
