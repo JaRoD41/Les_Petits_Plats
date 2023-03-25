@@ -1,17 +1,18 @@
-import { ViewRecipes } from '../view/recipeView.js'
 import { Recipes } from '../model/recipeModel.js'
+import { ViewRecipes } from '../view/recipeView.js'
 
 export class ControllerRecipes {
 	constructor(model) {
 		this.model = model
-		this.view = new ViewRecipes(this)
 		this.filter = new Recipes()
+		this.view = new ViewRecipes()
 	}
 
 	mainSearch(text) {
 		const filteredRecipes = this.filter.mainSearch(this.model.recipes, text)
 		console.log(filteredRecipes)
-		//this.view.displayRecipesList(filteredRecipes);
+
+		this.view.displayRecipesList(filteredRecipes)
 	}
 
 	ingredientSearch(tag) {
@@ -19,8 +20,3 @@ export class ControllerRecipes {
 		console.log(filteredRecipe)
 	}
 }
-
-const controller = new ControllerRecipes({ recipes: recipes })
-
-controller.mainSearch('verres')
-controller.ingredientSearch('huile')

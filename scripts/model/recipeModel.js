@@ -1,6 +1,7 @@
 import { ViewRecipes } from '../view/recipeView.js'
 import { ControllerRecipes } from '../controller/recipeController.js'
 
+
 export class Recipes {
 	constructor(id, name, servings, ingredients, time, description, appliance, ustensils) {
 		this.id = id
@@ -40,34 +41,3 @@ export class Recipes {
 		)
 	}
 }
-
-const testRecipe = new Recipes(
-	51,
-	'recette test',
-	4,
-	[
-		{
-			ingredient: 'ingrédient 1',
-			quantity: 1,
-		},
-		{
-			ingredient: 'ingrédient 2',
-		},
-		{
-			ingredient: 'ingrédient 3',
-			quantity: 250,
-			unit: 'grammes',
-		},
-		{
-			ingredient: 'ingrédient 4',
-		},
-	],
-	17,
-	'tout simplement une description de la recette',
-	'Four',
-	'papier cuisson, verres'
-)
-
-console.log(testRecipe)
-
-console.log('recettes :', recipes)

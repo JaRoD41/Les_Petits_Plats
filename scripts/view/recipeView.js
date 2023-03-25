@@ -1,14 +1,18 @@
+import { ControllerRecipes } from '../controller/recipeController.js'
+import { recipes } from '../data/recipes.js'
+
+// const controller = new ControllerRecipes({ recipes: recipes })
+
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
-		this.addEventListeners()
 	}
 
 	displayRecipesList(recipeToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
 		const recipeSnippet = document.getElementById('recipes-zone')
 		recipeSnippet.innerHTML += `
-                <div class="col-12 col-lg-4 mb-4">
+        <div class="col-12 col-lg-4 mb-4">
                     <article class="card h-100 border-0">
                         <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top">
                         <div class="card-body rounded-bottom">
@@ -37,20 +41,11 @@ export class ViewRecipes {
                             </div>
                         </div>
                     </article>
-                </div>
-            `
+                </div>        
+        `
 	}
 
 	displayUpdate() {
 		// Code pour mettre à jour l'affichage lorsque les données changent
-	}
-
-	addEventListeners() {
-		// Code pour ajouter les écouteurs d'événements
-		const searchInput = document.querySelector('#search-zone')
-		searchInput.addEventListener('input', (event) => {
-			const searchText = event.target.value
-			this.controller.mainSearch(searchText)
-		})
 	}
 }
