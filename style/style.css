@@ -58,6 +58,14 @@
     font-size: 12px;
 }
 
+.card-title {
+    font-size: 1rem;
+}
+
+#time-value {
+    font-size: 1rem;
+}
+
 .card-body {
     background-color: #E7E7E7;
 }
