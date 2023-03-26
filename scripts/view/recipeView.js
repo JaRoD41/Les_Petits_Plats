@@ -12,7 +12,7 @@ export class ViewRecipes {
 		// Code pour afficher la liste des recettes à l'utilisateur
 		const recipeSnippet = document.getElementById('recipes-zone')
 		recipeSnippet.innerHTML += `
-        <div class="col-12 col-lg-4 mb-4">
+        <div id="recipe-card-container" class="col-12 col-lg-4 mb-4">
                     <article class="card h-100 border-0">
                         <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top">
                         <div class="card-body rounded-bottom">

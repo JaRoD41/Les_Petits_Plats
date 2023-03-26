@@ -69,3 +69,6 @@
 .card-body {
     background-color: #E7E7E7;
 }
+#recipe-card-container {
+    height: 364px;
+}
