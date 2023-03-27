@@ -9,7 +9,8 @@ export class ControllerRecipes {
 		this.view = new ViewRecipes()
 	}
 
-	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle et les envoyer dans la Vue pour les afficher
+	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
+
 	mainSearch(text) {
 		const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, text)
 		console.log('mainFilteredRecipes mainSearch du controleur :', mainFilteredRecipes)
@@ -35,4 +36,3 @@ export class ControllerRecipes {
 	}
 }
 
-// console.log('recipesToShow dans le contrôleur :', recipesToShow);

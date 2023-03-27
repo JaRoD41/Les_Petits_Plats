@@ -1,7 +1,3 @@
-import { ViewRecipes } from '../view/recipeView.js'
-import { ControllerRecipes } from '../controller/recipeController.js'
-
-
 export class Recipes {
 	constructor(id, name, servings, ingredients, time, description, appliance, ustensils) {
 		this.id = id
@@ -14,6 +10,8 @@ export class Recipes {
 		this.ustensils = ustensils
 	}
 
+	// méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
+	
 	mainSearch(recipes, text) {
 		return recipes.filter(
 			(recipe) =>
