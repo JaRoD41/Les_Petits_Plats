@@ -8,16 +8,18 @@ export class ViewRecipes {
 		this.controller = controller
 	}
 
-	displayRecipesList(recipeToShow) {
+	displayRecipesList(recipesToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
+
 		const recipeSnippet = document.getElementById('recipes-zone')
-		recipeSnippet.innerHTML += `
-        <div id="recipe-card-container" class="col-12 col-lg-4 mb-4">
+		recipesToShow.forEach((recipeToShow) => {
+			recipeSnippet.innerHTML += `
+        <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
-                        <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top">
+                        <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top" height="178px">
                         <div class="card-body rounded-bottom">
                             <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
-                                <h5 class="card-title">${recipeToShow.name}</h5>
+                                <h5 class="card-title w-75">${recipeToShow.name}</h5>
                                 <div class="recipe-time">
                                     <span class="timeIcon me-1">
                                         <img src="./assets/icons/time.svg" alt="icone d'horloge">
@@ -25,7 +27,7 @@ export class ViewRecipes {
                                     <span id="timeValue">${recipeToShow.time} min</span>
                                 </div>
                             </div>
-                            <div class="card-text py-3 d-flex flex-row justify-content-between">
+                            <div class="card-text py-3 d-flex flex-row">
                                 <ul class="ingredients-list w-50 pl-0">
                                     ${recipeToShow.ingredients
 																			.map((ingredient) => {
@@ -35,14 +37,15 @@ export class ViewRecipes {
 																			})
 																			.join('')}
                                 </ul>
-                                <div class="recipe-description w-50">
-                                    <p>${recipeToShow.description}</p>
-                                </div>
+                                <p class="recipe-description w-50">
+                                    ${recipeToShow.description}
+                                </p>
                             </div>
                         </div>
                     </article>
                 </div>        
         `
+		})
 	}
 
 	displayUpdate() {

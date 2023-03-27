@@ -68,7 +68,18 @@
 
 .card-body {
     background-color: #E7E7E7;
+    height: 186px;
 }
-#recipe-card-container {
-    height: 364px;
+
+.card-img-top {
+    object-fit: cover;
+}
+
+.recipe-description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
 }

@@ -1,5 +1,6 @@
 import { Recipes } from '../model/recipeModel.js'
 import { ViewRecipes } from '../view/recipeView.js'
+import { recipesToShow } from '../model/recipeModel.js'
 
 export class ControllerRecipes {
 	constructor(model) {
@@ -8,11 +9,13 @@ export class ControllerRecipes {
 		this.view = new ViewRecipes()
 	}
 
+	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle et les envoyer dans la Vue pour les afficher
 	mainSearch(text) {
 		const filteredRecipes = this.filter.mainSearch(this.model.recipes, text)
 		console.log(filteredRecipes)
-
-		this.view.displayRecipesList(filteredRecipes)
+		// recipesToShow = filteredRecipes.slice()
+		// recipesToShow.push(filteredRecipes)
+		this.view.displayRecipesList(recipesToShow)
 	}
 
 	ingredientSearch(tag) {
@@ -20,3 +23,5 @@ export class ControllerRecipes {
 		console.log(filteredRecipe)
 	}
 }
+
+console.log('recipesToShow dans le controller :', recipesToShow);
