@@ -12,6 +12,9 @@ const searchInput = document.querySelector('#search-zone')
 searchInput.addEventListener('input', (event) => {
 	const searchText = event.target.value
 	controller.mainSearch(searchText)
+	controller.ingredientSearch(searchText)
+	controller.applianceSearch(searchText)
+	controller.ustensilSearch(searchText)
 })
 
 // const displayRecipes = new ViewRecipes()

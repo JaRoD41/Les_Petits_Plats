@@ -11,17 +11,28 @@ export class ControllerRecipes {
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle et les envoyer dans la Vue pour les afficher
 	mainSearch(text) {
-		const filteredRecipes = this.filter.mainSearch(this.model.recipes, text)
-		console.log(filteredRecipes)
+		const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, text)
+		console.log('mainFilteredRecipes mainSearch du controleur :', mainFilteredRecipes)
 		// recipesToShow = filteredRecipes.slice()
-		// recipesToShow.push(filteredRecipes)
-		this.view.displayRecipesList(recipesToShow)
+		// recipesToShow.push(...filteredRecipes)
+		// this.view.displayRecipesList(recipesToShow)
+		// this.view.displayRecipesList(mainFilteredRecipes)
 	}
 
 	ingredientSearch(tag) {
-		const filteredRecipe = this.filter.ingredientSearch(this.model.recipes, tag)
-		console.log(filteredRecipe)
+		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
+		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
+	}
+
+	applianceSearch(tag) {
+		const applianceTagFilteredRecipes = this.filter.applianceSearch(this.model.recipes, tag)
+		console.log('recherche tag appareil contrôleur :', applianceTagFilteredRecipes)
+	}
+
+	ustensilSearch(tag) {
+		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
+		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
 	}
 }
 
-console.log('recipesToShow dans le controller :', recipesToShow);
+console.log('recipesToShow dans le contrôleur :', recipesToShow);
