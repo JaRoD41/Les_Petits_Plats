@@ -1,11 +1,13 @@
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
+        this.displayRecipesList = this.displayRecipesList.bind(this)
 	}
 
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipeToShow) {
+        console.log('displayRecipesList recette à afficher :', recipeToShow);
 		return `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
@@ -41,6 +43,6 @@ export class ViewRecipes {
 	}
 
 	// Méthode pour mettre à jour l'affichage lorsque les données changent
-    
+
 	displayUpdate() {}
 }

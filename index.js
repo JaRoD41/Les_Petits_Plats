@@ -24,6 +24,8 @@ function init() {
 
 	searchInput.addEventListener('input', (event) => {
 		const searchText = event.target.value
+
+		// mettre condition > 2 caractères pour passer à la suite
 		controller.mainSearch(searchText)
 		controller.ingredientSearch(searchText)
 		controller.applianceSearch(searchText)
@@ -35,5 +37,4 @@ function init() {
 init()
 
 
-console.log('recipes :', recipes)
 console.log('recipesToShow :', recipesToShow)

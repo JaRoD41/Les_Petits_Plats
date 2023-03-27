@@ -17,7 +17,7 @@ export class ControllerRecipes {
 		// recipesToShow = filteredRecipes.slice()
 		// recipesToShow.push(...filteredRecipes)
 		// this.view.displayRecipesList(recipesToShow)
-		// this.view.displayRecipesList(mainFilteredRecipes)
+		this.view.displayRecipesList(mainFilteredRecipes)
 	}
 
 	ingredientSearch(tag) {
