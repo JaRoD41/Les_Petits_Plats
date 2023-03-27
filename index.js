@@ -17,7 +17,7 @@ function init() {
 
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
 	const displayRecipes = new ViewRecipes()
-	recipesToShow.forEach((recipe) => (recipeSnippet.innerHTML += displayRecipes.displayRecipesList(recipe)))
+	displayRecipes.displayRecipesList(recipesToShow)
 
 	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour effectuer la recheche
 	const searchInput = document.querySelector('#search-zone')
