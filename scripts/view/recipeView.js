@@ -1,19 +1,17 @@
 import { ControllerRecipes } from '../controller/recipeController.js'
 import { recipes } from '../data/recipes.js'
 
-// const controller = new ControllerRecipes({ recipes: recipes })
+
 
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
 	}
 
-	displayRecipesList(recipesToShow) {
+	displayRecipesList(recipeToShow) {
 		// Code pour afficher la liste des recettes à l'utilisateur
 
-		const recipeSnippet = document.getElementById('recipes-zone')
-		recipesToShow.forEach((recipeToShow) => {
-			recipeSnippet.innerHTML += `
+		return `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
                         <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top" height="178px">
@@ -45,7 +43,6 @@ export class ViewRecipes {
                     </article>
                 </div>        
         `
-		})
 	}
 
 	displayUpdate() {

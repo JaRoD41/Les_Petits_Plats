@@ -1,7 +1,7 @@
 import { ViewRecipes } from '../view/recipeView.js'
 import { ControllerRecipes } from '../controller/recipeController.js'
 
-export let recipesToShow = []
+
 export class Recipes {
 	constructor(id, name, servings, ingredients, time, description, appliance, ustensils) {
 		this.id = id

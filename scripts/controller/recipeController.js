@@ -1,6 +1,6 @@
 import { Recipes } from '../model/recipeModel.js'
 import { ViewRecipes } from '../view/recipeView.js'
-import { recipesToShow } from '../model/recipeModel.js'
+// import { recipesToShow } from '../index.js'
 
 export class ControllerRecipes {
 	constructor(model) {
@@ -35,4 +35,4 @@ export class ControllerRecipes {
 	}
 }
 
-console.log('recipesToShow dans le contrôleur :', recipesToShow);
+// console.log('recipesToShow dans le contrôleur :', recipesToShow);
