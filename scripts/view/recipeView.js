@@ -1,16 +1,11 @@
-import { ControllerRecipes } from '../controller/recipeController.js'
-import { recipes } from '../data/recipes.js'
-
-
-
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
 	}
 
-	displayRecipesList(recipeToShow) {
-		// Code pour afficher la liste des recettes à l'utilisateur
+	// Méthode pour afficher la liste des recettes à l'utilisateur
 
+	displayRecipesList(recipeToShow) {
 		return `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
@@ -45,7 +40,7 @@ export class ViewRecipes {
         `
 	}
 
-	displayUpdate() {
-		// Code pour mettre à jour l'affichage lorsque les données changent
-	}
+	// Méthode pour mettre à jour l'affichage lorsque les données changent
+    
+	displayUpdate() {}
 }
