@@ -1,6 +1,5 @@
 import { Recipes } from '../model/recipeModel.js'
 import { ViewRecipes } from '../view/recipeView.js'
-// import { recipesToShow } from '../index.js'
 
 export class ControllerRecipes {
 	constructor(model) {
@@ -14,9 +13,7 @@ export class ControllerRecipes {
 	mainSearch(text) {
 		const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, text)
 		console.log('mainFilteredRecipes mainSearch du controleur :', mainFilteredRecipes)
-		// recipesToShow = filteredRecipes.slice()
-		// recipesToShow.push(...filteredRecipes)
-		// this.view.displayRecipesList(recipesToShow)
+		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
 		this.view.displayRecipesList(mainFilteredRecipes)
 	}
 
