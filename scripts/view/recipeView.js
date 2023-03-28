@@ -11,6 +11,7 @@ export class ViewRecipes {
 
 		recipeSnippet.innerHTML = ''
 		recipesToShow.forEach((recipe) => {
+            // Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
 			const imageName = recipe.name
 				.toLowerCase()
 				.normalize('NFD')
