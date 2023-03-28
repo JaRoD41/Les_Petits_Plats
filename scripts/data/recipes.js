@@ -307,7 +307,7 @@ export const recipes = [
 	},
 	{
 		id: 9,
-		name: 'Salade Méditerannéene fraîche au chèvre',
+		name: 'Salade Méditerranéenne fraîche au chèvre',
 		servings: 4,
 		ingredients: [
 			{
@@ -1266,7 +1266,7 @@ export const recipes = [
 	},
 	{
 		id: 36,
-		name: 'Lasagne Courgettes et Chèvre',
+		name: 'Lasagnes Courgettes et Chèvre',
 		servings: 2,
 		ingredients: [
 			{

@@ -8,12 +8,19 @@ export class ViewRecipes {
 
 	displayRecipesList(recipesToShow) {
 		const recipeSnippet = document.getElementById('recipes-zone')
-        recipeSnippet.innerHTML = ''
+
+		recipeSnippet.innerHTML = ''
 		recipesToShow.forEach((recipe) => {
+			const imageName = recipe.name
+				.toLowerCase()
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.split(' ')
+				.join('-')
 			recipeSnippet.innerHTML += `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
-                        <img src="./assets/images/test-image.webp" alt="photo de plat test" class="card-img-top" height="178px">
+                        <img src="./assets/images/${imageName}.webp" alt="photo de ${recipe.name}" class="card-img-top" height="178px">
                         <div class="card-body rounded-bottom">
                             <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
                                 <h5 class="card-title w-75">${recipe.name}</h5>
@@ -44,8 +51,4 @@ export class ViewRecipes {
         `
 		})
 	}
-
-	// Méthode pour mettre à jour l'affichage lorsque les données changent
-
-	displayUpdate() {}
 }
