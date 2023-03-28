@@ -75,7 +75,7 @@
     object-fit: cover;
 }
 
-.recipe-description {
+.recipe-description, .ingredients-list {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
