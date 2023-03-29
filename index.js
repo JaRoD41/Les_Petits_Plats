@@ -1,8 +1,7 @@
 import { recipes } from './scripts/data/recipes.js'
-import { ViewRecipes } from './scripts/view/recipeView.js'
+import { FilterTagView, ViewRecipes } from './scripts/view/recipeView.js'
 import { ControllerRecipes } from './scripts/controller/recipeController.js'
 
-const recipeSnippet = document.getElementById('recipes-zone')
 // je crée un tableau vide pour pouvoir y stocker les recettes filtrées
 let recipesToShow = []
 
@@ -19,22 +18,26 @@ function init() {
 	const displayRecipes = new ViewRecipes()
 	displayRecipes.displayRecipesList(recipesToShow)
 
+	// je crée une instance de ma vue pour pouvoir afficher les tags de filtrage des recettes
+	// const ingredients = recipesToShow.map((recipe) => recipe.ingredients).flat()
+	// const displayFilterTag = new FilterTagView()
+	// displayFilterTag.displayFilterTag(ingredients)
+
 	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour effectuer la recheche
 	const searchInput = document.querySelector('#search-zone')
 
 	searchInput.addEventListener('input', (event) => {
 		const searchText = event.target.value
+		let mainInputLength = searchText.length 
 
-		// mettre condition > 2 caractères pour passer à la suite
-		controller.mainSearch(searchText)
-		controller.ingredientSearch(searchText)
-		controller.applianceSearch(searchText)
-		controller.ustensilSearch(searchText)
+		if (mainInputLength > 3) {
+			controller.mainSearch(searchText)
+			controller.ingredientSearch(searchText)
+			controller.applianceSearch(searchText)
+			controller.ustensilSearch(searchText)
+
+		}
 	})
 }
 
-
 init()
-
-
-console.log('recipesToShow :', recipesToShow)

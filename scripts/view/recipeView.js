@@ -57,22 +57,22 @@ export class ViewRecipes {
 	}
 }
 
-export class filterTagView {
+export class FilterTagView {
 	constructor(controller) {
 		this.controller = controller
 		this.displayFilterTag = this.displayFilterTag.bind(this)
 	}
 
 	displayFilterTag(tag) {
-		const filterTagSnippet = document.getElementById('filter-tag-zone')
+		const filterTagSnippet = document.getElementById('filters-zone')
 
 		filterTagSnippet.innerHTML += `
-        <div class="filter-tag">
+        <button id="filter-tag" type="button" class="btn btn-primary">
             <span class="filter-tag-text">${tag}</span>
             <span class="filter-tag-icon">
                 <img src="./assets/icons/close.svg" alt="icone de fermeture">
             </span>
-        </div>
+        </button>
         `
 	}
 }

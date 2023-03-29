@@ -10,8 +10,7 @@ export class Recipes {
 		this.ustensils = ustensils
 	}
 
-	// méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
-	
+	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
 	mainSearch(recipes, text) {
 		return recipes.filter(
 			(recipe) =>
@@ -21,19 +20,19 @@ export class Recipes {
 		)
 	}
 
-	// méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
+	// Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
 	ingredientSearch(recipes, tag) {
 		return recipes.filter((recipe) =>
 			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
 		)
 	}
 
-	// méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
+	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
 	applianceSearch(recipes, tag) {
 		return recipes.filter((recipe) => recipe.appliance.toLowerCase().includes(tag.toLowerCase()))
 	}
 
-	// méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
+	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
 	ustensilSearch(recipes, tag) {
 		return recipes.filter((recipe) =>
 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase().includes(tag.toLowerCase()))
