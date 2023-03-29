@@ -147,8 +147,8 @@
 }
 
 .accordion-button .form-control,
-.form-control:hover,
-.form-control:focus {
+.accordion-button .form-control:hover,
+.accordion-button .form-control:focus {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
