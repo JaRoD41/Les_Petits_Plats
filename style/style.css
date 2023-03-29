@@ -75,11 +75,81 @@
     object-fit: cover;
 }
 
-.recipe-description, .ingredients-list {
+.recipe-description,
+.ingredients-list {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 6;
     line-clamp: 6;
     -webkit-box-orient: vertical;
+}
+
+/* Style des filtres collapse */
+
+.accordion-button:after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+    margin-left: 25px;
+}
+
+.accordion-button,
+.accordion-button:focus,
+.accordion-button:active,
+.accordion-button:not(.collapsed) {
+    border-color: none;
+    box-shadow: none;
+}
+
+#headingOne,
+#collapseOne {
+    color: #FFFFFF;
+    background-color: #3282F7;
+}
+
+#headingOne button {
+    color: #FFFFFF;
+    background-color: #3282F7;
+}
+
+#headingTwo,
+#collapseTwo {
+    color: #FFFFFF;
+    background-color: #68D9A4;
+}
+
+#headingTwo button {
+    color: #FFFFFF;
+    background-color: #68D9A4;
+}
+
+#headingThree,
+#collapseThree {
+    color: #FFFFFF;
+    background-color: #ED6454;
+}
+
+#headingThree button {
+    color: #FFFFFF;
+    background-color: #ED6454;
+}
+
+#headingOne,
+#headingTwo,
+#headingThree,
+.collapsed {
+    border-radius: 5px;
+}
+
+.accordion-button {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.show {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.accordion-item {
+    border: none;
 }
