@@ -174,3 +174,12 @@
 .accordion-item {
     border: none;
 }
+
+/* Style des listes d'éléments présents dans les filtres */
+
+.flexbox-list-container {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
