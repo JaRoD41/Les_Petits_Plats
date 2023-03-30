@@ -177,9 +177,10 @@
 
 /* Style des listes d'éléments présents dans les filtres */
 
-.flexbox-list-container {
+.accordion-body ul {
     list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    padding-left: 0;
 }
