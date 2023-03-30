@@ -106,7 +106,7 @@
     background-color: #3282F7;
 }
 
-#headingOne button {
+#headingOne .filter_button {
     color: #FFFFFF;
     background-color: #3282F7;
 }
@@ -117,7 +117,7 @@
     background-color: #68D9A4;
 }
 
-#headingTwo button {
+#headingTwo .filter_button {
     color: #FFFFFF;
     background-color: #68D9A4;
 }
@@ -128,7 +128,7 @@
     background-color: #ED6454;
 }
 
-#headingThree button {
+#headingThree .filter_button {
     color: #FFFFFF;
     background-color: #ED6454;
 }
