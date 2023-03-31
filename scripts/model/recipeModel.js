@@ -38,4 +38,9 @@ export class Recipes {
 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase().includes(tag.toLowerCase()))
 		)
 	}
+
+	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche
+	resetSearch(recipes) {
+		return recipes
+	}
 }

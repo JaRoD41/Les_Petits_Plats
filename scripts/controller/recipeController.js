@@ -31,5 +31,12 @@ export class ControllerRecipes {
 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
 	}
+
+	resetSearch() {
+		const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+		console.log('resetFilteredRecipes resetSearch du controleur :', resetFilteredRecipes)
+		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
+		this.view.displayRecipesList(resetFilteredRecipes)
+	}
 }
 

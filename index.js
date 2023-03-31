@@ -37,6 +37,9 @@ function init() {
 			controller.ustensilSearch(searchText)
 
 		}
+		else if (mainInputLength === 0) {
+			controller.resetSearch()
+		}
 	})
 }
 
