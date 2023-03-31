@@ -90,6 +90,7 @@
 .accordion-button:after {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
     margin-right: 25px;
+    cursor: pointer;
 }
 
 .accordion-button,
@@ -183,4 +184,49 @@
     -moz-column-count: 3;
     column-count: 3;
     padding-left: 0;
+}
+
+/* Style des tags */
+
+.tag {
+    display: flex;
+    color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    height: 37px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 20px 15px 0;
+    padding: 20px;
+    opacity: 1;
+}
+
+.tag svg {
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.tag-ingredient {
+    background-color: #3282F7;
+}
+
+.tag-ingredient:hover, .tag-ingredient:focus {
+    box-shadow: 0px 0px 20px 3px rgba(50, 130, 247, 0.9);
+}
+
+.tag-appliance {
+    background-color: #68D9A4;
+}
+
+.tag-appliance:hover, .tag-appliance:focus {
+    box-shadow: 0px 0px 20px 3px rgba(104, 217, 164, 0.9);
+}
+
+.tag-ustensil {
+    background-color: #ED6454;
+}
+
+.tag-ustensil:hover, .tag-ustensil:focus {
+    box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
 }
