@@ -4,6 +4,9 @@ import { ControllerRecipes } from './scripts/controller/recipeController.js'
 
 // je crée un tableau vide pour pouvoir y stocker les recettes filtrées
 let recipesToShow = []
+let ingredientArray = []
+let applianceArray = []
+let ustensilArray = []
 
 // Je dois créer un tableau avec toutes les recettes filtrées et l'envoyer dans mon controleur pour effectuer mon tri et utiliser le nouveau tableau pour afficher les recettes triées
 
@@ -18,13 +21,19 @@ function init() {
 	const displayRecipes = new ViewRecipes()
 	displayRecipes.displayRecipesList(recipesToShow)
 
-	// je crée une instance de ma vue pour pouvoir afficher les tags de filtrage des recettes
-	// const ingredients = recipesToShow.map((recipe) => recipe.ingredients).flat()
-	// const displayFilterTag = new FilterTagView()
-	// displayFilterTag.displayFilterTag(ingredients)
-
-	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour effectuer la recheche
+	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur
 	const searchInput = document.querySelector('#search-zone')
+	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+	keywordsToClick.forEach((keyword) => {
+		keyword.addEventListener('click', (event) => {
+			const keywordToSearch = event.target.innerText
+			console.log(keywordToSearch)
+			// JE DOIS ENVOYER LE TEXTE DU TAG CLIQUÉ DANS LE CONTROLEUR POUR FILTRER LES RECETTES APRES AVOIR VERIFIÉ SI LE TAG CLIQUÉ EST UN INGREDIENT, UN APPAREIL OU UN USTENSILE
+			// je crée une instance de ma vue pour pouvoir afficher les tags de filtrage des recettes
+			const displayTags = new FilterTagView()
+			displayTags.add(keywordToSearch, "ustensil")
+		})
+	})
 
 	searchInput.addEventListener('input', (event) => {
 		const searchText = event.target.value
@@ -41,6 +50,10 @@ function init() {
 			controller.resetSearch()
 		}
 	})
+
+	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour afficher les tags
+
+
 }
 
 init()
