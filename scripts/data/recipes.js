@@ -1732,7 +1732,7 @@ export const recipes = [
 				unit: 'cuillères à soupe',
 			},
 		],
-		time: 0,
+		time: 5,
 		description:
 			"Découper les fruits. Les passer au blender jusqu'à obtenir une texture liquide. Mettre au frais. Servir",
 		appliance: 'Blender',
