@@ -1,6 +1,6 @@
 import { recipes } from './scripts/data/recipes.js'
 import { FilterTagView, ViewRecipes } from './scripts/view/recipeView.js'
-import { ControllerRecipes } from './scripts/controller/recipeController.js'
+import { FilterTagController, ControllerRecipes } from './scripts/controller/recipeController.js'
 
 // je crée un tableau vide pour pouvoir y stocker les recettes filtrées
 let recipesToShow = []
@@ -14,8 +14,9 @@ function init() {
 	// je crée un tableau avec toutes les recettes pour pouvoir les afficher à partir du tableau d'origine
 	recipesToShow = recipes.slice()
 
-	// je crée une instance de mon controleur pour pouvoir utiliser les méthodes de mon modèle avec les données de mon tableau de recettes
+	// je crée une instance de mes controleurs pour pouvoir utiliser les méthodes avec les données de mon tableau de recettes
 	const controller = new ControllerRecipes({ recipes: recipesToShow })
+	const filterTagController = new FilterTagController({ recipes: recipesToShow })
 
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
 	const displayRecipes = new ViewRecipes()
@@ -27,7 +28,6 @@ function init() {
 	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur
 	const searchInput = document.querySelector('#search-zone')
 	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
-	const tagClose = document.querySelectorAll('.tag svg')
 
 	searchInput.addEventListener('input', (event) => {
 		const searchText = event.target.value
@@ -35,39 +35,46 @@ function init() {
 
 		if (mainInputLength > 3) {
 			controller.mainSearch(searchText)
-			controller.ingredientSearch(searchText)
-			controller.applianceSearch(searchText)
-			controller.ustensilSearch(searchText)
 		} else if (mainInputLength === 0) {
 			controller.resetSearch()
 		}
 	})
 
-	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour afficher/supprimer les tags
+	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour afficher les tags
 
 	// Écouteur d'événement pour ajouter un tag de filtre
 	keywordsToClick.forEach((keyword) => {
 		keyword.addEventListener('click', (event) => {
-			const keywordToSearch = event.target.innerText
-			console.log(keywordToSearch)
+			const keywordToSearch = event.target
+			const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
+			const keywordTagToSearch = event.target.innerText
+			console.log(keywordTagToSearch)
 			// JE DOIS ENVOYER LE TEXTE DU TAG CLIQUÉ DANS LE CONTROLEUR POUR FILTRER LES RECETTES APRES AVOIR VERIFIÉ SI LE TAG CLIQUÉ EST UN INGREDIENT, UN APPAREIL OU UN USTENSILE
 
 			// J'appelle ma méthode créée pour pouvoir afficher les tags
-			displayTags.add(keywordToSearch, 'ustensil')
-			console.log(tagClose)
-			// J'appelle ma méthode créée pour pouvoir supprimer les tags
-			// Écouteur d'événement pour supprimer un tag de filtre
-			tagClose.forEach((tag) => {
-				tag.addEventListener('click', (event) => {
-					const tagToDelete = event.target.parentElement
-					console.log(tagToDelete);
-				})
-			})
+			// displayTags.add(keywordToSearch, 'ustensil')
+
+			// J'appelle ma méthode créée pour lancer la recherche des recettes par ces tags et les afficher
+
+			if (keywordArray === 'ingredient') {
+				ingredientArray.push(keywordTagToSearch)
+				console.log(ingredientArray)
+				// Je dois créer une boucle pour pouvoir envoyer chaque mot clé du tableau et son type dans ma méthode de recherche 
+				for (let i = 0; i < ingredientArray.length; i++) {
+					filterTagController.ingredientSearch(ingredientArray[i], keywordArray)
+				}
+				// filterTagController.ingredientSearch(keywordTagToSearch)
+			} else if (keywordArray === 'appliance') {
+				applianceArray.push(keywordTagToSearch)
+				console.log(applianceArray)
+				filterTagController.applianceSearch(applianceArray)
+			} else if (keywordArray === 'ustensil') {
+				ustensilArray.push(keywordTagToSearch)
+				console.log(ustensilArray)
+				filterTagController.ustensilSearch(ustensilArray)
+			}
 		})
 	})
-
-	
-	
 }
 
 init()

@@ -18,10 +18,27 @@ export class ControllerRecipes {
 		this.view.displayRecipesList(mainFilteredRecipes)
 	}
 
-	ingredientSearch(tag) {
+	resetSearch() {
+		const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+		console.log('resetFilteredRecipes resetSearch du controleur :', resetFilteredRecipes)
+		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
+		this.view.displayRecipesList(resetFilteredRecipes)
+	}
+}
+
+export class FilterTagController {
+	constructor(model) {
+		this.model = model
+		this.filter = new Recipes()
+		this.view = new ViewRecipes()
+		this.tagDisplay = new FilterTagView()
+	}
+
+	ingredientSearch(tag, type) {
 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
 		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
-		this.tagDisplay.displayTag(tag)
+		this.tagDisplay.add(tag, type)
+		this.view.displayRecipesList(ingredientTagFilteredRecipes)
 	}
 
 	applianceSearch(tag) {
@@ -33,21 +50,8 @@ export class ControllerRecipes {
 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
 	}
-
-	resetSearch() {
-		const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
-		console.log('resetFilteredRecipes resetSearch du controleur :', resetFilteredRecipes)
-		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
-		this.view.displayRecipesList(resetFilteredRecipes)
-	}
 }
 
-// export class ControllerTags {
-// 	constructor(model) {
-// 		this.model = model
-// 		this.filter = new Recipes()
-// 		this.view = new ViewRecipes()
-// 	}
 
 // 	ingredientSearch(tag) {
 // 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
