@@ -82,7 +82,7 @@ export class FilterTagView {
 				console.log('tagContent :', tagContent);
 				// je récupère le contenu du tag pour pouvoir le passer en paramètre à la méthode deleteTag de la classe FilterTagController
 				tagToDelete.style.display = 'none'
-				// this.controller.deleteTag(tagContent)
+				this.controller.deleteTag(tagContent)
 			})
 		})
 	}

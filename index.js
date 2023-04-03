@@ -35,7 +35,7 @@ function init() {
 
 		if (mainInputLength > 3) {
 			controller.mainSearch(searchText)
-		} else if (mainInputLength === 0) {
+		} else if (mainInputLength <= 2) {
 			controller.resetSearch()
 		}
 	})
@@ -51,27 +51,31 @@ function init() {
 			console.log(keywordTagToSearch)
 			// JE DOIS ENVOYER LE TEXTE DU TAG CLIQUÉ DANS LE CONTROLEUR POUR FILTRER LES RECETTES APRES AVOIR VERIFIÉ SI LE TAG CLIQUÉ EST UN INGREDIENT, UN APPAREIL OU UN USTENSILE
 
-			// J'appelle ma méthode créée pour pouvoir afficher les tags
-			// displayTags.add(keywordToSearch, 'ustensil')
-
 			// J'appelle ma méthode créée pour lancer la recherche des recettes par ces tags et les afficher
 
 			if (keywordArray === 'ingredient') {
 				ingredientArray.push(keywordTagToSearch)
 				console.log(ingredientArray)
-				// Je dois créer une boucle pour pouvoir envoyer chaque mot clé du tableau et son type dans ma méthode de recherche 
+				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ingredient dans ma méthode de recherche 
 				for (let i = 0; i < ingredientArray.length; i++) {
 					filterTagController.ingredientSearch(ingredientArray[i], keywordArray)
 				}
-				// filterTagController.ingredientSearch(keywordTagToSearch)
+				displayTags.add(keywordTagToSearch, keywordArray)
 			} else if (keywordArray === 'appliance') {
 				applianceArray.push(keywordTagToSearch)
 				console.log(applianceArray)
-				filterTagController.applianceSearch(applianceArray)
+				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau appliance dans ma méthode de recherche
+				for (let i = 0; i < applianceArray.length; i++) {
+					filterTagController.applianceSearch(applianceArray[i], keywordArray)
+				}
+				
 			} else if (keywordArray === 'ustensil') {
 				ustensilArray.push(keywordTagToSearch)
 				console.log(ustensilArray)
-				filterTagController.ustensilSearch(ustensilArray)
+				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ustensils dans ma méthode de recherche
+				for (let i = 0; i < ustensilArray.length; i++) {
+					filterTagController.ustensilSearch(ustensilArray[i], keywordArray)
+				}
 			}
 		})
 	})

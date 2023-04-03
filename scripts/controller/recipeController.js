@@ -37,7 +37,7 @@ export class FilterTagController {
 	ingredientSearch(tag, type) {
 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
 		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
-		this.tagDisplay.add(tag, type)
+		// this.tagDisplay.add(tag, type)
 		this.view.displayRecipesList(ingredientTagFilteredRecipes)
 	}
 
@@ -50,27 +50,8 @@ export class FilterTagController {
 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
 	}
+
+	deleteTag(tag) {
+		console.log('tag supprimé :', tag)
+	}
 }
-
-
-// 	ingredientSearch(tag) {
-// 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
-// 		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
-// 		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
-// 		this.view.displayRecipesList(ingredientTagFilteredRecipes)
-// 	}
-
-// 	applianceSearch(tag) {
-// 		const applianceTagFilteredRecipes = this.filter.applianceSearch(this.model.recipes, tag)
-// 		console.log('recherche tag appareil contrôleur :', applianceTagFilteredRecipes)
-// 		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
-// 		this.view.displayRecipesList(applianceTagFilteredRecipes)
-// 	}
-
-// 	ustensilSearch(tag) {
-// 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
-// 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
-// 		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
-// 		this.view.displayRecipesList(ustensilTagFilteredRecipes)
-// 	}
-// }
