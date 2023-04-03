@@ -1,3 +1,5 @@
+import { recipesToShow, ingredientArray, applianceArray, ustensilArray } from '../../index.js'
+
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
@@ -8,10 +10,36 @@ export class ViewRecipes {
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
+		let ingredientlist = []
+		let applianceList = []
+		let ustensilsList = []
 		const recipeSnippet = document.getElementById('recipes-zone')
+		const ingredientButtonList = document.getElementById('ingredientList')
+		const applianceButtonList = document.getElementById('applianceList')
+		const ustensilsButtonList = document.getElementById('ustensilsList')
 
 		recipeSnippet.innerHTML = ''
+		ingredientButtonList.innerHTML = ''
+		applianceButtonList.innerHTML = ''
+		ustensilsButtonList.innerHTML = ''
+
 		recipesToShow.forEach((recipe) => {
+			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
+			recipe.ingredients.map((ingredient) => {
+				ingredientlist.push(`${ingredient.ingredient}`)
+			})
+			applianceList.push(`${recipe.appliance}`)
+			recipe.ustensils.map((ustensil) => {
+				ustensilsList.push(`${ustensil}`)
+			})
+			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
+			ingredientlist = [...new Set(ingredientlist)]
+			applianceList = [...new Set(applianceList)]
+			ustensilsList = [...new Set(ustensilsList)]
+			console.log('tableau des ingrédients :', ingredientlist)
+			console.log('tableau des appareils :', applianceList)
+			console.log('tableau des ustensiles :', ustensilsList)
+
 			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
 			const imageName = recipe.name
 				.toLowerCase()
@@ -19,6 +47,8 @@ export class ViewRecipes {
 				.replace(/[\u0300-\u036f]/g, '')
 				.split(' ')
 				.join('-')
+
+			// Je crée une div pour chaque recette et je l'insère dans la div recipes-zone
 			recipeSnippet.innerHTML += `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
@@ -54,9 +84,32 @@ export class ViewRecipes {
                 </div>        
         `
 		})
+
+		ingredientButtonList.innerHTML += `
+		${ingredientlist
+			.map((ingredient) => {
+				return `<li>${ingredient}</li>`
+			})
+			.join('')}
+		`
+		applianceButtonList.innerHTML += `
+		${applianceList
+			.map((appliance) => {
+				return `<li>${appliance}</li>`
+			})
+			.join('')}
+		`
+		ustensilsButtonList.innerHTML += `
+		${ustensilsList
+			.map((ustensil) => {
+				return `<li>${ustensil}</li>`
+			})
+			.join('')}
+		`
 	}
 }
 
+// je crée une classe pour gérer les tags de filtre
 export class FilterTagView {
 	constructor(controller) {
 		this.controller = controller

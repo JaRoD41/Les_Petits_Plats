@@ -1,6 +1,6 @@
 import { Recipes } from '../model/recipeModel.js'
 import { FilterTagView, ViewRecipes } from '../view/recipeView.js'
-import { recipesToShow, ingredientArray, applianceArray, ustensilArray } from '../../index.js'
+// import { recipesToShow, ingredientArray, applianceArray, ustensilArray } from '../../index.js'
 
 export class ControllerRecipes {
 	constructor(model) {
