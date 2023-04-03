@@ -41,14 +41,18 @@ export class FilterTagController {
 		this.view.displayRecipesList(ingredientTagFilteredRecipes)
 	}
 
-	applianceSearch(tag) {
+	applianceSearch(tag, type) {
 		const applianceTagFilteredRecipes = this.filter.applianceSearch(this.model.recipes, tag)
 		console.log('recherche tag appareil contrôleur :', applianceTagFilteredRecipes)
+		// this.tagDisplay.add(tag, type)
+		this.view.displayRecipesList(applianceTagFilteredRecipes)
 	}
 
 	ustensilSearch(tag) {
 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
+		// this.tagDisplay.add(tag, type)
+		this.view.displayRecipesList(ustensilTagFilteredRecipes)
 	}
 
 	deleteTag(tag) {

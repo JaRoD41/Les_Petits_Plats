@@ -48,7 +48,7 @@ function init() {
 			const keywordToSearch = event.target
 			const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
 			const keywordTagToSearch = event.target.innerText
-			console.log(keywordTagToSearch)
+			console.log("keywordTagToSearch :", keywordTagToSearch)
 			// JE DOIS ENVOYER LE TEXTE DU TAG CLIQUÉ DANS LE CONTROLEUR POUR FILTRER LES RECETTES APRES AVOIR VERIFIÉ SI LE TAG CLIQUÉ EST UN INGREDIENT, UN APPAREIL OU UN USTENSILE
 
 			// J'appelle ma méthode créée pour lancer la recherche des recettes par ces tags et les afficher
@@ -69,7 +69,7 @@ function init() {
 					filterTagController.applianceSearch(applianceArray[i], keywordArray)
 				}
 				
-			} else if (keywordArray === 'ustensil') {
+			} else if (keywordArray === 'ustensils') {
 				ustensilArray.push(keywordTagToSearch)
 				console.log(ustensilArray)
 				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ustensils dans ma méthode de recherche
