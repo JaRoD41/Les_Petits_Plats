@@ -22,8 +22,11 @@ function init() {
 	const displayRecipes = new ViewRecipes()
 	displayRecipes.displayRecipesList(recipesToShow)
 
-	// je crée une instance de ma vue pour pouvoir afficher/supprimer les tags de filtrage des recettes
+	// je crée une instance de ma vue pour pouvoir afficher les tags de filtrage des recettes
 	const displayTags = new FilterTagView()
+
+	// je crée une instance de mes controleurs pour pouvoir utiliser les méthodes avec les tags de filtrage des recettes
+	const controllerTags = new FilterTagController({ recipes: recipesToShow })
 
 	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur
 	const searchInput = document.querySelector('#search-zone')
@@ -48,19 +51,20 @@ function init() {
 			const keywordToSearch = event.target
 			const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
 			const keywordTagToSearch = event.target.innerText
-			console.log("keywordTagToSearch :", keywordTagToSearch)
+			console.log('keywordTagToSearch :', keywordTagToSearch)
 			// JE DOIS ENVOYER LE TEXTE DU TAG CLIQUÉ DANS LE CONTROLEUR POUR FILTRER LES RECETTES APRES AVOIR VERIFIÉ SI LE TAG CLIQUÉ EST UN INGREDIENT, UN APPAREIL OU UN USTENSILE
 
 			// J'appelle ma méthode créée pour lancer la recherche des recettes par ces tags et les afficher
 
 			if (keywordArray === 'ingredient') {
 				ingredientArray.push(keywordTagToSearch)
-				console.log(ingredientArray)
-				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ingredient dans ma méthode de recherche 
+				console.log('ingredientArray depuis Index :', ingredientArray)
+				// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ingredient dans ma méthode de recherche
 				for (let i = 0; i < ingredientArray.length; i++) {
 					filterTagController.ingredientSearch(ingredientArray[i], keywordArray)
 				}
 				displayTags.add(keywordTagToSearch, keywordArray)
+				checkTagsToRemove()
 			} else if (keywordArray === 'appliance') {
 				applianceArray.push(keywordTagToSearch)
 				console.log(applianceArray)
@@ -68,7 +72,8 @@ function init() {
 				for (let i = 0; i < applianceArray.length; i++) {
 					filterTagController.applianceSearch(applianceArray[i], keywordArray)
 				}
-				
+				displayTags.add(keywordTagToSearch, keywordArray)
+				checkTagsToRemove()
 			} else if (keywordArray === 'ustensils') {
 				ustensilArray.push(keywordTagToSearch)
 				console.log(ustensilArray)
@@ -76,9 +81,33 @@ function init() {
 				for (let i = 0; i < ustensilArray.length; i++) {
 					filterTagController.ustensilSearch(ustensilArray[i], keywordArray)
 				}
+				displayTags.add(keywordTagToSearch, keywordArray)
+				checkTagsToRemove()
 			}
 		})
 	})
 }
 
+function checkTagsToRemove() {
+	// je crée une instance de ma vue pour pouvoir supprimer les tags de filtrage des recettes
+	const removeTags = new FilterTagView()
+
+	// Écouteur d'événement pour supprimer un tag de filtre
+	const tagCloseBtn = document.querySelectorAll('.tag-close')
+
+	tagCloseBtn.forEach((tag) => {
+		tag.addEventListener('click', (event) => {
+			const tagToDelete = event.target.closest('.tag')
+			const tagContent = tagToDelete.textContent
+
+			// je récupère le contenu du tag pour pouvoir le passer en paramètre à la méthode remove de la classe FilterTagView
+			removeTags.remove(event)
+		})
+	})
+	// displayTags.displayTagsList(ingredientArray, applianceArray, ustensilArray)
+}
+
 init()
+
+
+export { recipesToShow, ingredientArray, applianceArray, ustensilArray }

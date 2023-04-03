@@ -72,18 +72,14 @@ export class FilterTagView {
                 <img src="./assets/icons/tag-close.svg" alt="icone de fermeture du tag" class="tag-close">
             </button>
         `
+	}
 
-		// Écouteur d'événement pour supprimer un tag de filtre
-		const tagCloseBtn = document.querySelectorAll('.tag-close')
-		tagCloseBtn.forEach((tag) => {
-			tag.addEventListener('click', (event) => {
-				const tagToDelete = event.target.closest('.tag')
-				const tagContent = tagToDelete.textContent
-				console.log('tagContent :', tagContent);
-				// je récupère le contenu du tag pour pouvoir le passer en paramètre à la méthode deleteTag de la classe FilterTagController
-				tagToDelete.style.display = 'none'
-				this.controller.deleteTag(tagContent)
-			})
-		})
+	// Méthode pour supprimer un tag de filtre
+	remove(event) {
+		const tagToDelete = event.target.closest('.tag')
+		const tagContent = tagToDelete.textContent
+		console.log('tag supprimé :', tagContent)
+		// je récupère le contenu du tag pour pouvoir le supprimer du DOM
+		tagToDelete.style.display = 'none'
 	}
 }

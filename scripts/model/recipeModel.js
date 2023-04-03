@@ -39,7 +39,7 @@ export class Recipes {
 		)
 	}
 
-	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche
+	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche ou supprime les tags
 	resetSearch(recipes) {
 		return recipes
 	}
