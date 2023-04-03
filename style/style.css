@@ -184,6 +184,7 @@
     -moz-column-count: 3;
     column-count: 3;
     padding-left: 0;
+    cursor: pointer;
 }
 
 /* Style des tags */

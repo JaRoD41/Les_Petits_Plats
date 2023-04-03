@@ -32,13 +32,11 @@ export class ViewRecipes {
 			recipe.ustensils.map((ustensil) => {
 				ustensilsList.push(`${ustensil}`)
 			})
+
 			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
 			ingredientlist = [...new Set(ingredientlist)]
 			applianceList = [...new Set(applianceList)]
 			ustensilsList = [...new Set(ustensilsList)]
-			console.log('tableau des ingrédients :', ingredientlist)
-			console.log('tableau des appareils :', applianceList)
-			console.log('tableau des ustensiles :', ustensilsList)
 
 			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
 			const imageName = recipe.name
@@ -85,6 +83,7 @@ export class ViewRecipes {
         `
 		})
 
+		// Je crée les listes d'ingrédients, appareils et ustensiles correspondants aux recettes affichées
 		ingredientButtonList.innerHTML += `
 		${ingredientlist
 			.map((ingredient) => {
@@ -114,6 +113,7 @@ export class FilterTagView {
 	constructor(controller) {
 		this.controller = controller
 		this.add = this.add.bind(this)
+		this.remove = this.remove.bind(this)
 	}
 
 	// Méthode pour ajouter un tag de filtre

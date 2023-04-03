@@ -8,6 +8,9 @@ let ingredientArray = []
 let applianceArray = []
 let ustensilArray = []
 
+// je crée une instance de ma vue pour pouvoir supprimer les tags de filtrage des recettes
+	const removeTags = new FilterTagView()
+
 // Je dois créer un tableau avec toutes les recettes filtrées et l'envoyer dans mon controleur pour effectuer mon tri et utiliser le nouveau tableau pour afficher les recettes triées
 
 function init() {
@@ -89,8 +92,6 @@ function init() {
 }
 
 function checkTagsToRemove() {
-	// je crée une instance de ma vue pour pouvoir supprimer les tags de filtrage des recettes
-	const removeTags = new FilterTagView()
 
 	// Écouteur d'événement pour supprimer un tag de filtre
 	const tagCloseBtn = document.querySelectorAll('.tag-close')
@@ -99,7 +100,6 @@ function checkTagsToRemove() {
 		tag.addEventListener('click', (event) => {
 			const tagToDelete = event.target.closest('.tag')
 			const tagContent = tagToDelete.textContent
-
 			// je récupère le contenu du tag pour pouvoir le passer en paramètre à la méthode remove de la classe FilterTagView
 			removeTags.remove(event)
 		})
