@@ -31,8 +31,10 @@ export class ControllerRecipes {
 		this.keywordsToClick.forEach((keyword) => {
 			keyword.addEventListener('click', (event) => {
 				const keywordToSearch = event.target
+        // Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
 				const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
 				const keywordTagToSearch = event.target.innerText
+        // Je push le mot clé cliqué dans mon tableau de tags sélectionnés
 				this.selectedTags.push(keywordTagToSearch)
 				if (keywordArray === 'ingredient') {
 					ingredientArray.push(keywordTagToSearch)

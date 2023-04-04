@@ -1,4 +1,4 @@
-import { recipesToShow, ingredientArray, applianceArray, ustensilArray } from '../../index.js'
+import { recipesToShow, ingredientArray, applianceArray, ustensilsArray } from '../../index.js'
 import { ControllerRecipes } from '../controller/recipeController.js'
 
 export class ViewRecipes {
