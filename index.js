@@ -31,12 +31,14 @@ function init() {
 	// const searchInput = document.querySelector('#search-zone')
 
 	// J'instancie mon controleur pour pouvoir utiliser les méthodes de recherche de recettes
-	controller.mainSearch()
-	controller.keywordsSearch()
+	
 
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
-	const displayRecipes = new ViewRecipes()
+	const displayRecipes = new ViewRecipes(controller)
 	displayRecipes.displayRecipesList(recipesToShow)
+
+	controller.mainSearch()
+	controller.keywordsSearch()
 
 	// searchInput.addEventListener('input', (event) => {
 	// 	const searchText = event.target.value

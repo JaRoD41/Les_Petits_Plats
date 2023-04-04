@@ -31,25 +31,29 @@ export class ControllerRecipes {
 		this.keywordsToClick.forEach((keyword) => {
 			keyword.addEventListener('click', (event) => {
 				const keywordToSearch = event.target
-        // Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
+				// Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
 				const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
 				const keywordTagToSearch = event.target.innerText
-        // Je push le mot clé cliqué dans mon tableau de tags sélectionnés
+				// Je push le mot clé cliqué dans mon tableau de tags sélectionnés
 				this.selectedTags.push(keywordTagToSearch)
+				console.log('Selected Tags :', this.selectedTags)
 				if (keywordArray === 'ingredient') {
 					ingredientArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
 					for (let i = 0; i < ingredientArray.length; i++) {
 						this.filter.ingredientSearch(this.model.recipes, ingredientArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
 				} else if (keywordArray === 'appliance') {
 					applianceArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
 					for (let i = 0; i < applianceArray.length; i++) {
 						this.filter.applianceSearch(this.model.recipes, applianceArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
 				} else if (keywordArray === 'ustensils') {
 					ustensilArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
 					for (let i = 0; i < ustensilArray.length; i++) {
 						this.filter.ustensilSearch(this.model.recipes, ustensilArray[i])
 					}

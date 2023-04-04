@@ -9,8 +9,12 @@ export class ControllerRecipes {
 		this.tagDisplay = new FilterTagView()
 		this.searchInput = document.querySelector('#search-zone')
 		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		console.log('this.keywordsToClick :', this.keywordsToClick);
 		// Je crée un tableau qui va contenir les tags sélectionnés
 		this.selectedTags = []
+		this.ingredientArray = []
+		this.applianceArray = []
+		this.ustensilsArray = []
 	}
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
@@ -40,29 +44,25 @@ export class ControllerRecipes {
 				// Je push le mot clé cliqué dans mon tableau de tags sélectionnés
 				this.selectedTags.push(keywordTagToSearch)
 				console.log('Selected Tags :', this.selectedTags)
-
-				// J'appelle ma méthode créée pour lancer la recherche des recettes par ces tags et les afficher
-
 				if (keywordArray === 'ingredient') {
-					ingredientArray.push(keywordTagToSearch)
-					console.log('ingredientArray depuis Index :', ingredientArray)
-					// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ingredient dans ma méthode de recherche
-					for (let i = 0; i < ingredientArray.length; i++) {
-						this.filter.ingredientSearch(this.model.recipes, ingredientArray[i])
+					this.ingredientArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.ingredientArray.length; i++) {
+						this.filter.ingredientSearch(this.model.recipes, this.ingredientArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
 				} else if (keywordArray === 'appliance') {
-					applianceArray.push(keywordTagToSearch)
-					// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau appliance dans ma méthode de recherche
-					for (let i = 0; i < applianceArray.length; i++) {
-						this.filter.applianceSearch(this.model.recipes, applianceArray[i])
+					this.applianceArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.applianceArray.length; i++) {
+						this.filter.applianceSearch(this.model.recipes, this.applianceArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
 				} else if (keywordArray === 'ustensils') {
-					ustensilsArray.push(keywordTagToSearch)
-					// Je crée une boucle pour pouvoir envoyer chaque mot clé du tableau ustensils dans ma méthode de recherche
-					for (let i = 0; i < ustensilsArray.length; i++) {
-						this.filter.ustensilsSearch(this.model.recipes, ustensilsArray[i])
+					this.ustensilsArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.ustensilsArray.length; i++) {
+						this.filter.ustensilsSearch(this.model.recipes, this.ustensilsArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
 				}

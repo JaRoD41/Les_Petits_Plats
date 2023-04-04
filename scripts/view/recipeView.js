@@ -11,6 +11,7 @@ export class ViewRecipes {
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
+		console.log(this.controller);
 		let ingredientlist = []
 		let applianceList = []
 		let ustensilsList = []
@@ -106,6 +107,8 @@ export class ViewRecipes {
 			})
 			.join('')}
 		`
+		// Mise à jour de la sélection des éléments de la liste des mots-clés
+		this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 	}
 }
 
