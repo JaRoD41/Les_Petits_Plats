@@ -29,26 +29,30 @@ function init() {
 	const displayTags = new FilterTagView()
 
 	// je crée une instance de mes controleurs pour pouvoir utiliser les méthodes avec les tags de filtrage des recettes
-	const controllerTags = new FilterTagController({ recipes: recipesToShow })
+	// const controllerTags = new FilterTagController({ recipes: recipesToShow })
 
-	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur
-	const searchInput = document.querySelector('#search-zone')
-	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+	// Code pour ajouter les écouteurs d'événements 
+	// const searchInput = document.querySelector('#search-zone')
+	
 
-	searchInput.addEventListener('input', (event) => {
-		const searchText = event.target.value
-		let mainInputLength = searchText.length
 
-		if (mainInputLength > 3) {
-			controller.mainSearch(searchText)
-		} else if (mainInputLength <= 2) {
-			controller.resetSearch()
-		}
-	})
+	// J'instancie mon controleur pour pouvoir utiliser les méthodes de recherche de recettes
+	controller.mainSearch()
+	// searchInput.addEventListener('input', (event) => {
+	// 	const searchText = event.target.value
+	// 	let mainInputLength = searchText.length
+
+	// 	if (mainInputLength > 3) {
+	// 		controller.mainSearch(searchText)
+	// 	} else if (mainInputLength <= 2) {
+	// 		controller.resetSearch()
+	// 	}
+	// })
 
 	// Code pour ajouter les écouteurs d'événements que j'envoie dans le controleur pour afficher les tags
 
 	// Écouteur d'événement pour ajouter un tag de filtre
+	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 	keywordsToClick.forEach((keyword) => {
 		keyword.addEventListener('click', (event) => {
 			const keywordToSearch = event.target
