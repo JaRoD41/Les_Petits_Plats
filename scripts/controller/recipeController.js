@@ -15,6 +15,7 @@ export class ControllerRecipes {
 		this.ingredientArray = []
 		this.applianceArray = []
 		this.ustensilsArray = []
+		this.recipesToShow = this.model.recipes
 	}
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
@@ -37,6 +38,7 @@ export class ControllerRecipes {
 	keywordsSearch() {
 		this.keywordsToClick.forEach((keyword) => {
 			keyword.addEventListener('click', (event) => {
+				console.log('this.model dans controller :', this.model);
 				const keywordToSearch = event.target
 				// Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
 				const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
@@ -45,12 +47,15 @@ export class ControllerRecipes {
 				this.selectedTags.push(keywordTagToSearch)
 				console.log('Selected Tags :', this.selectedTags)
 				if (keywordArray === 'ingredient') {
+					// const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, this.selectedTags)
+					// console.log('ingredientTagFilteredRecipes :', ingredientTagFilteredRecipes);
 					this.ingredientArray.push(keywordTagToSearch)
 					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
 					for (let i = 0; i < this.ingredientArray.length; i++) {
 						this.filter.ingredientSearch(this.model.recipes, this.ingredientArray[i])
 					}
 					this.tagDisplay.add(keywordTagToSearch, keywordArray)
+					this.view.displayRecipesList(this.model.recipes)
 				} else if (keywordArray === 'appliance') {
 					this.applianceArray.push(keywordTagToSearch)
 					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
@@ -83,7 +88,6 @@ export class ControllerRecipes {
 // 	ingredientSearch(tag, type) {
 // 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
 // 		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
-// 		// this.tagDisplay.add(tag, type)
 // 		this.recipesToShow = ingredientTagFilteredRecipes
 // 		this.view.displayRecipesList(this.recipesToShow)
 // 	}

@@ -11,7 +11,7 @@ export class ViewRecipes {
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
-		console.log(this.controller);
+		console.log("this.controller dans view :", this.controller);
 		let ingredientlist = []
 		let applianceList = []
 		let ustensilsList = []
