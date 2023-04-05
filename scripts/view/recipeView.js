@@ -108,7 +108,7 @@ export class ViewRecipes {
 			.join('')}
 		`
 		// Mise à jour de la sélection des éléments de la liste des mots-clés
-		this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 	}
 }
 

@@ -38,7 +38,7 @@ function init() {
 	displayRecipes.displayRecipesList(recipesToShow)
 
 	controller.mainSearch()
-	controller.keywordsSearch()
+	// controller.keywordsSearch()
 
 	// searchInput.addEventListener('input', (event) => {
 	// 	const searchText = event.target.value
