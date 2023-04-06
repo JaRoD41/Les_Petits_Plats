@@ -4,16 +4,19 @@ import { ControllerRecipes } from '../controller/recipeController.js'
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
+		// this.controller = new ControllerRecipes()
 		// J'utilise bind pour pouvoir conserver le this de la classe ViewRecipes dans la méthode displayRecipesList
 		this.displayRecipesList = this.displayRecipesList.bind(this)
+		this.searchText = ''
+		this.mainInputLength = 0
+		this.recipeSnippet = document.getElementById('recipes-zone')
+		this.searchInput = document.querySelector('#search-zone')
 	}
 
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
-		const recipeSnippet = document.getElementById('recipes-zone')
-
-		recipeSnippet.innerHTML = ''
+		this.recipeSnippet.innerHTML = ''
 
 		recipesToShow.forEach((recipe) => {
 			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
@@ -25,7 +28,7 @@ export class ViewRecipes {
 				.join('-')
 
 			// Je crée une div pour chaque recette et je l'insère dans la div recipes-zone
-			recipeSnippet.innerHTML += `
+			this.recipeSnippet.innerHTML += `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
                         <img src="./assets/images/${imageName}.webp" alt="photo de ${
@@ -60,9 +63,19 @@ export class ViewRecipes {
                 </div>        
         `
 		})
+		// this.searchInput.addEventListener('input', (event) => {
 
-		// Mise à jour de la sélection des éléments de la liste des mots-clés
-		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		// console.log('this search text de view :', this.searchText)
+		// console.log('this main input length de view :', this.mainInputLength)
+	}
+
+	// Méthode pour écouter l'input de recherche
+	listenSearchInput(callback) {
+		this.searchInput.addEventListener('input', (event) => {
+			const searchText = event.target.value
+			callback(searchText)
+		})
+		//return this.searchText
 	}
 }
 

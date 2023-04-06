@@ -12,6 +12,8 @@ export class Recipes {
 
 	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
 	mainSearch(recipes, text) {
+		console.log('recipes :', recipes)
+		console.log('text :', text)
 		return recipes.filter(
 			(recipe) =>
 				recipe.name.toLowerCase().includes(text.toLowerCase()) ||

@@ -34,8 +34,9 @@ function init() {
 	
 
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
-	const recipesDisplay = new ViewRecipes(controller)
+	const recipesDisplay = new ViewRecipes()
 	recipesDisplay.displayRecipesList(recipesToShow)
+	recipesDisplay.listenSearchInput()
 	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
 	controller.mainSearch()
