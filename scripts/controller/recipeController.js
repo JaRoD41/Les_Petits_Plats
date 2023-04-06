@@ -1,5 +1,5 @@
 import { Recipes } from '../model/recipeModel.js'
-import { FilterTagView, ViewRecipes } from '../view/recipeView.js'
+import { FilterTagView, ViewRecipes, KeywordsView } from '../view/recipeView.js'
 
 export class ControllerRecipes {
 	constructor(model, view) {
@@ -7,6 +7,7 @@ export class ControllerRecipes {
 		this.filter = new Recipes()
 		this.view = new ViewRecipes()
 		this.tagDisplay = new FilterTagView()
+		this.keywordsDisplay = new KeywordsView()
 		this.searchInput = document.querySelector('#search-zone')
 		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 		// Je crée un tableau qui va contenir les tags sélectionnés
@@ -14,6 +15,8 @@ export class ControllerRecipes {
 		this.ingredientArray = []
 		this.applianceArray = []
 		this.ustensilsArray = []
+		this.mainFilteredRecipes = []
+		this.resetFilteredRecipes = []
 		// this.recipesToShow = this.model.recipes
 	}
 
@@ -23,22 +26,25 @@ export class ControllerRecipes {
 		this.searchInput.addEventListener('input', (event) => {
 			this.searchText = event.target.value
 			this.mainInputLength = this.searchText.length
-			const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
-			const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
-			if (this.mainInputLength > 3) {
-				this.view.displayRecipesList(mainFilteredRecipes)
-			} else if (this.mainInputLength <= 2) {
-				this.view.displayRecipesList(resetFilteredRecipes)
+
+			if (this.mainInputLength <= 2) {
+				this.resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+				this.mainFilteredRecipes = this.resetFilteredRecipes
+				this.view.displayRecipesList(this.resetFilteredRecipes)
+				this.keywordsDisplay.displayKeywordsList(this.resetFilteredRecipes, this.keywordsToClick)
+			} else {
+				this.mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
+				this.view.displayRecipesList(this.mainFilteredRecipes)
+				this.keywordsDisplay.displayKeywordsList(this.mainFilteredRecipes, this.keywordsToClick)
 			}
-			console.log('mainFilteredRecipes mainSearch du controleur :', mainFilteredRecipes)
-			console.log('this.model dans controller :', this.model);
+			console.log('mainInputLength :', this.mainInputLength)
+			console.log('mainFilteredRecipes mainSearch du controleur :', this.mainFilteredRecipes)
 		})
 	}
 
 	keywordsSearch() {
 		this.keywordsToClick.forEach((keyword) => {
 			keyword.addEventListener('click', (event) => {
-				console.log('this.model dans controller :', this.model);
 				const keywordToSearch = event.target
 				// Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
 				const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')

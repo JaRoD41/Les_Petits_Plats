@@ -6,16 +6,11 @@ export class ViewRecipes {
 		this.controller = controller
 		// J'utilise bind pour pouvoir conserver le this de la classe ViewRecipes dans la méthode displayRecipesList
 		this.displayRecipesList = this.displayRecipesList.bind(this)
-		console.log('controller dans view :', controller)
 	}
 
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
-		console.log('this.controller dans view :', this.controller)
-
-		console.log('this dans view :', this)
-
 		const recipeSnippet = document.getElementById('recipes-zone')
 
 		recipeSnippet.innerHTML = ''
@@ -107,19 +102,20 @@ export class KeywordsView {
 		this.ingredientlist = []
 		this.applianceList = []
 		this.ustensilsList = []
-		this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		this.ingredientButtonList = document.getElementById('ingredientList')
+		this.applianceButtonList = document.getElementById('applianceList')
+		this.ustensilsButtonList = document.getElementById('ustensilsList')
 	}
 
-	displayKeywordsList(recipesToShow) {
-		const ingredientButtonList = document.getElementById('ingredientList')
-		const applianceButtonList = document.getElementById('applianceList')
-		const ustensilsButtonList = document.getElementById('ustensilsList')
+	displayKeywordsList(recipesToShow, keywordsToClick) {
+		// const ingredientButtonList = document.getElementById('ingredientList')
+		// const applianceButtonList = document.getElementById('applianceList')
+		// const ustensilsButtonList = document.getElementById('ustensilsList')
 
-		console.log('keywordsToClick :', this.keywordsToClick);
-
-		ingredientButtonList.innerHTML = ''
-		applianceButtonList.innerHTML = ''
-		ustensilsButtonList.innerHTML = ''
+		this.ingredientButtonList.innerHTML = ''
+		this.applianceButtonList.innerHTML = ''
+		this.ustensilsButtonList.innerHTML = ''
 
 		recipesToShow.forEach((recipe) => {
 			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
@@ -137,21 +133,21 @@ export class KeywordsView {
 			this.ustensilsList = [...new Set(this.ustensilsList)]
 
 			// Je crée les listes d'ingrédients, appareils et ustensiles correspondants aux recettes affichées
-			ingredientButtonList.innerHTML += `
+			this.ingredientButtonList.innerHTML += `
 		${this.ingredientlist
 			.map((ingredient) => {
 				return `<li>${ingredient}</li>`
 			})
 			.join('')}
 		`
-			applianceButtonList.innerHTML += `
+			this.applianceButtonList.innerHTML += `
 		${this.applianceList
 			.map((appliance) => {
 				return `<li>${appliance}</li>`
 			})
 			.join('')}
 		`
-			ustensilsButtonList.innerHTML += `
+			this.ustensilsButtonList.innerHTML += `
 		${this.ustensilsList
 			.map((ustensil) => {
 				return `<li>${ustensil}</li>`

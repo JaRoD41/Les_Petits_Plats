@@ -36,13 +36,15 @@ function init() {
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
 	const recipesDisplay = new ViewRecipes(controller)
 	recipesDisplay.displayRecipesList(recipesToShow)
-	
+	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
 	controller.mainSearch()
 	// controller.keywordsSearch()
 
 	const keywordsDisplay = new KeywordsView(controller)
-	keywordsDisplay.displayKeywordsList(recipesToShow)
+	keywordsDisplay.displayKeywordsList(recipesToShow, keywordsToClick)
+
+	
 
 	// searchInput.addEventListener('input', (event) => {
 	// 	const searchText = event.target.value
