@@ -2,14 +2,13 @@ import { Recipes } from '../model/recipeModel.js'
 import { FilterTagView, ViewRecipes } from '../view/recipeView.js'
 
 export class ControllerRecipes {
-	constructor(model) {
+	constructor(model, view) {
 		this.model = model
 		this.filter = new Recipes()
 		this.view = new ViewRecipes()
 		this.tagDisplay = new FilterTagView()
 		this.searchInput = document.querySelector('#search-zone')
-		// this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
-		console.log('this.keywordsToClick :', this.keywordsToClick);
+		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 		// Je crée un tableau qui va contenir les tags sélectionnés
 		this.selectedTags = []
 		this.ingredientArray = []
@@ -32,48 +31,49 @@ export class ControllerRecipes {
 				this.view.displayRecipesList(resetFilteredRecipes)
 			}
 			console.log('mainFilteredRecipes mainSearch du controleur :', mainFilteredRecipes)
+			console.log('this.model dans controller :', this.model);
 		})
 	}
 
-	// keywordsSearch() {
-	// 	this.keywordsToClick.forEach((keyword) => {
-	// 		keyword.addEventListener('click', (event) => {
-	// 			console.log('this.model dans controller :', this.model);
-	// 			const keywordToSearch = event.target
-	// 			// Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
-	// 			const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
-	// 			const keywordTagToSearch = event.target.innerText
-	// 			// Je push le mot clé cliqué dans mon tableau de tags sélectionnés
-	// 			this.selectedTags.push(keywordTagToSearch)
-	// 			console.log('Selected Tags :', this.selectedTags)
-	// 			if (keywordArray === 'ingredient') {
-	// 				// const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, this.selectedTags)
-	// 				// console.log('ingredientTagFilteredRecipes :', ingredientTagFilteredRecipes);
-	// 				this.ingredientArray.push(keywordTagToSearch)
-	// 				// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
-	// 				for (let i = 0; i < this.ingredientArray.length; i++) {
-	// 					this.filter.ingredientSearch(this.model.recipes, this.ingredientArray[i])
-	// 				}
-	// 				this.tagDisplay.add(keywordTagToSearch, keywordArray)
-	// 				// this.view.displayRecipesList(this.model.recipes)
-	// 			} else if (keywordArray === 'appliance') {
-	// 				this.applianceArray.push(keywordTagToSearch)
-	// 				// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
-	// 				for (let i = 0; i < this.applianceArray.length; i++) {
-	// 					this.filter.applianceSearch(this.model.recipes, this.applianceArray[i])
-	// 				}
-	// 				this.tagDisplay.add(keywordTagToSearch, keywordArray)
-	// 			} else if (keywordArray === 'ustensils') {
-	// 				this.ustensilsArray.push(keywordTagToSearch)
-	// 				// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
-	// 				for (let i = 0; i < this.ustensilsArray.length; i++) {
-	// 					this.filter.ustensilsSearch(this.model.recipes, this.ustensilsArray[i])
-	// 				}
-	// 				this.tagDisplay.add(keywordTagToSearch, keywordArray)
-	// 			}
-	// 		})
-	// 	})
-	// }
+	keywordsSearch() {
+		this.keywordsToClick.forEach((keyword) => {
+			keyword.addEventListener('click', (event) => {
+				console.log('this.model dans controller :', this.model);
+				const keywordToSearch = event.target
+				// Ici, je récupère le nom de l'array dans lequel se trouve le mot clé cliqué
+				const keywordArray = keywordToSearch.closest('ul').id.replace('List', '')
+				const keywordTagToSearch = event.target.innerText
+				// Je push le mot clé cliqué dans mon tableau de tags sélectionnés
+				this.selectedTags.push(keywordTagToSearch)
+				console.log('Selected Tags :', this.selectedTags)
+				if (keywordArray === 'ingredient') {
+					// const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, this.selectedTags)
+					// console.log('ingredientTagFilteredRecipes :', ingredientTagFilteredRecipes);
+					this.ingredientArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.ingredientArray.length; i++) {
+						this.filter.applianceSearch(this.model.recipes, this.ingredientArray[i])
+					}
+					this.tagDisplay.add(keywordTagToSearch, keywordArray)
+					// this.view.displayRecipesList(this.model.recipes)
+				} else if (keywordArray === 'appliance') {
+					this.applianceArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.applianceArray.length; i++) {
+						this.filter.applianceSearch(this.model.recipes, this.applianceArray[i])
+					}
+					this.tagDisplay.add(keywordTagToSearch, keywordArray)
+				} else if (keywordArray === 'ustensils') {
+					this.ustensilsArray.push(keywordTagToSearch)
+					// Je boucle sur mon tableau de tags sélectionnés pour les passer en paramètre à ma méthode de recherche
+					for (let i = 0; i < this.ustensilsArray.length; i++) {
+						this.filter.ustensilsSearch(this.model.recipes, this.ustensilsArray[i])
+					}
+					this.tagDisplay.add(keywordTagToSearch, keywordArray)
+				}
+			})
+		})
+	}
 }
 
 // export class FilterTagController {

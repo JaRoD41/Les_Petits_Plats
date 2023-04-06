@@ -1,5 +1,5 @@
 import { recipes } from './scripts/data/recipes.js'
-import { FilterTagView, ViewRecipes } from './scripts/view/recipeView.js'
+import { FilterTagView, KeywordsView, ViewRecipes } from './scripts/view/recipeView.js'
 import { ControllerRecipes } from './scripts/controller/recipeController.js'
 
 // je crée un tableau vide pour pouvoir y stocker les recettes filtrées
@@ -34,11 +34,15 @@ function init() {
 	
 
 	// je crée une instance de ma vue pour pouvoir afficher les recettes
-	const displayRecipes = new ViewRecipes(controller)
-	displayRecipes.displayRecipesList(recipesToShow)
+	const recipesDisplay = new ViewRecipes(controller)
+	recipesDisplay.displayRecipesList(recipesToShow)
+	
 
 	controller.mainSearch()
 	// controller.keywordsSearch()
+
+	const keywordsDisplay = new KeywordsView(controller)
+	keywordsDisplay.displayKeywordsList(recipesToShow)
 
 	// searchInput.addEventListener('input', (event) => {
 	// 	const searchText = event.target.value
