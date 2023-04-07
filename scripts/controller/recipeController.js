@@ -18,28 +18,44 @@ export class ControllerRecipes {
 		this.mainFilteredRecipes = []
 		this.resetFilteredRecipes = []
 		this.mainInputLength = 0
-		this.view.listenSearchInput((searchText) => {
-			this.searchText = searchText
-			this.mainInputLength = searchText.length
-		})
+		// this.view.listenSearchInput((searchText) => {
+		// 	this.searchText = searchText
+		// 	this.mainInputLength = searchText.length
+		// })
 		// this.recipesToShow = this.model.recipes
 	}
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
 
+	// mainSearch() {
+	// 	this.view.listenSearchInput()
+	// 	console.log('this.searchText depuis le controleur :', this.searchText)
+	// 	console.log('this.model depuis le controleur :', this.model)
+	// 	// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
+	// 	const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
+	// 	const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+	// 	if (this.mainInputLength > 3) {
+	// 		this.view.displayRecipesList(mainFilteredRecipes)
+	// 	} else if (this.mainInputLength <= 2) {
+	// 		this.view.displayRecipesList(resetFilteredRecipes)
+	// 	}
+	// 	console.log('mainSearch du controleur :', mainFilteredRecipes)
+	// }
+
 	mainSearch() {
-		this.view.listenSearchInput()
-		console.log('this.searchText depuis le controleur :', this.searchText)
-		console.log('this.model depuis le controleur :', this.model)
-		// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
-		const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
-		const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
-		if (this.mainInputLength > 3) {
-			this.view.displayRecipesList(mainFilteredRecipes)
-		} else if (this.mainInputLength <= 2) {
-			this.view.displayRecipesList(resetFilteredRecipes)
-		}
-		console.log('mainSearch du controleur :', mainFilteredRecipes)
+		this.searchInput.addEventListener('input', (event) => {
+			this.searchText = event.target.value
+			this.mainInputLength = this.searchText.length
+			// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
+			const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
+			const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+			if (this.mainInputLength > 3) {
+				this.view.displayRecipesList(mainFilteredRecipes)
+			} else if (this.mainInputLength <= 2) {
+				this.view.displayRecipesList(resetFilteredRecipes)
+			}
+			console.log('mainSearch du controleur :', mainFilteredRecipes)
+		})
 	}
 
 	keywordsSearch() {

@@ -70,13 +70,13 @@ export class ViewRecipes {
 	}
 
 	// Méthode pour écouter l'input de recherche
-	listenSearchInput(callback) {
-		this.searchInput.addEventListener('input', (event) => {
-			const searchText = event.target.value
-			callback(searchText)
-		})
-		//return this.searchText
-	}
+	// listenSearchInput(callback) {
+	// 	this.searchInput.addEventListener('input', (event) => {
+	// 		const searchText = event.target.value
+	// 		callback(searchText)
+	// 	})
+	// 	//return this.searchText
+	// }
 }
 
 // je crée une classe pour gérer les tags de filtre
