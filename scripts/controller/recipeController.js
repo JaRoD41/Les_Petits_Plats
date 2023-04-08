@@ -51,13 +51,16 @@ export class ControllerRecipes {
 			const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
 			if (this.mainInputLength > 3) {
 				this.view.displayRecipesList(mainFilteredRecipes)
+				this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
 			} else if (this.mainInputLength <= 2) {
 				this.view.displayRecipesList(resetFilteredRecipes)
+				this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
 			}
 			console.log('mainSearch du controleur :', mainFilteredRecipes)
 		})
 	}
 
+	// Méthode qui va récupérer les mots clés cliqués et les envoyer au Modèle pour filtrer les recettes et créeer les tags
 	keywordsSearch() {
 		this.keywordsToClick.forEach((keyword) => {
 			keyword.addEventListener('click', (event) => {
