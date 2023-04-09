@@ -179,13 +179,15 @@ export class KeywordsView {
 			.join('')}
 		`
 		})
-		// Je boucle sur les mots-clés pour les rendre cliquables
-		this.keywordsToClick.forEach((keyword) => {
-			keyword.addEventListener('click', (event) => {
-				const keywordToSearch = event.target
-				console.log('keyword to search :', keywordToSearch);
-				// this.controller.keywordsSearch(keywordToSearch)
-			})
-		})
 	}
+
+	// Méthode pour écouter les clics sur les mots-clés
+	// listenKeywordsClick(callback) {
+	// 	this.keywordsToClick.forEach((keyword) => {
+	// 		keyword.addEventListener('click', (event) => {
+	// 			const keywordContent = event.target.textContent
+	// 			callback(keywordContent)
+	// 		})
+	// 	})
+	// }
 }

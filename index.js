@@ -44,6 +44,8 @@ function init() {
 
 	const keywordsDisplay = new KeywordsView(controller)
 	keywordsDisplay.displayKeywordsList(recipesToShow)
+	// keywordsDisplay.listenKeywordsClick()
+	
 
 	
 
