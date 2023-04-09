@@ -37,13 +37,13 @@ function init() {
 	const recipesDisplay = new ViewRecipes()
 	recipesDisplay.displayRecipesList(recipesToShow)
 	// recipesDisplay.listenSearchInput()
-	const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+	// const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
 	controller.mainSearch()
-	// controller.keywordsSearch()
+	controller.keywordsSearch()
 
 	const keywordsDisplay = new KeywordsView(controller)
-	keywordsDisplay.displayKeywordsList(recipesToShow, keywordsToClick)
+	keywordsDisplay.displayKeywordsList(recipesToShow)
 
 	
 

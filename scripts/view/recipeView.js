@@ -115,6 +115,7 @@ export class KeywordsView {
 		this.ingredientlist = []
 		this.applianceList = []
 		this.ustensilsList = []
+		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
 		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 		this.ingredientButtonList = document.getElementById('ingredientList')
@@ -177,6 +178,14 @@ export class KeywordsView {
 			})
 			.join('')}
 		`
+		})
+		// Je boucle sur les mots-clés pour les rendre cliquables
+		this.keywordsToClick.forEach((keyword) => {
+			keyword.addEventListener('click', (event) => {
+				const keywordToSearch = event.target
+				console.log('keyword to search :', keywordToSearch);
+				// this.controller.keywordsSearch(keywordToSearch)
+			})
 		})
 	}
 }
