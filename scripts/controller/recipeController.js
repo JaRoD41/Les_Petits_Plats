@@ -9,6 +9,9 @@ export class ControllerRecipes {
 		this.tagDisplay = new FilterTagView()
 		this.keywordsDisplay = new KeywordsView()
 		this.searchInput = document.querySelector('#search-zone')
+		this.ingredientSearchInput = document.querySelector('#ingredient-input')
+		this.applianceSearchInput = document.querySelector('#appliance-input')
+		this.ustensilsSearchInput = document.querySelector('#ustensils-input')
 		// this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 		// Je crée un tableau qui va contenir les tags sélectionnés
 		this.selectedTags = []
