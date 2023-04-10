@@ -79,6 +79,90 @@ export class ViewRecipes {
 	// }
 }
 
+export class KeywordsView {
+	constructor(controller) {
+		this.controller = controller
+		this.displayKeywordsList = this.displayKeywordsList.bind(this)
+		this.ingredientlist = []
+		this.applianceList = []
+		this.ustensilsList = []
+		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+
+		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
+		this.ingredientButtonList = document.getElementById('ingredientList')
+		this.applianceButtonList = document.getElementById('applianceList')
+		this.ustensilsButtonList = document.getElementById('ustensilsList')
+	}
+
+	displayKeywordsList(recipes) {
+		this.ingredientButtonList.innerHTML = ''
+		this.applianceButtonList.innerHTML = ''
+		this.ustensilsButtonList.innerHTML = ''
+
+		console.log('recipes to show :', recipes)
+		recipes.forEach((recipe) => {
+			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
+
+			// Les ingrédients
+			// this.ingredientlist = []
+			recipe.ingredients.map((ingredient) => {
+				this.ingredientlist.push(`${ingredient.ingredient}`)
+			})
+
+			// Les appareils
+			// this.applianceList = []
+			this.applianceList.push(`${recipe.appliance}`)
+
+			// Les ustensiles
+			// this.ustensilsList = []
+			recipe.ustensils.map((ustensil) => {
+				this.ustensilsList.push(`${ustensil}`)
+			})
+
+			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
+			this.ingredientlist = [...new Set(this.ingredientlist)]
+			this.applianceList = [...new Set(this.applianceList)]
+			this.ustensilsList = [...new Set(this.ustensilsList)]
+
+			// Je crée les listes d'ingrédients, appareils et ustensiles correspondants aux recettes affichées
+
+			this.ingredientButtonList.innerHTML += `
+		${this.ingredientlist
+			.map((ingredient) => {
+				return `<li>${ingredient}</li>`
+			})
+			.join('')}
+		`
+			console.log('this.ingredientlist :', this.ingredientlist);
+			this.applianceButtonList.innerHTML += `
+		${this.applianceList
+			.map((appliance) => {
+				return `<li>${appliance}</li>`
+			})
+			.join('')}
+		`
+
+			this.ustensilsButtonList.innerHTML += `
+		${this.ustensilsList
+			.map((ustensil) => {
+				return `<li>${ustensil}</li>`
+			})
+			.join('')}
+		`
+		})
+	}
+
+	// Méthode pour écouter les clics sur les mots-clés
+	// listenKeywordsClick(callback) {
+	// 	this.keywordsToClick.forEach((keyword) => {
+	// 		keyword.addEventListener('click', (event) => {
+	// 			const keywordContent = event.target.textContent
+	// 			callback(keywordContent)
+	// 		})
+	// 	})
+	// }
+}
+
 // je crée une classe pour gérer les tags de filtre
 export class FilterTagView {
 	constructor(controller) {
@@ -106,88 +190,4 @@ export class FilterTagView {
 		// je récupère le contenu du tag pour pouvoir le supprimer du DOM
 		tagToDelete.style.display = 'none'
 	}
-}
-
-export class KeywordsView {
-	constructor(controller) {
-		this.controller = controller
-		this.displayKeywordsList = this.displayKeywordsList.bind(this)
-		this.ingredientlist = []
-		this.applianceList = []
-		this.ustensilsList = []
-		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
-
-		// this.controller.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
-		this.ingredientButtonList = document.getElementById('ingredientList')
-		this.applianceButtonList = document.getElementById('applianceList')
-		this.ustensilsButtonList = document.getElementById('ustensilsList')
-	}
-
-	displayKeywordsList(recipesToShow) {
-		// this.ingredientButtonList.innerHTML = ''
-		// this.applianceButtonList.innerHTML = ''
-		// this.ustensilsButtonList.innerHTML = ''
-
-		console.log('recipes to show :', recipesToShow)
-		recipesToShow.forEach((recipe) => {
-			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
-
-			// Les ingrédients
-			// this.ingredientlist = []
-			recipe.ingredients.map((ingredient) => {
-				this.ingredientlist.push(`${ingredient.ingredient}`)
-			})
-
-			// Les appareils
-			// this.applianceList = []
-			this.applianceList.push(`${recipe.appliance}`)
-
-			// Les ustensiles
-			// this.ustensilsList = []
-			recipe.ustensils.map((ustensil) => {
-				this.ustensilsList.push(`${ustensil}`)
-			})
-
-			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
-			this.ingredientlist = [...new Set(this.ingredientlist)]
-			this.applianceList = [...new Set(this.applianceList)]
-			this.ustensilsList = [...new Set(this.ustensilsList)]
-
-			// Je crée les listes d'ingrédients, appareils et ustensiles correspondants aux recettes affichées
-			this.ingredientButtonList.innerHTML = ''
-			this.ingredientButtonList.innerHTML += `
-		${this.ingredientlist
-			.map((ingredient) => {
-				return `<li>${ingredient}</li>`
-			})
-			.join('')}
-		`
-			this.applianceButtonList.innerHTML = ''
-			this.applianceButtonList.innerHTML += `
-		${this.applianceList
-			.map((appliance) => {
-				return `<li>${appliance}</li>`
-			})
-			.join('')}
-		`
-			this.ustensilsButtonList.innerHTML = ''
-			this.ustensilsButtonList.innerHTML += `
-		${this.ustensilsList
-			.map((ustensil) => {
-				return `<li>${ustensil}</li>`
-			})
-			.join('')}
-		`
-		})
-	}
-
-	// Méthode pour écouter les clics sur les mots-clés
-	// listenKeywordsClick(callback) {
-	// 	this.keywordsToClick.forEach((keyword) => {
-	// 		keyword.addEventListener('click', (event) => {
-	// 			const keywordContent = event.target.textContent
-	// 			callback(keywordContent)
-	// 		})
-	// 	})
-	// }
 }
