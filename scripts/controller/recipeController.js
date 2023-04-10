@@ -36,10 +36,10 @@ export class ControllerRecipes {
 			const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
 			if (this.mainInputLength > 3) {
 				this.view.displayRecipesList(mainFilteredRecipes)
-				this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
+				// this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
 			} else if (this.mainInputLength <= 2) {
 				this.view.displayRecipesList(resetFilteredRecipes)
-				this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
+				// this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
 			}
 			console.log('mainSearch du controleur :', mainFilteredRecipes)
 		})
