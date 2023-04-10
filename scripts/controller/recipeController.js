@@ -1,10 +1,12 @@
 import { Recipes } from '../model/recipeModel.js'
 import { FilterTagView, ViewRecipes, KeywordsView } from '../view/recipeView.js'
+import { Event } from './Event.js'
 
 export class ControllerRecipes {
 	constructor(model) {
 		this.model = model
 		this.filter = new Recipes()
+		this.event = new Event()
 		this.view = new ViewRecipes()
 		this.tagDisplay = new FilterTagView()
 		this.keywordsDisplay = new KeywordsView()
@@ -49,8 +51,7 @@ export class ControllerRecipes {
 	}
 
 	// Méthode qui va récupérer les mots clés cliqués et les envoyer au Modèle pour filtrer les recettes et créeer les tags
-	keywordsSearch(keyword) {
-		console.log('keywordsToClick :', keyword);
+	keywordsSearch() {
 		// this.keywordsToClick.forEach((keyword) => {
 		// 	keyword.addEventListener('click', (event) => {
 		// 		const keywordToSearch = event.target
@@ -88,49 +89,21 @@ export class ControllerRecipes {
 		// 	})
 		// })
 	}
+
+	removeTag(tag) {
+		const index = this.selectedTags.indexOf(tag)
+		if (index > -1) {
+			this.selectedTags.splice(index, 1)
+		}
+	}
+
+	hasSelectedTags() {
+		return this.selectedTags.length > 0
+	}
+
+	resetRecipes() {
+		this.view.displayRecipesList(this.model.recipes)
+	}
 }
 
-// export class FilterTagController {
-// 	constructor(model) {
-// 		this.model = model
-// 		this.filter = new Recipes()
-// 		this.view = new ViewRecipes()
-// 		this.tagDisplay = new FilterTagView()
-// 		this.recipesToShow = this.model.recipes
-// 	}
 
-// 	ingredientSearch(tag, type) {
-// 		const ingredientTagFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, tag)
-// 		console.log('recherche tag ingredient contrôleur :', ingredientTagFilteredRecipes)
-// 		this.recipesToShow = ingredientTagFilteredRecipes
-// 		this.view.displayRecipesList(this.recipesToShow)
-// 	}
-
-// 	applianceSearch(tag, type) {
-// 		const applianceTagFilteredRecipes = this.filter.applianceSearch(this.model.recipes, tag)
-// 		console.log('recherche tag appareil contrôleur :', applianceTagFilteredRecipes)
-// 		// this.tagDisplay.add(tag, type)
-// 		this.view.displayRecipesList(applianceTagFilteredRecipes)
-// 	}
-
-// 	ustensilSearch(tag) {
-// 		const ustensilTagFilteredRecipes = this.filter.ustensilSearch(this.model.recipes, tag)
-// 		console.log('recherche tag ustensile contrôleur :', ustensilTagFilteredRecipes)
-// 		// this.tagDisplay.add(tag, type)
-// 		this.view.displayRecipesList(ustensilTagFilteredRecipes)
-// 	}
-
-// 	// Méthode pour supprimer un tag de filtre
-// 	// remove(tag) {
-// 	// 	tag.style.display = 'none'
-
-// 	// 	console.log('ingredientArray depuis Controller :', ingredientArray)
-// 	// }
-
-// 	reset() {
-// 		const resetTagFilteredRecipes = this.tagDisplay.resetSearch(this.model.recipes)
-// 		console.log('resetTagFilteredRecipes resetTags du controleur :', resetTagFilteredRecipes)
-// 		// On envoie les recettes filtrées dans la vue pour qu'elle les affiche à l'utilisateur
-// 		this.view.displayRecipesList(resetTagFilteredRecipes)
-// 	}
-// }

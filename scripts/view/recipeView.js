@@ -4,9 +4,7 @@ import { ControllerRecipes } from '../controller/recipeController.js'
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
-		this.ingredientlist = []
-		this.applianceList = []
-		this.ustensilsList = []
+
 		this.ingredientButtonList = document.getElementById('ingredientList')
 		this.applianceButtonList = document.getElementById('applianceList')
 		this.ustensilsButtonList = document.getElementById('ustensilsList')
