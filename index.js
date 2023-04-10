@@ -40,7 +40,7 @@ function init() {
 	// const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
 	controller.mainSearch()
-	controller.keywordsSearch()
+	// controller.handleIngredientSearch()
 
 	// const keywordsDisplay = new KeywordsView(controller)
 	// keywordsDisplay.displayKeywordsList(recipesToShow)

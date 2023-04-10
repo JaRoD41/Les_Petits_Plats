@@ -40,9 +40,6 @@ export class ViewRecipes {
 			this.ingredientlist = [...new Set(this.ingredientlist)]
 			this.applianceList = [...new Set(this.applianceList)]
 			this.ustensilsList = [...new Set(this.ustensilsList)]
-			console.log('tableau des ingrédients :', this.ingredientlist)
-			console.log('tableau des appareils :', this.applianceList)
-			console.log('tableau des ustensiles :', this.ustensilsList)
 
 			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
 			const imageName = recipe.name
@@ -110,10 +107,7 @@ export class ViewRecipes {
 			.join('')}
 		`
 
-		// this.searchInput.addEventListener('input', (event) => {
-
-		// console.log('this search text de view :', this.searchText)
-		// console.log('this main input length de view :', this.mainInputLength)
+		console.log('ingredient list :', this.ingredientlist);
 	}
 
 	// Méthode pour écouter l'input de recherche
@@ -124,6 +118,7 @@ export class ViewRecipes {
 	// 	})
 	// 	//return this.searchText
 	// }
+	
 }
 
 export class KeywordsView {
