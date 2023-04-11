@@ -61,10 +61,11 @@ export class ControllerRecipes {
 		this.searchInput.addEventListener('input', (event) => {
 			this.searchText = event.target.value
 			this.mainInputLength = this.searchText.length
-			// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
 			this.model.mainSearch = this.searchText
+			// On crée une variable qui va contenir les recettes filtrées par la recherche
 			const mainFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			const resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
+			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
 			if (this.mainInputLength > 3) {
 				this.view.displayRecipesList(
 					mainFilteredRecipes,
@@ -74,6 +75,8 @@ export class ControllerRecipes {
 				)
 				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
+				
+				// Sinon, on affiche toutes les recettes
 			} else if (this.mainInputLength <= 2) {
 				this.view.displayRecipesList(
 					resetFilteredRecipes,

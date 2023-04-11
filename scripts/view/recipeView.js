@@ -23,7 +23,7 @@ export class ViewRecipes {
 		this.ingredientButtonList.innerHTML = ''
 		this.applianceButtonList.innerHTML = ''
 		this.ustensilsButtonList.innerHTML = ''
-		console.log(ingredientList)
+
 		recipesToShow.forEach((recipe) => {
 			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
 
@@ -94,8 +94,6 @@ export class ViewRecipes {
 			})
 			.join('')}
 		`
-
-		console.log('ingredient list :', this.ingredientlist)
 	}
 
 	filterIngredients(search) {

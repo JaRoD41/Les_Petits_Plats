@@ -20,22 +20,29 @@ export class Recipes {
 		// recipe.ingredients.map((ingredient) => {
 		// 	this.ingredientlist.push(`${ingredient.ingredient}`)
 		// })
-		const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((pre, cur) => {
-			const array = [...pre, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
+		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce
+		const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
 			return array
 		}, [])
 		return Array.from(new Set(ingredients))
 	}
 	getApplianceList() {
-		//this.applianceList.push(`${recipe.appliance}`)
-		return []
+		const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
+		return Array.from(new Set(appliances))
 	}
+
 	getUstensilList() {
 		// recipe.ustensils.map((ustensil) => {
 		// 	this.ustensilsList.push(`${ustensil}`)
 		// })
-		return []
+		const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+			const array = [...acc, ...cur.ustensils]
+			return array
+		}, [])
+		return Array.from(new Set(ustensils))
 	}
+
 	getSelectedTags() {}
 
 	getRecipesFilteredBySearch() {
