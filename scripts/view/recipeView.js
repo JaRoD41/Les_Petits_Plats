@@ -107,18 +107,8 @@ export class ViewRecipes {
 			.join('')}
 		`
 
-		console.log('ingredient list :', this.ingredientlist);
+		console.log('ingredient list :', this.ingredientlist)
 	}
-
-	// Méthode pour écouter l'input de recherche
-	// listenSearchInput(callback) {
-	// 	this.searchInput.addEventListener('input', (event) => {
-	// 		const searchText = event.target.value
-	// 		callback(searchText)
-	// 	})
-	// 	//return this.searchText
-	// }
-	
 }
 
 export class KeywordsView {
