@@ -20,7 +20,7 @@ export class Recipes {
 		// recipe.ingredients.map((ingredient) => {
 		// 	this.ingredientlist.push(`${ingredient.ingredient}`)
 		// })
-		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce
+		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour concaténer les ingrédients de chaque recette dans un seul tableau
 		const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
 			return array
@@ -28,6 +28,7 @@ export class Recipes {
 		return Array.from(new Set(ingredients))
 	}
 	getApplianceList() {
+		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
 		const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
 		return Array.from(new Set(appliances))
 	}
@@ -36,6 +37,8 @@ export class Recipes {
 		// recipe.ustensils.map((ustensil) => {
 		// 	this.ustensilsList.push(`${ustensil}`)
 		// })
+		
+		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour concaténer les ustensiles de chaque recette dans un seul tableau
 		const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ustensils]
 			return array
