@@ -29,8 +29,8 @@ export class ControllerRecipes {
 		// gestion des événements
 		this.event = new Event()
 		this.event.addListener(this.handleIngredientSearch.bind(this))
-		this.event.addListener(this.handleApplianceSearch.bind(this))
-		this.event.addListener(this.handleUstensilsSearch.bind(this))
+		// this.event.addListener(this.handleApplianceSearch.bind(this))
+		// this.event.addListener(this.handleUstensilsSearch.bind(this))
 
 		this.ingredientSearchInput.addEventListener('input', (event) => {
 			this.event.trigger(event)
@@ -62,13 +62,26 @@ export class ControllerRecipes {
 			this.searchText = event.target.value
 			this.mainInputLength = this.searchText.length
 			// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
-			const mainFilteredRecipes = this.filter.mainSearch(this.model.recipes, this.searchText)
-			const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
+			this.model.mainSearch = this.searchText
+			const mainFilteredRecipes = this.model.getRecipesFilteredBySearch()
+			const resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			if (this.mainInputLength > 3) {
-				this.view.displayRecipesList(mainFilteredRecipes)
+				this.view.displayRecipesList(
+					mainFilteredRecipes,
+					this.model.getIngredientList(),
+					this.model.getApplianceList(),
+					this.model.getUstensilList()
+				)
+				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
 			} else if (this.mainInputLength <= 2) {
-				this.view.displayRecipesList(resetFilteredRecipes)
+				this.view.displayRecipesList(
+					resetFilteredRecipes,
+					this.model.getIngredientList(),
+					this.model.getApplianceList(),
+					this.model.getUstensilList()
+				)
+				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
 			}
 			this.availableIngredientKeywords = document.querySelectorAll('#collapseOne .accordion-body ul li')
@@ -79,18 +92,24 @@ export class ControllerRecipes {
 		})
 	}
 
+	handleTagSelected() {
+		const ingredientTags = document.querySelectorAll('#ingredientList li')
+		for (let tag of ingredientTags) {
+			tag.addEventListener('click', () => {
+				this.model.addTag('ingredients', tag.textContent)
+			})
+		}
+		// faut demander le display des tags a la view
+	}
+	handleTagUnSelected() {}
+
 	handleIngredientSearch(event) {
 		this.ingredientSearchText = event.target.value
 		this.ingredientInputLength = this.ingredientSearchText.length
 		// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
-		const ingredientFilteredRecipes = this.filter.ingredientSearch(this.model.recipes, this.ingredientSearchText)
-		const resetFilteredRecipes = this.filter.resetSearch(this.model.recipes)
-		if (this.ingredientInputLength > 3) {
-			this.view.displayRecipesList(ingredientFilteredRecipes)
-		} else if (this.ingredientInputLength <= 2) {
-			this.view.displayRecipesList(resetFilteredRecipes)
-		}
-		console.log('ingredientSearch du controleur :', ingredientFilteredRecipes)
+		this.view.filterIngredients(this.ingredientSearchText)
+
+		console.log(this.ingredients)
 	}
 
 	handleApplianceSearch(event) {

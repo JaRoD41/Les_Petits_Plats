@@ -18,28 +18,16 @@ export class ViewRecipes {
 
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
-	displayRecipesList(recipesToShow) {
-		this.ingredientlist = []
-		this.applianceList = []
-		this.ustensilsList = []
+	displayRecipesList(recipesToShow, ingredientList = [], applianceList = [], ustensilList = []) {
 		this.recipeSnippet.innerHTML = ''
 		this.ingredientButtonList.innerHTML = ''
 		this.applianceButtonList.innerHTML = ''
 		this.ustensilsButtonList.innerHTML = ''
-
+		console.log(ingredientList)
 		recipesToShow.forEach((recipe) => {
 			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
-			recipe.ingredients.map((ingredient) => {
-				this.ingredientlist.push(`${ingredient.ingredient}`)
-			})
-			this.applianceList.push(`${recipe.appliance}`)
-			recipe.ustensils.map((ustensil) => {
-				this.ustensilsList.push(`${ustensil}`)
-			})
+
 			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
-			this.ingredientlist = [...new Set(this.ingredientlist)]
-			this.applianceList = [...new Set(this.applianceList)]
-			this.ustensilsList = [...new Set(this.ustensilsList)]
 
 			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
 			const imageName = recipe.name
@@ -86,21 +74,21 @@ export class ViewRecipes {
         `
 		})
 		this.ingredientButtonList.innerHTML += `
-		${this.ingredientlist
+		${ingredientList
 			.map((ingredient) => {
 				return `<li>${ingredient}</li>`
 			})
 			.join('')}
 		`
 		this.applianceButtonList.innerHTML += `
-		${this.applianceList
+		${applianceList
 			.map((appliance) => {
 				return `<li>${appliance}</li>`
 			})
 			.join('')}
 		`
 		this.ustensilsButtonList.innerHTML += `
-		${this.ustensilsList
+		${ustensilList
 			.map((ustensil) => {
 				return `<li>${ustensil}</li>`
 			})
@@ -109,6 +97,24 @@ export class ViewRecipes {
 
 		console.log('ingredient list :', this.ingredientlist)
 	}
+
+	filterIngredients(search) {
+		for (let ingredientElement of this.ingredientButtonList.children) {
+			ingredientElement.style.display = 'block'
+			if (!ingredientElement.textContent.toLowerCase().includes(search)) {
+				ingredientElement.style.display = 'none'
+			}
+		}
+	}
+
+	// Méthode pour écouter l'input de recherche
+	// listenSearchInput(callback) {
+	// 	this.searchInput.addEventListener('input', (event) => {
+	// 		const searchText = event.target.value
+	// 		callback(searchText)
+	// 	})
+	// 	//return this.searchText
+	// }
 }
 
 export class KeywordsView {
