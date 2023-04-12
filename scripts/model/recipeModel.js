@@ -16,17 +16,17 @@ export class Recipes {
 		this.selectedTags[type].add(value)
 		console.log(this.selectedTags)
 	}
+
+	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
 	getIngredientList() {
-		// recipe.ingredients.map((ingredient) => {
-		// 	this.ingredientlist.push(`${ingredient.ingredient}`)
-		// })
-		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour concaténer les ingrédients de chaque recette dans un seul tableau
+		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
 		const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
 			return array
 		}, [])
 		return Array.from(new Set(ingredients))
 	}
+
 	getApplianceList() {
 		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
 		const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
@@ -34,11 +34,7 @@ export class Recipes {
 	}
 
 	getUstensilList() {
-		// recipe.ustensils.map((ustensil) => {
-		// 	this.ustensilsList.push(`${ustensil}`)
-		// })
-		
-		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour concaténer les ustensiles de chaque recette dans un seul tableau
+		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
 		const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ustensils]
 			return array
@@ -63,9 +59,9 @@ export class Recipes {
 	}
 
 	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
+
+	// Algorithme de recherche par mot-clé utilisant la programmation fonctionnelle et l'objet array
 	mainSearch(recipes, text) {
-		console.log('recipes :', recipes)
-		console.log('text :', text)
 		return recipes.filter(
 			(recipe) =>
 				recipe.name.toLowerCase().includes(text.toLowerCase()) ||

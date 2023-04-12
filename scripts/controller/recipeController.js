@@ -28,6 +28,8 @@ export class ControllerRecipes {
 		this.filter = new Recipes()
 		// gestion des événements
 		this.event = new Event()
+
+		// Je crée et j'écoute les événements liés aux recherches par ingrédient, appareil et ustensile
 		this.event.addListener(this.handleIngredientSearch.bind(this))
 		this.event.addListener(this.handleApplianceSearch.bind(this))
 		this.event.addListener(this.handleUstensilsSearch.bind(this))
@@ -41,18 +43,14 @@ export class ControllerRecipes {
 		this.ustensilsSearchInput.addEventListener('input', (event) => {
 			this.event.trigger(event)
 		})
+
 		// Je crée une instance de ma vue pour pouvoir afficher les recettes
 		this.view = new ViewRecipes()
+		// Je crée une instance de ma classe FilterTagView pour pouvoir afficher les tags de filtre
 		this.tagDisplay = new FilterTagView()
-		this.keywordsDisplay = new KeywordsView()
+		// this.keywordsDisplay = new KeywordsView()
 
 		// this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
-
-		// this.view.listenSearchInput((searchText) => {
-		// 	this.searchText = searchText
-		// 	this.mainInputLength = searchText.length
-		// })
-		// this.recipesToShow = this.model.recipes
 	}
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
@@ -145,7 +143,6 @@ export class ControllerRecipes {
 		// console.log('ustensilsSearch du controleur :', ustensilsFilteredRecipes)
 	}
 
-	
 	// Méthode qui va récupérer les mots clés cliqués et les envoyer au Modèle pour filtrer les recettes et créeer les tags
 	keywordsSearch() {
 		// this.keywordsToClick.forEach((keyword) => {
