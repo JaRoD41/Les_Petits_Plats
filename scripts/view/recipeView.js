@@ -125,7 +125,7 @@ export class ViewRecipes {
 			}
 		}
 	}	
-	
+
 
 	// Méthode pour écouter l'input de recherche
 	// listenSearchInput(callback) {
@@ -163,7 +163,7 @@ export class FilterTagView {
 	}
 
 	// Méthode pour ajouter un tag de filtre
-	add(tag, type) {
+	add(type, tag) {
 		const filterTagSnippet = document.getElementById('tags-zone')
 
 		filterTagSnippet.innerHTML += `

@@ -12,11 +12,6 @@ export class Recipes {
 		this.resetFilteredRecipes = []
 	}
 
-	addTag(type, value) {
-		this.selectedTags[type].add(value)
-		console.log(this.selectedTags)
-	}
-
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
 	getIngredientList() {
 		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
@@ -40,6 +35,12 @@ export class Recipes {
 			return array
 		}, [])
 		return Array.from(new Set(ustensils))
+	}
+
+	// Méthode pour ajouter un tag dans le tableau des tags sélectionnés
+	addTag(type, value) {
+		this.selectedTags[type].add(value)
+		console.log(this.selectedTags)
 	}
 
 	getSelectedTags() {}
@@ -78,14 +79,14 @@ export class Recipes {
 	}
 
 	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
-	applianceSearch(recipes, tag) {
+	applianceSearch(tag) {
 		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
 			recipe.appliance.toLowerCase().includes(tag.toLowerCase())
 		)
 	}
 
 	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
-	ustensilsSearch(recipes, tag) {
+	ustensilsSearch(tag) {
 		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase().includes(tag.toLowerCase()))
 		)

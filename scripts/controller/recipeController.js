@@ -85,14 +85,15 @@ export class ControllerRecipes {
 				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
 			}
-			this.availableIngredientKeywords = document.querySelectorAll('#collapseOne .accordion-body ul li')
-			this.availableApplianceKeywords = document.querySelectorAll('#collapseTwo .accordion-body ul li')
-			this.availableUstensilsKeywords = document.querySelectorAll('#collapseThree .accordion-body ul li')
-			console.log('mainSearch du controleur :', mainFilteredRecipes)
-			console.log('this.availableIngredientKeywords :', this.availableIngredientKeywords)
+			// this.availableIngredientKeywords = document.querySelectorAll('#collapseOne .accordion-body ul li')
+			// this.availableApplianceKeywords = document.querySelectorAll('#collapseTwo .accordion-body ul li')
+			// this.availableUstensilsKeywords = document.querySelectorAll('#collapseThree .accordion-body ul li')
+			// console.log('mainSearch du controleur :', mainFilteredRecipes)
+			// console.log('this.availableIngredientKeywords :', this.availableIngredientKeywords)
 		})
 	}
 
+	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes 
 	handleTagSelected() {
 		const ingredientTags = document.querySelectorAll('#ingredientList li')
 		for (let tag of ingredientTags) {
@@ -102,6 +103,7 @@ export class ControllerRecipes {
 		}
 		// faut demander le display des tags a la view
 	}
+
 	handleTagUnSelected() {}
 
 	// Code des méthodes de recherche par mots-clés //
