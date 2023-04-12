@@ -208,19 +208,19 @@
     margin-right: 13px;
 }
 
-.tag-ingredient {
+.tag-ingredients {
     background-color: #3282F7;
 }
 
-.tag-ingredient:hover, .tag-ingredient:focus {
+.tag-ingredients:hover, .tag-ingredient:focus {
     box-shadow: 0px 0px 20px 3px rgba(50, 130, 247, 0.9);
 }
 
-.tag-appliance {
+.tag-appliances {
     background-color: #68D9A4;
 }
 
-.tag-appliance:hover, .tag-appliance:focus {
+.tag-appliances:hover, .tag-appliance:focus {
     box-shadow: 0px 0px 20px 3px rgba(104, 217, 164, 0.9);
 }
 

@@ -5,8 +5,8 @@ export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
 
-		this.ingredientButtonList = document.getElementById('ingredientList')
-		this.applianceButtonList = document.getElementById('applianceList')
+		this.ingredientButtonList = document.getElementById('ingredientsList')
+		this.applianceButtonList = document.getElementById('appliancesList')
 		this.ustensilsButtonList = document.getElementById('ustensilsList')
 
 		// J'utilise bind pour pouvoir conserver le this de la classe ViewRecipes dans la méthode displayRecipesList

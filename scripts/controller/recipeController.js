@@ -96,43 +96,66 @@ export class ControllerRecipes {
 
 	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
 	handleTagSelected() {
-		const ingredientTags = document.querySelectorAll('#ingredientList li')
-		for (let tag of ingredientTags) {
+		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
+		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
 				const keywordArray = tag.closest('ul').id.replace('List', '')
 				const tagToDisplay = tag.textContent
 
-				this.model.addTag('ingredients', tag.textContent)
+				this.model.addTag(keywordArray, tagToDisplay)
 				this.selectedTags = this.model.getSelectedTags()
-				this.ingredientArray = [...this.selectedTags.ingredients]
-				
+				// this.ingredientArray = [...this.selectedTags.ingredients]
+
 				console.log('this.model.tags :', this.selectedTags)
-				console.log('tableau du tag :', keywordArray);
-				console.log('tag choisi :', tagToDisplay);
+				console.log('tableau du tag :', keywordArray)
+				console.log('tag choisi :', tagToDisplay)
 				// for (let tag of this.ingredientArray) {
 				// 	// console.log('tag :', tag)
-				// 	this.tagDisplay.add('ingredient', tag)
+				this.tagDisplay.add(keywordArray, tagToDisplay)
 				// }
+			})
+		}
+		// const ingredientTags = document.querySelectorAll('#ingredientList li')
+		// for (let tag of ingredientTags) {
+		// 	tag.addEventListener('click', () => {
+		// 		const keywordArray = tag.closest('ul').id.replace('List', '')
+		// 		const tagToDisplay = tag.textContent
+
+		// 		this.model.addTag('ingredients', tag.textContent)
+		// 		this.selectedTags = this.model.getSelectedTags()
+		// 		this.ingredientArray = [...this.selectedTags.ingredients]
 				
-			})
-		}
-		const applianceTags = document.querySelectorAll('#applianceList li')
-		for (let tag of applianceTags) {
-			tag.addEventListener('click', () => {
-				this.model.addTag('appliances', tag.textContent)
-			})
-		}
-		const ustensilsTags = document.querySelectorAll('#ustensilsList li')
-		for (let tag of ustensilsTags) {
-			tag.addEventListener('click', () => {
-				this.model.addTag('ustensils', tag.textContent)
-			})
-		}
+		// 		console.log('this.model.tags :', this.selectedTags)
+		// 		console.log('tableau du tag :', keywordArray);
+		// 		console.log('tag choisi :', tagToDisplay);
+		// 		// for (let tag of this.ingredientArray) {
+		// 		// 	// console.log('tag :', tag)
+		// 		// 	this.tagDisplay.add('ingredient', tag)
+		// 		// }
+				
+		// 	})
+		// }
+		// const applianceTags = document.querySelectorAll('#applianceList li')
+		// for (let tag of applianceTags) {
+		// 	tag.addEventListener('click', () => {
+		// 		this.model.addTag('appliances', tag.textContent)
+		// 	})
+		// }
+		// const ustensilsTags = document.querySelectorAll('#ustensilsList li')
+		// for (let tag of ustensilsTags) {
+		// 	tag.addEventListener('click', () => {
+		// 		this.model.addTag('ustensils', tag.textContent)
+		// 	})
+		// }
+
+		//////////////////////////////
+
+
 		// this.selectedTags = this.model.getSelectedTags()
 		// this.tagToDisplay = this.selectedTags.ingredients.values().next().value
 		// this.tagToDisplay = Array.from(this.selectedTags)
-		console.log('this.model.tags :', this.selectedTags)
-		console.log('tag à afficher :', this.tagToDisplay)
+		// console.log('this.model.tags :', this.selectedTags)
+		// console.log('tag à afficher :', this.tagToDisplay)
 		// this.tagDisplay.add('ingredients', this.model.getTags('ingredients'))
 		// faut demander le display des tags a la view
 	}
