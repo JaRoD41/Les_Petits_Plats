@@ -75,7 +75,7 @@ export class ControllerRecipes {
 				)
 				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
-				
+
 				// Sinon, on affiche toutes les recettes
 			} else if (this.mainInputLength <= 2) {
 				this.view.displayRecipesList(
@@ -111,8 +111,6 @@ export class ControllerRecipes {
 		this.ingredientInputLength = this.ingredientSearchText.length
 		// Si la longueur de la recherche est inférieure ou égale à 2, on réinitialise la recherche
 		this.view.filterIngredients(this.ingredientSearchText)
-
-		console.log(this.ingredients)
 	}
 
 	handleApplianceSearch(event) {
