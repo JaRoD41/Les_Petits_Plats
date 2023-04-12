@@ -2,6 +2,7 @@ export class Recipes {
 	constructor(recipeList = []) {
 		this.mainSearch = ''
 		this.recipeList = recipeList
+		// Je crée un tableau qui va contenir les tags sélectionnés en utilisant la méthode Set
 		this.selectedTags = {
 			ingredients: new Set(),
 			appliances: new Set(),
@@ -19,12 +20,14 @@ export class Recipes {
 			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
 			return array
 		}, [])
+		// Je crée un nouveau tableau à partir du tableau d'ingrédients en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(ingredients))
 	}
 
 	getApplianceList() {
 		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
 		const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
+		// Je crée un nouveau tableau à partir du tableau d'appareils en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(appliances))
 	}
 
@@ -34,16 +37,20 @@ export class Recipes {
 			const array = [...acc, ...cur.ustensils]
 			return array
 		}, [])
+		// Je crée un nouveau tableau à partir du tableau d'ustensiles en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(ustensils))
 	}
 
 	// Méthode pour ajouter un tag dans le tableau des tags sélectionnés
 	addTag(type, value) {
+		// J'ajoute le tag dans le tableau des tags sélectionnés en utilisant la méthode add de l'objet Set
 		this.selectedTags[type].add(value)
-		console.log(this.selectedTags)
+		// console.log(this.selectedTags)
 	}
 
-	getSelectedTags() {}
+	getSelectedTags() {
+		return this.selectedTags
+	}
 
 	getRecipesFilteredBySearch() {
 		return this.recipeList.filter(
