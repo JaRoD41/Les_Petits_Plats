@@ -100,20 +100,30 @@ export class ControllerRecipes {
 		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
 				const keywordArray = tag.closest('ul').id.replace('List', '')
-				const tagToDisplay = tag.textContent
+				this.tagToDisplay = tag.textContent
 
-				this.model.addTag(keywordArray, tagToDisplay)
+				this.model.addTag(keywordArray, this.tagToDisplay)
 				this.selectedTags = this.model.getSelectedTags()
 				// this.ingredientArray = [...this.selectedTags.ingredients]
 
 				console.log('this.model.tags :', this.selectedTags)
 				console.log('tableau du tag :', keywordArray)
-				console.log('tag choisi :', tagToDisplay)
+				console.log('tag choisi :', this.tagToDisplay)
 				// for (let tag of this.ingredientArray) {
 				// 	// console.log('tag :', tag)
-				this.tagDisplay.add(keywordArray, tagToDisplay)
-				let testTag = this.model.ingredientSearch(tagToDisplay)
-				console.log('testTag :', testTag);
+				this.tagDisplay.add(keywordArray, this.tagToDisplay)
+				// if (keywordArray === 'ingredients') {
+				this.view.displayRecipesList(
+					// this.model.ingredientSearch(tagToDisplay),
+					this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray),
+					this.model.getIngredientList(),
+					this.model.getApplianceList(),
+					this.model.getUstensilList()
+				)
+				this.handleTagSelected()
+				// }
+				// let testTag = this.model.ingredientSearch(tagToDisplay)
+				// console.log('testTag :', testTag);
 				// }
 			})
 		}
@@ -126,7 +136,7 @@ export class ControllerRecipes {
 		// 		this.model.addTag('ingredients', tag.textContent)
 		// 		this.selectedTags = this.model.getSelectedTags()
 		// 		this.ingredientArray = [...this.selectedTags.ingredients]
-				
+
 		// 		console.log('this.model.tags :', this.selectedTags)
 		// 		console.log('tableau du tag :', keywordArray);
 		// 		console.log('tag choisi :', tagToDisplay);
@@ -134,7 +144,7 @@ export class ControllerRecipes {
 		// 		// 	// console.log('tag :', tag)
 		// 		// 	this.tagDisplay.add('ingredient', tag)
 		// 		// }
-				
+
 		// 	})
 		// }
 		// const applianceTags = document.querySelectorAll('#applianceList li')
@@ -151,7 +161,6 @@ export class ControllerRecipes {
 		// }
 
 		//////////////////////////////
-
 
 		// this.selectedTags = this.model.getSelectedTags()
 		// this.tagToDisplay = this.selectedTags.ingredients.values().next().value

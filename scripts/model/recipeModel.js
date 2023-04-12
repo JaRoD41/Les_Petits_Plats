@@ -62,8 +62,51 @@ export class Recipes {
 				recipe.description.toLowerCase().includes(this.mainSearch.toLowerCase())
 		)
 	}
-	getRecipesFilteredBySearchAndTags() {
-		return this.getRecipesFilteredBySearch()
+	// getRecipesFilteredBySearchAndTags(tag) {
+	// 	// if (tag) {
+	// 	// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
+	// 	// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+	// 	// 	)
+	// 	// }
+	// 	console.log('tag passé au modele :', tag);
+	// 	// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
+	// 	// if (this.selectedTags.ingredients.size > 0) {
+	// 	if (tag) {
+	// 		return this.getRecipesFilteredBySearch().filter((recipe) =>
+	// 			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+	// 		)
+	// 	} else if (this.selectedTags.appliances.size > 0) {
+	// 		return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
+	// 	} else if (this.selectedTags.ustensils.size > 0) {
+	// 		return this.getRecipesFilteredBySearch().filter((recipe) =>
+	// 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
+	// 		)
+	// 	} else {
+	// 		return this.getRecipesFilteredBySearch()
+	// 	}
+	// }
+	getRecipesFilteredBySearchAndTags(tag, type) {
+		// if (tag) {
+		// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
+		// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+		// 	)
+		// }
+		console.log('tag passé au modele :', tag)
+		// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
+		// if (this.selectedTags.ingredients.size > 0) {
+		if (tag && type === 'ingredients') {
+			return this.getRecipesFilteredBySearch().filter((recipe) =>
+				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+			)
+		} else if (tag && type === 'appliances') {
+			this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
+		} else if (tag && type === 'ustensils') {
+			this.getRecipesFilteredBySearch().filter((recipe) =>
+				recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
+			)
+		} else {
+			return this.getRecipesFilteredBySearch()
+		}
 	}
 
 	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
@@ -83,22 +126,20 @@ export class Recipes {
 		// return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
 		// 	recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
 		// )
-		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === (tag.toLowerCase()))
+		return this.getRecipesFilteredBySearch().filter((recipe) =>
+			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 		)
 	}
 
 	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
 	applianceSearch(tag) {
-		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.appliance.toLowerCase() === (tag.toLowerCase())
-		)
+		return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
 	}
 
 	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
 	ustensilsSearch(tag) {
-		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === (tag.toLowerCase()))
+		return this.getRecipesFilteredBySearch().filter((recipe) =>
+			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
 		)
 	}
 

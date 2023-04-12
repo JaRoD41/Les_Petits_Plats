@@ -24,26 +24,23 @@ export class ViewRecipes {
 		this.applianceButtonList.innerHTML = ''
 		this.ustensilsButtonList.innerHTML = ''
 
-		recipesToShow.forEach((recipe) => {
-			// Je crée un tableau avec les ingrédients, appareils et ustensiles de chaque recette et je supprime les doublons
+		if (recipesToShow) {
+			recipesToShow.forEach((recipe) => {
+				// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
+				const imageName = recipe.name
+					.toLowerCase()
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, '')
+					.split(' ')
+					.join('-')
 
-			// Je supprime les doublons de mes 3 listes grâce à l'opérateur spread et la méthode Set
-
-			// Je normalise le nom de la recette pour pouvoir l'utiliser dynamiquement comme nom d'image
-			const imageName = recipe.name
-				.toLowerCase()
-				.normalize('NFD')
-				.replace(/[\u0300-\u036f]/g, '')
-				.split(' ')
-				.join('-')
-
-			// Je crée une div pour chaque recette et je l'insère dans la div recipes-zone
-			this.recipeSnippet.innerHTML += `
+				// Je crée une div pour chaque recette et je l'insère dans la div recipes-zone
+				this.recipeSnippet.innerHTML += `
         <div id="card-container" class="col-12 col-lg-4">
                     <article class="card h-100 border-0">
                         <img src="./assets/images/${imageName}.webp" alt="photo de ${
-				recipe.name
-			}" class="card-img-top" height="178px">
+					recipe.name
+				}" class="card-img-top" height="178px">
                         <div class="card-body rounded-bottom">
                             <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
                                 <h5 class="card-title w-75">${recipe.name}</h5>
@@ -72,7 +69,8 @@ export class ViewRecipes {
                     </article>
                 </div>        
         `
-		})
+			})
+		}
 		this.ingredientButtonList.innerHTML += `
 		${ingredientList
 			.map((ingredient) => {
@@ -124,8 +122,7 @@ export class ViewRecipes {
 				ustensilElement.style.display = 'none'
 			}
 		}
-	}	
-
+	}
 
 	// Méthode pour écouter l'input de recherche
 	// listenSearchInput(callback) {
