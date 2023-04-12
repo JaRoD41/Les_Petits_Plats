@@ -112,6 +112,8 @@ export class ControllerRecipes {
 				// for (let tag of this.ingredientArray) {
 				// 	// console.log('tag :', tag)
 				this.tagDisplay.add(keywordArray, tagToDisplay)
+				let testTag = this.model.ingredientSearch(tagToDisplay)
+				console.log('testTag :', testTag);
 				// }
 			})
 		}

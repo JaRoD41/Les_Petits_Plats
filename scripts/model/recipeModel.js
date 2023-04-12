@@ -80,22 +80,25 @@ export class Recipes {
 
 	// Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
 	ingredientSearch(tag) {
+		// return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
+		// 	recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
+		// )
 		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
+			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === (tag.toLowerCase()))
 		)
 	}
 
 	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
 	applianceSearch(tag) {
 		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.appliance.toLowerCase().includes(tag.toLowerCase())
+			recipe.appliance.toLowerCase() === (tag.toLowerCase())
 		)
 	}
 
 	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
 	ustensilsSearch(tag) {
 		return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-			recipe.ustensils.some((ustensil) => ustensil.toLowerCase().includes(tag.toLowerCase()))
+			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === (tag.toLowerCase()))
 		)
 	}
 
