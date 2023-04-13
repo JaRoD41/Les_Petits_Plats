@@ -1,9 +1,13 @@
 import { recipesToShow } from '../../index.js'
 import { ControllerRecipes } from '../controller/recipeController.js'
+import { Recipes } from '../model/recipeModel.js'
 
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
+		this.model = new Recipes()
+		this.ingredientTestList = this.model.getFirstIngredientList()
+		console.log(this.ingredientTestList)
 
 		this.ingredientButtonList = document.getElementById('ingredientsList')
 		this.applianceButtonList = document.getElementById('appliancesList')
@@ -18,7 +22,7 @@ export class ViewRecipes {
 
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
-	displayRecipesList(recipesToShow, ingredientList = [], applianceList = [], ustensilList = []) {
+	displayRecipesList(recipesToShow) {
 		this.recipeSnippet.innerHTML = ''
 		this.ingredientButtonList.innerHTML = ''
 		this.applianceButtonList.innerHTML = ''
@@ -70,8 +74,32 @@ export class ViewRecipes {
                 </div>        
         `
 			})
-		} 
+		}
 
+		// this.ingredientButtonList.innerHTML += `
+		// ${ingredientList
+		// 	.map((ingredient) => {
+		// 		return `<li>${ingredient}</li>`
+		// 	})
+		// 	.join('')}
+		// `
+		// this.applianceButtonList.innerHTML += `
+		// ${applianceList
+		// 	.map((appliance) => {
+		// 		return `<li>${appliance}</li>`
+		// 	})
+		// 	.join('')}
+		// `
+		// this.ustensilsButtonList.innerHTML += `
+		// ${ustensilList
+		// 	.map((ustensil) => {
+		// 		return `<li>${ustensil}</li>`
+		// 	})
+		// 	.join('')}
+		// `
+	}
+
+	displayButtonLists(ingredientList = [], applianceList = [], ustensilList = []) {
 		this.ingredientButtonList.innerHTML += `
 		${ingredientList
 			.map((ingredient) => {
@@ -103,7 +131,7 @@ export class ViewRecipes {
 			</div>
 		`
 	}
-	
+
 	// Méthode pour filtrer les recettes par ingrédient
 	filterIngredients(search) {
 		for (let ingredientElement of this.ingredientButtonList.children) {

@@ -64,11 +64,12 @@ export class ControllerRecipes {
 			// On crée une variable qui va contenir les recettes filtrées par la recherche
 			const mainFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			const resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
+
 			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
 			if (this.mainInputLength > 3) {
 				if (mainFilteredRecipes.length != 0) {
-					this.view.displayRecipesList(
-						mainFilteredRecipes,
+					this.view.displayRecipesList(mainFilteredRecipes)
+					this.view.displayButtonLists(
 						this.model.getIngredientList(),
 						this.model.getApplianceList(),
 						this.model.getUstensilList()
@@ -81,8 +82,8 @@ export class ControllerRecipes {
 
 				// Sinon, on affiche toutes les recettes
 			} else if (this.mainInputLength <= 2) {
-				this.view.displayRecipesList(
-					resetFilteredRecipes,
+				this.view.displayRecipesList(resetFilteredRecipes)
+				this.view.displayButtonLists(
 					this.model.getIngredientList(),
 					this.model.getApplianceList(),
 					this.model.getUstensilList()
@@ -90,6 +91,7 @@ export class ControllerRecipes {
 				this.handleTagSelected()
 				// this.keywordsDisplay.displayKeywordsList(resetFilteredRecipes)
 			}
+
 			// this.availableIngredientKeywords = document.querySelectorAll('#collapseOne .accordion-body ul li')
 			// this.availableApplianceKeywords = document.querySelectorAll('#collapseTwo .accordion-body ul li')
 			// this.availableUstensilsKeywords = document.querySelectorAll('#collapseThree .accordion-body ul li')
@@ -117,19 +119,21 @@ export class ControllerRecipes {
 				// 	// console.log('tag :', tag)
 				this.tagDisplay.add(keywordArray, this.tagToDisplay)
 				// if (keywordArray === 'ingredients') {
-					if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
-						this.view.displayRecipesList(
-							// this.model.ingredientSearch(tagToDisplay),
-							this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray),
-							this.model.getIngredientList(),
-							this.model.getApplianceList(),
-							this.model.getUstensilList()
-						)
-				this.handleTagSelected()
-						} else {
-							this.view.displayNoRecipeMessage()
-						}
-						
+				if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
+					this.view.displayRecipesList(
+						// this.model.ingredientSearch(tagToDisplay),
+						this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)
+					)
+					this.view.displayButtonLists(
+						this.model.getIngredientList(),
+						this.model.getApplianceList(),
+						this.model.getUstensilList()
+					)
+					this.handleTagSelected()
+				} else {
+					this.view.displayNoRecipeMessage()
+				}
+
 				// }
 				// let testTag = this.model.ingredientSearch(tagToDisplay)
 				// console.log('testTag :', testTag);

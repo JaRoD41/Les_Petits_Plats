@@ -2,6 +2,7 @@ export class Recipes {
 	constructor(recipeList = []) {
 		this.mainSearch = ''
 		this.recipeList = recipeList
+
 		// Je crée un tableau qui va contenir les tags sélectionnés en utilisant la méthode Set
 		this.selectedTags = {
 			ingredients: new Set(),
@@ -34,6 +35,33 @@ export class Recipes {
 	getUstensilList() {
 		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
 		const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+			const array = [...acc, ...cur.ustensils]
+			return array
+		}, [])
+		// Je crée un nouveau tableau à partir du tableau d'ustensiles en utilisant la méthode Set pour supprimer les doublons
+		return Array.from(new Set(ustensils))
+	}
+
+	getFirstIngredientList() {
+		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
+		const ingredients = this.recipeList.reduce((acc, cur) => {
+			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
+			return array
+		}, [])
+		// Je crée un nouveau tableau à partir du tableau d'ingrédients en utilisant la méthode Set pour supprimer les doublons
+		return Array.from(new Set(ingredients))
+	}
+
+	getFirstApplianceList() {
+		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
+		const appliances = this.recipeList.map((recipe) => recipe.appliance)
+		// Je crée un nouveau tableau à partir du tableau d'appareils en utilisant la méthode Set pour supprimer les doublons
+		return Array.from(new Set(appliances))
+	}
+
+	getFirstUstensilList() {
+		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
+		const ustensils = this.recipeList.reduce((acc, cur) => {
 			const array = [...acc, ...cur.ustensils]
 			return array
 		}, [])
@@ -91,7 +119,6 @@ export class Recipes {
 		// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 		// 	)
 		// }
-		console.log('tag passé au modele :', tag)
 		// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
 		// if (this.selectedTags.ingredients.size > 0) {
 		if (tag && type === 'ingredients') {
