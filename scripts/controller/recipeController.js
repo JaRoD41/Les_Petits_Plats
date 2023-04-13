@@ -66,13 +66,17 @@ export class ControllerRecipes {
 			const resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
 			if (this.mainInputLength > 3) {
-				this.view.displayRecipesList(
-					mainFilteredRecipes,
-					this.model.getIngredientList(),
-					this.model.getApplianceList(),
-					this.model.getUstensilList()
-				)
-				this.handleTagSelected()
+				if (mainFilteredRecipes.length != 0) {
+					this.view.displayRecipesList(
+						mainFilteredRecipes,
+						this.model.getIngredientList(),
+						this.model.getApplianceList(),
+						this.model.getUstensilList()
+					)
+					this.handleTagSelected()
+				} else {
+					this.view.displayNoRecipeMessage()
+				}
 				// this.keywordsDisplay.displayKeywordsList(mainFilteredRecipes)
 
 				// Sinon, on affiche toutes les recettes
@@ -113,14 +117,19 @@ export class ControllerRecipes {
 				// 	// console.log('tag :', tag)
 				this.tagDisplay.add(keywordArray, this.tagToDisplay)
 				// if (keywordArray === 'ingredients') {
-				this.view.displayRecipesList(
-					// this.model.ingredientSearch(tagToDisplay),
-					this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray),
-					this.model.getIngredientList(),
-					this.model.getApplianceList(),
-					this.model.getUstensilList()
-				)
+					if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
+						this.view.displayRecipesList(
+							// this.model.ingredientSearch(tagToDisplay),
+							this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray),
+							this.model.getIngredientList(),
+							this.model.getApplianceList(),
+							this.model.getUstensilList()
+						)
 				this.handleTagSelected()
+						} else {
+							this.view.displayNoRecipeMessage()
+						}
+						
 				// }
 				// let testTag = this.model.ingredientSearch(tagToDisplay)
 				// console.log('testTag :', testTag);

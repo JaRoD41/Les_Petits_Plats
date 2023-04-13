@@ -85,6 +85,12 @@
     -webkit-box-orient: vertical;
 }
 
+/* Style du texte d'avertissement si aucune recette disponible */
+
+#no-recipe {
+    color: #ED6454;
+}
+
 /* Style des filtres collapse */
 
 .accordion-button:after {

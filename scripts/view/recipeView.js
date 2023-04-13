@@ -70,7 +70,8 @@ export class ViewRecipes {
                 </div>        
         `
 			})
-		}
+		} 
+
 		this.ingredientButtonList.innerHTML += `
 		${ingredientList
 			.map((ingredient) => {
@@ -94,6 +95,15 @@ export class ViewRecipes {
 		`
 	}
 
+	// Méthode d'affichage du message d'erreur de recettes non trouvées
+	displayNoRecipeMessage() {
+		this.recipeSnippet.innerHTML = `
+			<div id="no-recipe" class="col-12 fs-4">
+				<p class="text-center">Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc...</p>
+			</div>
+		`
+	}
+	
 	// Méthode pour filtrer les recettes par ingrédient
 	filterIngredients(search) {
 		for (let ingredientElement of this.ingredientButtonList.children) {
