@@ -5,9 +5,6 @@ import { Recipes } from '../model/recipeModel.js'
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller
-		this.model = new Recipes()
-		this.ingredientTestList = this.model.getFirstIngredientList()
-		console.log(this.ingredientTestList)
 
 		this.ingredientButtonList = document.getElementById('ingredientsList')
 		this.applianceButtonList = document.getElementById('appliancesList')

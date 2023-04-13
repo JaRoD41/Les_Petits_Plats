@@ -5,9 +5,9 @@ import { Recipes } from './scripts/model/recipeModel.js'
 
 // je crée un tableau vide pour pouvoir y stocker les recettes filtrées
 let recipesToShow = []
-// let ingredientArray = []
-// let applianceArray = []
-// let ustensilsArray = []
+let ingredientArray = []
+let applianceArray = []
+let ustensilsArray = []
 
 // je crée une instance de ma vue pour pouvoir supprimer les tags de filtrage des recettes
 // const removeTags = new FilterTagView()
@@ -20,6 +20,12 @@ function init() {
 
 	// je crée une instance de mes controleurs pour pouvoir utiliser les méthodes avec les données de mon tableau de recettes
 	const controller = new ControllerRecipes(new Recipes(recipesToShow))
+
+	// je récupère les données des mots-clés à afficher depuis mon controleur
+	ingredientArray = controller.getBaseIngredients()
+	applianceArray = controller.getBaseAppliances()
+	ustensilsArray = controller.getBaseUstensils()
+
 	// const filterTagController = new FilterTagController({ recipes: recipesToShow })
 
 	// je crée une instance de ma vue pour pouvoir afficher les tags de filtrage des recettes
@@ -33,9 +39,11 @@ function init() {
 
 	// J'instancie mon controleur pour pouvoir utiliser les méthodes de recherche de recettes
 
-	// je crée une instance de ma vue pour pouvoir afficher les recettes
+	// je crée une instance de ma vue et de controleur pour pouvoir afficher les recettes et gérer les mots-clés lors de la première ouverture de la page
 	const recipesDisplay = new ViewRecipes()
 	recipesDisplay.displayRecipesList(recipesToShow)
+	recipesDisplay.displayButtonLists(ingredientArray, applianceArray, ustensilsArray)
+	controller.handleTagSelected()
 	// recipesDisplay.listenSearchInput()
 	// const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 

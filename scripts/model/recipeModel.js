@@ -126,9 +126,9 @@ export class Recipes {
 				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 			)
 		} else if (tag && type === 'appliances') {
-			this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
+			return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
 		} else if (tag && type === 'ustensils') {
-			this.getRecipesFilteredBySearch().filter((recipe) =>
+			return this.getRecipesFilteredBySearch().filter((recipe) =>
 				recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
 			)
 		} else {

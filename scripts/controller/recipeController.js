@@ -100,6 +100,22 @@ export class ControllerRecipes {
 		})
 	}
 
+	getBaseIngredients() {
+		this.ingredientArray = this.model.getFirstIngredientList()
+		return this.ingredientArray	
+	}
+
+	getBaseAppliances() {
+		this.applianceArray = this.model.getFirstApplianceList()
+		return this.applianceArray
+	}
+
+	getBaseUstensils() {
+		this.ustensilsArray = this.model.getFirstUstensilList()
+		return this.ustensilsArray
+	}
+	
+
 	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
 	handleTagSelected() {
 		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
