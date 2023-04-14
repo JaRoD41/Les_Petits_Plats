@@ -17,8 +17,10 @@ export class Recipes {
 
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
 	getIngredientList() {
+		console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
 		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
-		const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+		// const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+		const ingredients = this.getRecipesFilteredBySearch().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
 			return array
 		}, [])
@@ -28,14 +30,16 @@ export class Recipes {
 
 	getApplianceList() {
 		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
-		const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
+		// const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
+		const appliances = this.getRecipesFilteredBySearch().map((recipe) => recipe.appliance)
 		// Je crée un nouveau tableau à partir du tableau d'appareils en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(appliances))
 	}
 
 	getUstensilList() {
 		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
-		const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+		// const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
+		const ustensils = this.getRecipesFilteredBySearch().reduce((acc, cur) => {
 			const array = [...acc, ...cur.ustensils]
 			return array
 		}, [])
@@ -82,7 +86,9 @@ export class Recipes {
 	}
 
 	getRecipesFilteredBySearch() {
-		return this.recipeList.filter(
+		// Je vérifie si le tableau des recettes filtrées est vide, si oui je lui affecte le tableau de recettes
+		this.filteredRecipes = this.filteredRecipes.length ? this.filteredRecipes : this.recipeList
+		this.filteredRecipes = this.filteredRecipes.filter(
 			(recipe) =>
 				recipe.name.toLowerCase().includes(this.mainSearch.toLowerCase()) ||
 				recipe.ingredients.some((ingredient) =>
@@ -90,6 +96,7 @@ export class Recipes {
 				) ||
 				recipe.description.toLowerCase().includes(this.mainSearch.toLowerCase())
 		)
+		return this.filteredRecipes
 	}
 	// getRecipesFilteredBySearchAndTags(tag) {
 	// 	// if (tag) {
@@ -115,7 +122,8 @@ export class Recipes {
 	// 	}
 	// }
 	getRecipesFilteredBySearchAndTags(tag, type) {
-		console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
+		console.log('lancement de la méthode getRecipesFilteredBySearchAndTags')
+		// console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
 		// if (tag) {
 		// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
 		// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
@@ -124,15 +132,22 @@ export class Recipes {
 		// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
 		// if (this.selectedTags.ingredients.size > 0) {
 		if (tag && type === 'ingredients') {
-			return this.getRecipesFilteredBySearch().filter((recipe) =>
+			console.log('nbre de recettes dispos au clic sur un ingrédient :', this.filteredRecipes.length)
+			// this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
+			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 			)
+			return this.filteredRecipes
 		} else if (tag && type === 'appliances') {
-			return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
+			this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
+				(recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+			)
+			return this.filteredRecipes
 		} else if (tag && type === 'ustensils') {
-			return this.getRecipesFilteredBySearch().filter((recipe) =>
+			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 				recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
 			)
+			return this.filteredRecipes
 		} else {
 			return this.getRecipesFilteredBySearch()
 		}
@@ -155,25 +170,31 @@ export class Recipes {
 		// return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
 		// 	recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
 		// )
-		return this.getRecipesFilteredBySearch().filter((recipe) =>
+		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 		)
+		return this.filteredRecipes
 	}
 
 	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
 	applianceSearch(tag) {
-		return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
+		this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
+			(recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+		)
+		return this.filteredRecipes
 	}
 
 	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
 	ustensilsSearch(tag) {
-		return this.getRecipesFilteredBySearch().filter((recipe) =>
+		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
 		)
+		return this.filteredRecipes
 	}
 
 	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche ou supprime les tags
-	resetSearch(recipes) {
-		return recipes
+	resetRecipes() {
+		this.filteredRecipes = [...this.recipeList]
+		return this.filteredRecipes
 	}
 }
