@@ -12,6 +12,7 @@ export class Recipes {
 
 		this.mainFilteredRecipes = []
 		this.resetFilteredRecipes = []
+		this.filteredRecipes = []
 	}
 
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
@@ -114,6 +115,7 @@ export class Recipes {
 	// 	}
 	// }
 	getRecipesFilteredBySearchAndTags(tag, type) {
+		console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
 		// if (tag) {
 		// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
 		// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
