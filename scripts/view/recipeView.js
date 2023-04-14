@@ -128,6 +128,9 @@ export class ViewRecipes {
 
 	// Méthode d'affichage du message d'erreur de recettes non trouvées
 	displayNoRecipeMessage() {
+		this.ingredientButtonList.innerHTML = ''
+		this.applianceButtonList.innerHTML = ''
+		this.ustensilsButtonList.innerHTML = ''
 		this.recipeSnippet.innerHTML = `
 			<div id="no-recipe" class="col-12 fs-4">
 				<p class="text-center">Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc...</p>
