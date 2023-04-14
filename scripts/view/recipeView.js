@@ -9,6 +9,12 @@ export class ViewRecipes {
 		this.ingredientButtonList = document.getElementById('ingredientsList')
 		this.applianceButtonList = document.getElementById('appliancesList')
 		this.ustensilsButtonList = document.getElementById('ustensilsList')
+		this.ingredientCollapse = document.getElementById('collapseOne')
+		this.applianceCollapse = document.getElementById('collapseTwo')
+		this.ustensilsCollapse = document.getElementById('collapseThree')
+		this.ingredientButtonHeader = document.getElementById('ingredientButtonHeader')
+		this.applianceButtonHeader = document.getElementById('applianceButtonHeader')
+		this.ustensilsButtonHeader = document.getElementById('ustensilsButtonHeader')
 
 		// J'utilise bind pour pouvoir conserver le this de la classe ViewRecipes dans la méthode displayRecipesList
 		this.displayRecipesList = this.displayRecipesList.bind(this)
