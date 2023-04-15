@@ -84,7 +84,7 @@ export class ControllerRecipes {
 			}
 			if (this.mainInputLength <= 2 || this.mainInputLength == 0) {
 				// this.model.resetFilteredRecipes()
-				console.log('this.model avant resetFilteredRecipes :', this.model);
+				console.log('this.model avant resetFilteredRecipes :', this.model)
 				resetFilteredRecipes = this.model.resetRecipes()
 				this.view.displayRecipesList(resetFilteredRecipes)
 				this.view.displayButtonLists(
@@ -126,17 +126,14 @@ export class ControllerRecipes {
 			tag.addEventListener('click', () => {
 				const keywordArray = tag.closest('ul').id.replace('List', '')
 				this.tagToDisplay = tag.textContent
-				// Je récupère le bouton qui correspond au tag cliqué pour le refermer au clic sur le tag
-				// const buttonCollapseToClose = tag.closest('.accordion-collapse')
-				// const buttonHeader = document.getElementById(buttonCollapseToClose.id.replace('collapse', 'heading'))
-				// const buttonHeaderToClose = buttonHeader.firstElementChild
-				
-				// buttonHeaderToClose.classList.remove('show')
-				// buttonCollapseToClose.classList.add('collapsed')
-				// buttonCollapseToClose.setAttribute('aria-expanded', 'false')
+				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
+				let collapseElement = tag.closest('.accordion-collapse')
+				let collapseInstance = bootstrap.Collapse.getInstance(collapseElement)
+				if (collapseInstance) {
+					collapseInstance.hide()
+				}
 				this.model.addTag(keywordArray, this.tagToDisplay)
 				this.selectedTags = this.model.getSelectedTags()
-				// this.ingredientArray = [...this.selectedTags.ingredients]
 
 				console.log('this.model.tags :', this.selectedTags)
 				console.log('tableau du tag :', keywordArray)
