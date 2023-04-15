@@ -17,7 +17,6 @@ export class Recipes {
 
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
 	getIngredientList() {
-		console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
 		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
 		// const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
 		const ingredients = this.getRecipesFilteredBySearch().reduce((acc, cur) => {
@@ -98,42 +97,9 @@ export class Recipes {
 		)
 		return this.filteredRecipes
 	}
-	// getRecipesFilteredBySearchAndTags(tag) {
-	// 	// if (tag) {
-	// 	// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
-	// 	// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
-	// 	// 	)
-	// 	// }
-	// 	console.log('tag passé au modele :', tag);
-	// 	// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
-	// 	// if (this.selectedTags.ingredients.size > 0) {
-	// 	if (tag) {
-	// 		return this.getRecipesFilteredBySearch().filter((recipe) =>
-	// 			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
-	// 		)
-	// 	} else if (this.selectedTags.appliances.size > 0) {
-	// 		return this.getRecipesFilteredBySearch().filter((recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase())
-	// 	} else if (this.selectedTags.ustensils.size > 0) {
-	// 		return this.getRecipesFilteredBySearch().filter((recipe) =>
-	// 			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
-	// 		)
-	// 	} else {
-	// 		return this.getRecipesFilteredBySearch()
-	// 	}
-	// }
+	
 	getRecipesFilteredBySearchAndTags(tag, type) {
-		console.log('lancement de la méthode getRecipesFilteredBySearchAndTags')
-		// console.log('liste recettes utilisée pour filtrer :', this.filteredRecipes)
-		// if (tag) {
-		// 	return this.getRecipesFilteredBySearch().filter((recipe) =>
-		// 		recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
-		// 	)
-		// }
-		// test avec condition si le tag appartient à la liste ingredients, appliances ou ustensils
-		// if (this.selectedTags.ingredients.size > 0) {
 		if (tag && type === 'ingredients') {
-			console.log('nbre de recettes dispos au clic sur un ingrédient :', this.filteredRecipes.length)
-			// this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
 			)

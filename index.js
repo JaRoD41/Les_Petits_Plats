@@ -44,6 +44,7 @@ function init() {
 	recipesDisplay.displayRecipesList(recipesToShow)
 	recipesDisplay.displayButtonLists(ingredientArray, applianceArray, ustensilsArray)
 	controller.handleTagSelected()
+	controller.handleTagUnSelected()
 	// recipesDisplay.listenSearchInput()
 	// const keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 
