@@ -15,8 +15,13 @@ export class Recipes {
 		this.filteredRecipes = []
 	}
 
+	// Méthode de suppression des accents //
+	removeAccents(str) {
+		return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+	}
+
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
-	
+
 	getIngredientList() {
 		// Je crée une liste d'ingrédients en utilisant la méthode map pour récupérer les ingrédients de chaque recette et flat pour applatir le tableau
 		const ingredients = this.getRecipesFilteredBySearch()
@@ -54,9 +59,7 @@ export class Recipes {
 	}
 
 	getFirstUstensilList() {
-		const ustensils = this.recipeList
-			.map((recipe) => recipe.ustensils)
-			.flat()
+		const ustensils = this.recipeList.map((recipe) => recipe.ustensils).flat()
 		return Array.from(new Set(ustensils))
 	}
 
@@ -76,11 +79,13 @@ export class Recipes {
 		this.filteredRecipes = this.filteredRecipes.length ? this.filteredRecipes : this.recipeList
 		this.filteredRecipes = this.filteredRecipes.filter(
 			(recipe) =>
-				recipe.name.toLowerCase().includes(this.mainSearch.toLowerCase()) ||
+				this.removeAccents(recipe.name.toLowerCase()).includes(this.removeAccents(this.mainSearch.toLowerCase())) ||
 				recipe.ingredients.some((ingredient) =>
-					ingredient.ingredient.toLowerCase().includes(this.mainSearch.toLowerCase())
+					this.removeAccents(ingredient.ingredient.toLowerCase()).includes(
+						this.removeAccents(this.mainSearch.toLowerCase())
+					)
 				) ||
-				recipe.description.toLowerCase().includes(this.mainSearch.toLowerCase())
+				this.removeAccents(recipe.description.toLowerCase()).includes(this.removeAccents(this.mainSearch.toLowerCase()))
 		)
 		return this.filteredRecipes
 	}
@@ -88,17 +93,22 @@ export class Recipes {
 	getRecipesFilteredBySearchAndTags(tag, type) {
 		if (tag && type === 'ingredients') {
 			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+				recipe.ingredients.some(
+					(ingredient) =>
+						this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+				)
 			)
 			return this.filteredRecipes
 		} else if (tag && type === 'appliances') {
 			this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
-				(recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+				(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
 			)
 			return this.filteredRecipes
 		} else if (tag && type === 'ustensils') {
 			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-				recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
+				recipe.ustensils.some(
+					(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+				)
 			)
 			return this.filteredRecipes
 		} else {
@@ -112,9 +122,11 @@ export class Recipes {
 	mainSearch(recipes, text) {
 		return recipes.filter(
 			(recipe) =>
-				recipe.name.toLowerCase().includes(text.toLowerCase()) ||
-				recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(text.toLowerCase())) ||
-				recipe.description.toLowerCase().includes(text.toLowerCase())
+				this.removeAccents(recipe.name.toLowerCase()).includes(this.removeAccents(text.toLowerCase())) ||
+				recipe.ingredients.some((ingredient) =>
+					this.removeAccents(ingredient.ingredient.toLowerCase()).includes(this.removeAccents(text.toLowerCase()))
+				) ||
+				this.removeAccents(recipe.description.toLowerCase()).includes(this.removeAccents(text.toLowerCase()))
 		)
 	}
 
@@ -124,7 +136,10 @@ export class Recipes {
 		// 	recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
 		// )
 		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-			recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase() === tag.toLowerCase())
+			recipe.ingredients.some(
+				(ingredient) =>
+					this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+			)
 		)
 		return this.filteredRecipes
 	}
@@ -132,7 +147,7 @@ export class Recipes {
 	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
 	applianceSearch(tag) {
 		this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
-			(recipe) => recipe.appliance.toLowerCase() === tag.toLowerCase()
+			(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
 		)
 		return this.filteredRecipes
 	}
@@ -140,7 +155,9 @@ export class Recipes {
 	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
 	ustensilsSearch(tag) {
 		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-			recipe.ustensils.some((ustensil) => ustensil.toLowerCase() === tag.toLowerCase())
+			recipe.ustensils.some(
+				(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+			)
 		)
 		return this.filteredRecipes
 	}
