@@ -16,60 +16,47 @@ export class Recipes {
 	}
 
 	// Code des méthodes d'envoi des données liées aux mots-clés à afficher //
+	
 	getIngredientList() {
-		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
-		// const ingredients = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
-		const ingredients = this.getRecipesFilteredBySearch().reduce((acc, cur) => {
-			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
-			return array
-		}, [])
+		// Je crée une liste d'ingrédients en utilisant la méthode map pour récupérer les ingrédients de chaque recette et flat pour applatir le tableau
+		const ingredients = this.getRecipesFilteredBySearch()
+			.map((recipe) => recipe.ingredients.map((ingredient) => ingredient.ingredient))
+			.flat()
 		// Je crée un nouveau tableau à partir du tableau d'ingrédients en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(ingredients))
 	}
 
 	getApplianceList() {
 		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
-		// const appliances = this.getRecipesFilteredBySearchAndTags().map((recipe) => recipe.appliance)
 		const appliances = this.getRecipesFilteredBySearch().map((recipe) => recipe.appliance)
-		// Je crée un nouveau tableau à partir du tableau d'appareils en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(appliances))
 	}
 
 	getUstensilList() {
-		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
-		// const ustensils = this.getRecipesFilteredBySearchAndTags().reduce((acc, cur) => {
-		const ustensils = this.getRecipesFilteredBySearch().reduce((acc, cur) => {
-			const array = [...acc, ...cur.ustensils]
-			return array
-		}, [])
-		// Je crée un nouveau tableau à partir du tableau d'ustensiles en utilisant la méthode Set pour supprimer les doublons
+		// Je crée une liste d'ustensiles en utilisant la méthode map pour récupérer les ustensiles de chaque recette et flat pour applatir le tableau
+		const ustensils = this.getRecipesFilteredBySearch()
+			.map((recipe) => recipe.ustensils)
+			.flat()
 		return Array.from(new Set(ustensils))
 	}
 
 	getFirstIngredientList() {
-		// Je crée un tableau d'ingrédients à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ingrédients de chaque recette dans un seul tableau
-		const ingredients = this.recipeList.reduce((acc, cur) => {
-			const array = [...acc, ...cur.ingredients.map((ingredient) => ingredient.ingredient)]
-			return array
-		}, [])
-		// Je crée un nouveau tableau à partir du tableau d'ingrédients en utilisant la méthode Set pour supprimer les doublons
+		const ingredients = this.recipeList
+			.map((recipe) => recipe.ingredients.map((ingredient) => ingredient.ingredient))
+			.flat()
 		return Array.from(new Set(ingredients))
 	}
 
 	getFirstApplianceList() {
 		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
 		const appliances = this.recipeList.map((recipe) => recipe.appliance)
-		// Je crée un nouveau tableau à partir du tableau d'appareils en utilisant la méthode Set pour supprimer les doublons
 		return Array.from(new Set(appliances))
 	}
 
 	getFirstUstensilList() {
-		// Je crée un tableau d'ustensiles à partir du tableau de recettes en utilisant la méthode reduce pour applatir les ustensiles de chaque recette dans un seul tableau
-		const ustensils = this.recipeList.reduce((acc, cur) => {
-			const array = [...acc, ...cur.ustensils]
-			return array
-		}, [])
-		// Je crée un nouveau tableau à partir du tableau d'ustensiles en utilisant la méthode Set pour supprimer les doublons
+		const ustensils = this.recipeList
+			.map((recipe) => recipe.ustensils)
+			.flat()
 		return Array.from(new Set(ustensils))
 	}
 
@@ -97,7 +84,7 @@ export class Recipes {
 		)
 		return this.filteredRecipes
 	}
-	
+
 	getRecipesFilteredBySearchAndTags(tag, type) {
 		if (tag && type === 'ingredients') {
 			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>

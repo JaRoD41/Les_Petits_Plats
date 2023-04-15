@@ -48,7 +48,7 @@ export class ControllerRecipes {
 		// Je crée une instance de ma vue pour pouvoir afficher les recettes
 		this.view = new ViewRecipes()
 		// Je crée une instance de ma classe FilterTagView pour pouvoir afficher les tags de filtre
-		this.tagDisplay = new FilterTagView()
+		this.tagView = new FilterTagView()
 	}
 
 	// On envoie le texte saisi dans la barre de recherche dans le controleur qui va filtrer les recettes dans le Modèle
@@ -126,7 +126,16 @@ export class ControllerRecipes {
 				this.selectedTags = this.model.getSelectedTags()
 				console.log('listOfAllTags :', listOfAllTags);
 				console.log('liste des tags avant suppression :', this.selectedTags);
-				this.tagDisplay.add(keywordArray, this.tagToDisplay)
+				// On supprime les tags qui sont déjà affichés
+				for (let tag of listOfAllTags) {
+					if (tag.textContent == this.tagToDisplay) {
+						tag.remove()
+					}
+				}
+				console.log('liste des tags après suppression :', this.selectedTags);
+
+				// On affiche les tags sélectionnés dans la Vue
+				this.tagView.add(keywordArray, this.tagToDisplay)
 
 				if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
 					this.view.displayRecipesList(this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray))
@@ -148,11 +157,13 @@ export class ControllerRecipes {
 		const tagCloseBtn = document.querySelectorAll('.tag-close')
 		tagCloseBtn.forEach((tag) => {
 			tag.addEventListener('click', (event) => {
-				const tagToDelete = event.target.closest('.tag')
-				const tagContent = tagToDelete.textContent
-				console.log('tag supprimé :', tagContent);
-				tagToDelete.style.display = 'none'
-				this.removeTag(tagContent)
+				// On supprime le tag de la liste des tags sélectionnés dans la Vue
+				this.tagView.remove(event)
+				// const tagToDelete = event.target.closest('.tag')
+				// const tagContent = tagToDelete.textContent
+				// console.log('tag supprimé :', tagContent);
+				// tagToDelete.style.display = 'none'
+				// this.removeTag(tagContent)
 				console.log('list des tags après suppression :', this.selectedTags);
 				// je récupère le contenu du tag pour pouvoir le passer en paramètre à la méthode remove de la classe FilterTagView
 				// removeTags.remove(event)
