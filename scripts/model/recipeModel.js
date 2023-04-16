@@ -70,6 +70,14 @@ export class Recipes {
 		// console.log(this.selectedTags)
 	}
 
+	// Méthode pour supprimer un tag du tableau des tags sélectionnés
+	removeTag(type, value) {
+		// Je supprime le tag du tableau des tags sélectionnés en utilisant la méthode delete de l'objet Set
+		this.selectedTags[type].delete(value)
+		console.log(this.selectedTags)
+	}
+
+
 	getSelectedTags() {
 		return this.selectedTags
 	}
@@ -132,9 +140,6 @@ export class Recipes {
 
 	// Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
 	ingredientSearch(tag) {
-		// return this.getRecipesFilteredBySearchAndTags().filter((recipe) =>
-		// 	recipe.ingredients.some((ingredient) => ingredient.ingredient.toLowerCase().includes(tag.toLowerCase()))
-		// )
 		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
 			recipe.ingredients.some(
 				(ingredient) =>

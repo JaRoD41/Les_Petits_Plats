@@ -108,10 +108,47 @@ export class ControllerRecipes {
 
 	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
 	handleTagSelected() {
+		const inputButtons = document.querySelectorAll('.filter_button input')
+		const collapseElements = document.querySelectorAll('.accordion-collapse')
+		for (let i = 0; i < inputButtons.length; i++) {
+			const inputButton = inputButtons[i]
+			const collapseElement = collapseElements[i]
+
+			collapseElement.addEventListener('show.bs.collapse', () => {
+				switch (inputButton.id) {
+					case 'ingredient-input':
+						inputButton.placeholder = 'Rechercher un ingrédient'
+						break
+					case 'appliance-input':
+						inputButton.placeholder = 'Rechercher un appareil'
+						break
+					case 'ustensils-input':
+						inputButton.placeholder = 'Rechercher un ustensile'
+						break
+				}
+			})
+
+			collapseElement.addEventListener('hide.bs.collapse', () => {
+				switch (inputButton.id) {
+					case 'ingredient-input':
+						inputButton.placeholder = 'Ingredients'
+						break
+					case 'appliance-input':
+						inputButton.placeholder = 'Appareils'
+						break
+					case 'ustensils-input':
+						inputButton.placeholder = 'Ustensiles'
+						break
+				}
+			})
+		}
+
 		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
 		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
+				console.log('Tag clicked:', tag.textContent)
 				const keywordArray = tag.closest('ul').id.replace('List', '')
+				
 				this.tagToDisplay = tag.textContent
 				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
 				let collapseElement = tag.closest('.accordion-collapse')
@@ -122,7 +159,6 @@ export class ControllerRecipes {
 
 				this.model.addTag(keywordArray, this.tagToDisplay)
 				this.selectedTags = this.model.getSelectedTags()
-				console.log('listOfAllTags :', listOfAllTags)
 				console.log('liste des tags avant suppression :', this.selectedTags)
 				// On supprime les tags qui sont déjà affichés
 				for (let tag of listOfAllTags) {
@@ -134,9 +170,8 @@ export class ControllerRecipes {
 
 				// On affiche les tags sélectionnés dans la Vue si ils ne sont pas déjà affichés
 				if (this.selectedTags.length != 0) {
-					this.tagView.add(this.selectedTags.ingredients)
+					this.tagView.add(keywordArray, this.tagToDisplay)
 				}
-				// this.tagView.add(keywordArray, this.tagToDisplay)
 
 				// On affiche les recettes filtrées par les tags sélectionnés
 				if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
@@ -147,7 +182,7 @@ export class ControllerRecipes {
 						this.model.getUstensilList()
 					)
 					this.handleTagSelected()
-					this.handleTagUnSelected()
+					this.handleTagUnSelected(keywordArray)
 				} else {
 					this.view.displayNoRecipeMessage()
 				}
@@ -155,15 +190,18 @@ export class ControllerRecipes {
 		}
 	}
 
-	handleTagUnSelected() {
+	handleTagUnSelected(keywordArray) {
 		const tagCloseBtn = document.querySelectorAll('.tag-close')
 		tagCloseBtn.forEach((tag) => {
 			tag.addEventListener('click', (event) => {
 				// On supprime le tag de la liste des tags sélectionnés dans la Vue
 				this.tagView.remove(event)
-				// const tagToDelete = event.target.closest('.tag')
-				// const tagContent = tagToDelete.textContent
-				// console.log('tag supprimé :', tagContent);
+				const tagToDelete = event.target.closest('.tag')
+				const tagContent = tagToDelete.textContent
+				console.log('tag supprimé :', tagContent)
+				// je cherche le type du tag supprimé pour pouvoir le passer en paramètre à la méthode removeTag de la classe Recipes
+				console.log('type du tag supprimé :', keywordArray);
+				this.model.removeTag(keywordArray, tagContent)
 				// tagToDelete.style.display = 'none'
 				// this.removeTag(tagContent)
 				console.log('list des tags après suppression :', this.selectedTags)
