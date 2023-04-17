@@ -10,7 +10,7 @@ export class ControllerRecipes {
 		this.applianceSearchInput = document.querySelector('#appliance-input')
 		this.ustensilsSearchInput = document.querySelector('#ustensils-input')
 		// Je crée un tableau qui va contenir les tags sélectionnés
-		this.selectedTags = []
+		this.selectedTags = this.model.getSelectedTags()
 		this.tagToDisplay = ''
 
 		this.ingredientArray = []
@@ -19,11 +19,6 @@ export class ControllerRecipes {
 		this.mainFilteredRecipes = []
 		this.resetFilteredRecipes = []
 		this.mainInputLength = 0
-
-		// Tableau des différents mots-clés disponibles
-		this.availableIngredientKeywords = document.querySelectorAll('#collapseOne .accordion-body ul li')
-		this.availableApplianceKeywords = document.querySelectorAll('#collapseTwo .accordion-body ul li')
-		this.availableUstensilsKeywords = document.querySelectorAll('#collapseThree .accordion-body ul li')
 
 		// gestion des événements
 		this.event = new Event()
@@ -59,7 +54,7 @@ export class ControllerRecipes {
 			// On crée une variable qui va contenir les recettes filtrées par la recherche
 			const mainFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			let resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
-			console.log('resetFilteredRecipes :', resetFilteredRecipes)
+			console.log('availableIngredientKeywords', this.availableIngredientKeywords)
 			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
 			if (this.mainInputLength > 3) {
 				if (mainFilteredRecipes.length != 0) {
@@ -188,7 +183,7 @@ export class ControllerRecipes {
 				}
 
 				this.model.addTag(keywordArray, this.tagToDisplay)
-				this.selectedTags = this.model.getSelectedTags()
+				// this.selectedTags = this.model.getSelectedTags()
 				console.log('liste des tags avant suppression :', this.selectedTags)
 				// On supprime les tags qui sont déjà affichés
 				for (let tag of listOfAllTags) {
