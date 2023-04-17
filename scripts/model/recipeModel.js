@@ -86,7 +86,7 @@ export class Recipes {
 
 	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
 
-	// Algorithme de recherche par mot-clé utilisant la programmation fonctionnelle et l'objet array
+	// Algorithme de recherche par mot-clé utilisant l'objet array
 	getRecipesFilteredBySearch() {
 		// Je vérifie si le tableau des recettes filtrées est vide, si oui je lui affecte le tableau de recettes
 		this.filteredRecipes = this.filteredRecipes.length ? this.filteredRecipes : this.recipeList
