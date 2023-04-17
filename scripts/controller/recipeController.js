@@ -86,6 +86,8 @@ export class ControllerRecipes {
 		})
 	}
 
+	// 3 méthodes d'obtention des listes d'ingrédients, d'appareils et d'ustensiles pour le premier affichage
+
 	getBaseIngredients() {
 		this.ingredientArray = this.model.getFirstIngredientList()
 		return this.ingredientArray
@@ -101,7 +103,7 @@ export class ControllerRecipes {
 		return this.ustensilsArray
 	}
 
-	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
+	// Méthode d'écoute du clic d'ouverture ou de fermeture de la liste déroulante des tags
 
 	handleToggleButtons() {
 		// On récupère tous les boutons de la liste déroulante
@@ -167,6 +169,8 @@ export class ControllerRecipes {
 		}
 	}
 
+	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
+
 	handleTagSelected() {
 		this.handleToggleButtons()
 		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
@@ -176,11 +180,11 @@ export class ControllerRecipes {
 
 				this.tagToDisplay = tag.textContent
 				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
-				let collapseElement = tag.closest('.accordion-collapse')
-				let collapseInstance = bootstrap.Collapse.getInstance(collapseElement)
-				if (collapseInstance) {
-					collapseInstance.hide()
-				}
+				// let collapseElement = tag.closest('.accordion-collapse')
+				// let collapseInstance = bootstrap.Collapse.getInstance(collapseElement)
+				// if (collapseInstance) {
+				// 	collapseInstance.hide()
+				// }
 
 				this.model.addTag(keywordArray, this.tagToDisplay)
 				// this.selectedTags = this.model.getSelectedTags()
@@ -216,6 +220,8 @@ export class ControllerRecipes {
 		}
 	}
 
+	// Méthode d'écoute des tags supprimés
+
 	handleTagUnSelected() {
 		const tagCloseBtn = document.querySelectorAll('.tag-close')
 		tagCloseBtn.forEach((tag) => {
@@ -242,7 +248,7 @@ export class ControllerRecipes {
 		})
 	}
 
-	// Code des méthodes de recherche par mots-clés //
+	// Code des méthodes de recherche par mots-clés et affichage des mots-clés restants //
 
 	handleIngredientSearch(event) {
 		this.ingredientSearchText = event.target.value
@@ -265,6 +271,10 @@ export class ControllerRecipes {
 		this.view.filterUstensils(this.ustensilsSearchText)
 	}
 
+	// Méthode de suppression d'un tag de la liste des tags sélectionnés
+	removeTag(type, value) {
+		this.selectedTags[type].delete(value)
+	}
 	// removeTag(tag) {
 	// 	const index = this.selectedTags.indexOf(tag)
 	// 	if (index > -1) {
@@ -272,14 +282,12 @@ export class ControllerRecipes {
 	// 	}
 	// }
 
-	removeTag(type, value) {
-		this.selectedTags[type].delete(value)
-	}
-
+	// Méthode d'écoute si tag présent ou non dans la liste des tags sélectionnés
 	hasSelectedTags() {
 		return this.selectedTags.length > 0
 	}
 
+	// Méthode de réinitialisation des recettes affichées
 	resetRecipes() {
 		this.view.displayRecipesList(this.model.recipes)
 	}
