@@ -169,7 +169,7 @@
 .accordion-button .form-control::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #FFFFFF;
-    opacity: 1;
+    /* opacity: 1; */
     /* Firefox */
 }
 

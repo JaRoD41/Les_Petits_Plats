@@ -107,7 +107,8 @@ export class ControllerRecipes {
 	}
 
 	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
-	handleTagSelected() {
+
+	handleToggleButtons() {
 		// On récupère tous les boutons de la liste déroulante
 		const inputButtons = document.querySelectorAll('.filter_button input')
 		const collapseElements = document.querySelectorAll('.accordion-collapse')
@@ -120,14 +121,23 @@ export class ControllerRecipes {
 				switch (inputButton.id) {
 					case 'ingredient-input':
 						inputButton.placeholder = 'Rechercher un ingrédient'
+						if (inputButton.classList.contains('opacity-100')) {
+							inputButton.classList.remove('opacity-100')
+						}
 						inputButton.classList.add('opacity-50')
 						break
 					case 'appliance-input':
 						inputButton.placeholder = 'Rechercher un appareil'
+						if (inputButton.classList.contains('opacity-100')) {
+							inputButton.classList.remove('opacity-100')
+						}
 						inputButton.classList.add('opacity-50')
 						break
 					case 'ustensils-input':
 						inputButton.placeholder = 'Rechercher un ustensile'
+						if (inputButton.classList.contains('opacity-100')) {
+							inputButton.classList.remove('opacity-100')
+						}
 						inputButton.classList.add('opacity-50')
 						break
 				}
@@ -138,20 +148,32 @@ export class ControllerRecipes {
 				switch (inputButton.id) {
 					case 'ingredient-input':
 						inputButton.placeholder = 'Ingredients'
+						if (inputButton.classList.contains('opacity-50')) {
+							inputButton.classList.remove('opacity-50')
+						}
 						inputButton.classList.add('opacity-100')
 						break
 					case 'appliance-input':
 						inputButton.placeholder = 'Appareils'
+						if (inputButton.classList.contains('opacity-50')) {
+							inputButton.classList.remove('opacity-50')
+						}
 						inputButton.classList.add('opacity-100')
 						break
 					case 'ustensils-input':
 						inputButton.placeholder = 'Ustensiles'
+						if (inputButton.classList.contains('opacity-50')) {
+							inputButton.classList.remove('opacity-50')
+						}
 						inputButton.classList.add('opacity-100')
 						break
 				}
 			})
 		}
+	}
 
+	handleTagSelected() {
+		this.handleToggleButtons()
 		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
 		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
@@ -189,6 +211,7 @@ export class ControllerRecipes {
 						this.model.getApplianceList(),
 						this.model.getUstensilList()
 					)
+					this.handleToggleButtons()
 					this.handleTagSelected()
 					this.handleTagUnSelected()
 				} else {
