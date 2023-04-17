@@ -84,6 +84,9 @@ export class Recipes {
 		return this.selectedTags
 	}
 
+	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
+
+	// Algorithme de recherche par mot-clé utilisant la programmation fonctionnelle et l'objet array
 	getRecipesFilteredBySearch() {
 		// Je vérifie si le tableau des recettes filtrées est vide, si oui je lui affecte le tableau de recettes
 		this.filteredRecipes = this.filteredRecipes.length ? this.filteredRecipes : this.recipeList
@@ -124,20 +127,6 @@ export class Recipes {
 		} else {
 			return this.getRecipesFilteredBySearch()
 		}
-	}
-
-	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
-
-	// Algorithme de recherche par mot-clé utilisant la programmation fonctionnelle et l'objet array
-	mainSearch(recipes, text) {
-		return recipes.filter(
-			(recipe) =>
-				this.removeAccents(recipe.name.toLowerCase()).includes(this.removeAccents(text.toLowerCase())) ||
-				recipe.ingredients.some((ingredient) =>
-					this.removeAccents(ingredient.ingredient.toLowerCase()).includes(this.removeAccents(text.toLowerCase()))
-				) ||
-				this.removeAccents(recipe.description.toLowerCase()).includes(this.removeAccents(text.toLowerCase()))
-		)
 	}
 
 	// Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné

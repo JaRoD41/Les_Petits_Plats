@@ -51,10 +51,11 @@ export class ControllerRecipes {
 			this.searchText = event.target.value
 			this.mainInputLength = this.searchText.length
 			this.model.mainSearch = this.searchText
+
 			// On crée une variable qui va contenir les recettes filtrées par la recherche
 			const mainFilteredRecipes = this.model.getRecipesFilteredBySearch()
 			let resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
-			console.log('availableIngredientKeywords', this.availableIngredientKeywords)
+
 			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
 			if (this.mainInputLength > 3) {
 				if (mainFilteredRecipes.length != 0) {
@@ -86,7 +87,7 @@ export class ControllerRecipes {
 		})
 	}
 
-	// 3 méthodes d'obtention des listes d'ingrédients, d'appareils et d'ustensiles pour le premier affichage
+	// Les 3 méthodes d'obtention des listes d'ingrédients, d'appareils et d'ustensiles pour le premier affichage
 
 	getBaseIngredients() {
 		this.ingredientArray = this.model.getFirstIngredientList()
