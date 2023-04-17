@@ -161,7 +161,7 @@ export class FilterTagView {
 		const filterTagSnippet = document.getElementById('tags-zone')
 
 		filterTagSnippet.innerHTML += `
-        <button type="button" class="tag tag-${type}">${tag}
+        <button type="button" class="tag tag-${type}" data-type="${type}">${tag}
                 <img src="./assets/icons/tag-close.svg" alt="icone de fermeture du tag" class="tag-close">
             </button>
         `

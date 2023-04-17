@@ -72,11 +72,13 @@ export class Recipes {
 
 	// Méthode pour supprimer un tag du tableau des tags sélectionnés
 	removeTag(type, value) {
+		console.log('value to delete', value)
+		console.log('before delete', this.selectedTags[type])
 		// Je supprime le tag du tableau des tags sélectionnés en utilisant la méthode delete de l'objet Set
 		this.selectedTags[type].delete(value)
-		console.log(this.selectedTags)
+		console.log('after delete', this.selectedTags[type])
+		this.updateRecipes()
 	}
-
 
 	getSelectedTags() {
 		return this.selectedTags
@@ -165,6 +167,32 @@ export class Recipes {
 			)
 		)
 		return this.filteredRecipes
+	}
+
+	// Méthode pour mettre à jour le tableau des recettes filtrées en fonction des tags sélectionnés
+	updateRecipes() {
+		// Je filtre les recettes en fonction des tags sélectionnés
+		this.filteredRecipes = this.recipeList.filter((recipe) => {
+			// Je vérifie si la recette contient tous les ingrédients sélectionnés
+			for (const ingredient of this.selectedTags.ingredients) {
+				if (!recipe.ingredients.includes(ingredient)) {
+					return false
+				}
+			}
+			// Je vérifie si la recette contient tous les appareils sélectionnés
+			for (const appliance of this.selectedTags.appliances) {
+				if (recipe.appliance !== appliance) {
+					return false
+				}
+			}
+			// Vérifier si la recette contient tous les ustensiles sélectionnés
+			for (const ustensil of this.selectedTags.ustensils) {
+				if (!recipe.ustensils.includes(ustensil)) {
+					return false
+				}
+			}
+			return true
+		})
 	}
 
 	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche ou supprime les tags

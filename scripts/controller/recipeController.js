@@ -108,36 +108,45 @@ export class ControllerRecipes {
 
 	// Méthode d'écoute des tags sélectionnés dans les listes déroulantes
 	handleTagSelected() {
+		// On récupère tous les boutons de la liste déroulante
 		const inputButtons = document.querySelectorAll('.filter_button input')
 		const collapseElements = document.querySelectorAll('.accordion-collapse')
 		for (let i = 0; i < inputButtons.length; i++) {
 			const inputButton = inputButtons[i]
 			const collapseElement = collapseElements[i]
 
+			// On écoute le clic sur les boutons de la liste déroulante pour modifier le placeholder
 			collapseElement.addEventListener('show.bs.collapse', () => {
 				switch (inputButton.id) {
 					case 'ingredient-input':
 						inputButton.placeholder = 'Rechercher un ingrédient'
+						inputButton.classList.add('opacity-50')
 						break
 					case 'appliance-input':
 						inputButton.placeholder = 'Rechercher un appareil'
+						inputButton.classList.add('opacity-50')
 						break
 					case 'ustensils-input':
 						inputButton.placeholder = 'Rechercher un ustensile'
+						inputButton.classList.add('opacity-50')
 						break
 				}
 			})
 
+			// On restaure le placeholder initial lorsqu'on ferme la liste déroulante
 			collapseElement.addEventListener('hide.bs.collapse', () => {
 				switch (inputButton.id) {
 					case 'ingredient-input':
 						inputButton.placeholder = 'Ingredients'
+						inputButton.classList.add('opacity-100')
 						break
 					case 'appliance-input':
 						inputButton.placeholder = 'Appareils'
+						inputButton.classList.add('opacity-100')
 						break
 					case 'ustensils-input':
 						inputButton.placeholder = 'Ustensiles'
+						inputButton.classList.add('opacity-100')
 						break
 				}
 			})
@@ -146,9 +155,8 @@ export class ControllerRecipes {
 		const listOfAllTags = document.querySelectorAll('.accordion-body ul li')
 		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
-				console.log('Tag clicked:', tag.textContent)
 				const keywordArray = tag.closest('ul').id.replace('List', '')
-				
+
 				this.tagToDisplay = tag.textContent
 				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
 				let collapseElement = tag.closest('.accordion-collapse')
@@ -182,7 +190,7 @@ export class ControllerRecipes {
 						this.model.getUstensilList()
 					)
 					this.handleTagSelected()
-					this.handleTagUnSelected(keywordArray)
+					this.handleTagUnSelected()
 				} else {
 					this.view.displayNoRecipeMessage()
 				}
@@ -190,18 +198,23 @@ export class ControllerRecipes {
 		}
 	}
 
-	handleTagUnSelected(keywordArray) {
+	handleTagUnSelected() {
 		const tagCloseBtn = document.querySelectorAll('.tag-close')
 		tagCloseBtn.forEach((tag) => {
 			tag.addEventListener('click', (event) => {
+				// On récupère le type du tag à supprimer
+				// On trouve le bouton parent
+				const button = event.target.closest('button')
+				// Récupérer le type du tag à supprimer
+				const tagType = button.getAttribute('data-type')
 				// On supprime le tag de la liste des tags sélectionnés dans la Vue
 				this.tagView.remove(event)
 				const tagToDelete = event.target.closest('.tag')
 				const tagContent = tagToDelete.textContent
 				console.log('tag supprimé :', tagContent)
 				// je cherche le type du tag supprimé pour pouvoir le passer en paramètre à la méthode removeTag de la classe Recipes
-				console.log('type du tag supprimé :', keywordArray);
-				this.model.removeTag(keywordArray, tagContent)
+				console.log('type du tag supprimé :', tagType)
+				this.model.removeTag(tagType, tagContent)
 				// tagToDelete.style.display = 'none'
 				// this.removeTag(tagContent)
 				console.log('list des tags après suppression :', this.selectedTags)
@@ -234,11 +247,15 @@ export class ControllerRecipes {
 		this.view.filterUstensils(this.ustensilsSearchText)
 	}
 
-	removeTag(tag) {
-		const index = this.selectedTags.indexOf(tag)
-		if (index > -1) {
-			this.selectedTags.splice(index, 1)
-		}
+	// removeTag(tag) {
+	// 	const index = this.selectedTags.indexOf(tag)
+	// 	if (index > -1) {
+	// 		this.selectedTags.splice(index, 1)
+	// 	}
+	// }
+
+	removeTag(type, value) {
+		this.selectedTags[type].delete(value)
 	}
 
 	hasSelectedTags() {
