@@ -179,24 +179,26 @@ export class ControllerRecipes {
 			tag.addEventListener('click', () => {
 				const keywordArray = tag.closest('ul').id.replace('List', '')
 				this.tagToDisplay = tag.textContent
-
+				// je vérifie si le tag sélectionné est déjà affiché
+				const isInTags = this.selectedTags.some((tag) => tag.value === this.tagToDisplay)
 				// On ajoute le tag sélectionné au tableau créé dans le modèle s'il n'est pas déjà présent 
-				if (this.selectedTags.includes(this.tagToDisplay) == false) {
+				if (!isInTags) {
 				this.model.addTag(keywordArray, this.tagToDisplay)
+				this.tagView.add(keywordArray, this.tagToDisplay)
 				}
 				console.log('liste des tags avant suppression :', this.selectedTags)
 				// On supprime les tags qui sont déjà affichés
-				for (let tag of listOfAllTags) {
-					if (tag.textContent == this.tagToDisplay) {
-						tag.remove()
-					}
-				}
-				console.log('liste des tags après suppression :', this.selectedTags)
+				// for (let tag of listOfAllTags) {
+				// 	if (tag.textContent == this.tagToDisplay) {
+				// 		tag.remove()
+				// 	}
+				// }
+				// console.log('liste des tags après suppression :', this.selectedTags)
 
 				// On affiche les tags sélectionnés dans la Vue si ils ne sont pas déjà affichés
-				if (this.selectedTags.length != 0) {
-					this.tagView.add(keywordArray, this.tagToDisplay)
-				}
+				// if (this.selectedTags.length != 0) {
+				// 	this.tagView.add(keywordArray, this.tagToDisplay)
+				// }
 
 				// On affiche les recettes filtrées par les tags sélectionnés
 				if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {

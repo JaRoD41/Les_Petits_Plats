@@ -69,8 +69,12 @@ export class Recipes {
 
 	// Méthode pour ajouter un tag dans le tableau des tags sélectionnés
 	addTag(type, value) {
+		// const isInTags = this.selectedTags.some((tag) => tag.value === value)
+		// console.log('isInTags :', isInTags);
 		// J'ajoute le tag dans le tableau des tags sélectionnés en utilisant la méthode add de l'objet Set
-		this.selectedTags.push({type: type, value: value})
+		// if (!isInTags) {
+			this.selectedTags.push({ type: type, value: value })
+		// }
 		console.log('this tags:', this.selectedTags)
 		// console.log(this.selectedTags)
 	}
