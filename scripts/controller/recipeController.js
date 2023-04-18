@@ -178,17 +178,12 @@ export class ControllerRecipes {
 		for (let tag of listOfAllTags) {
 			tag.addEventListener('click', () => {
 				const keywordArray = tag.closest('ul').id.replace('List', '')
-
 				this.tagToDisplay = tag.textContent
-				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
-				// let collapseElement = tag.closest('.accordion-collapse')
-				// let collapseInstance = bootstrap.Collapse.getInstance(collapseElement)
-				// if (collapseInstance) {
-				// 	collapseInstance.hide()
-				// }
 
+				// On ajoute le tag sélectionné au tableau créé dans le modèle s'il n'est pas déjà présent 
+				if (this.selectedTags.includes(this.tagToDisplay) == false) {
 				this.model.addTag(keywordArray, this.tagToDisplay)
-				// this.selectedTags = this.model.getSelectedTags()
+				}
 				console.log('liste des tags avant suppression :', this.selectedTags)
 				// On supprime les tags qui sont déjà affichés
 				for (let tag of listOfAllTags) {
@@ -235,7 +230,7 @@ export class ControllerRecipes {
 				// On supprime le tag de la liste des tags sélectionnés dans la Vue
 				this.tagView.remove(event)
 				const tagToDelete = event.target.closest('.tag')
-				const tagContent = tagToDelete.textContent
+				const tagContent = tagToDelete.textContent.toString()
 				console.log('tag supprimé :', tagContent)
 				// je cherche le type du tag supprimé pour pouvoir le passer en paramètre à la méthode removeTag de la classe Recipes
 				console.log('type du tag supprimé :', tagType)

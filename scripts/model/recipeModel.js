@@ -3,12 +3,16 @@ export class Recipes {
 		this.mainSearch = ''
 		this.recipeList = recipeList
 
-		// Je crée un tableau qui va contenir les tags sélectionnés en utilisant la méthode Set
-		this.selectedTags = {
-			ingredients: new Set(),
-			appliances: new Set(),
-			ustensils: new Set(),
-		}
+		// Je crée un tableau qui va contenir les tags sélectionnés par l'utilisateur
+		this.selectedTags = []
+		// this.selectedTags = {
+		// 	ingredients: new Set(),
+		// 	appliances: new Set(),
+		// 	ustensils: new Set(),
+		// }
+
+		this.addTag = this.addTag.bind(this)
+		this.removeTag = this.removeTag.bind(this)
 
 		this.mainFilteredRecipes = []
 		this.resetFilteredRecipes = []
@@ -66,18 +70,20 @@ export class Recipes {
 	// Méthode pour ajouter un tag dans le tableau des tags sélectionnés
 	addTag(type, value) {
 		// J'ajoute le tag dans le tableau des tags sélectionnés en utilisant la méthode add de l'objet Set
-		this.selectedTags[type].add(value)
+		this.selectedTags.push({type: type, value: value})
+		console.log('this tags:', this.selectedTags)
 		// console.log(this.selectedTags)
 	}
 
 	// Méthode pour supprimer un tag du tableau des tags sélectionnés
 	removeTag(type, value) {
 		console.log('value to delete', value)
-		console.log('before delete', this.selectedTags[type])
+		console.log('type to delete', type);
+		console.log('before delete', this.selectedTags)
 		// Je supprime le tag du tableau des tags sélectionnés en utilisant la méthode delete de l'objet Set
-		this.selectedTags[type].delete(value)
-		console.log('after delete', this.selectedTags[type])
-		this.updateRecipes()
+		// this.selectedTags[type].delete.apply(value)
+		console.log('after delete', this.selectedTags)
+		// this.updateRecipes()
 	}
 
 	getSelectedTags() {
