@@ -70,18 +70,11 @@ export class Recipes {
 
 	// Méthode pour supprimer un tag du tableau des tags sélectionnés
 	removeTag(arrayToFilter, type, value) {
-		// console.log('type', type)
-		// console.log('value', value)
-		console.log('méthode removeTag modele appelée');
-		console.log('before delete', this.selectedTags)
-		// Je supprime le tag du tableau des tags sélectionnés
+		// Je supprime le tag du tableau des tags sélectionnés en utilisant la méthode findIndex pour récupérer l'index du tag à supprimer
 		let deletedTagIndex = arrayToFilter.findIndex((tag) => tag.value === value && tag.type === type)
+		// puis la méthode splice pour supprimer le tag à l'index récupéré
 		arrayToFilter.splice(deletedTagIndex, 1)
 		this.selectedTags = arrayToFilter
-		console.log('deletedTagIndex :', deletedTagIndex);
-		// this.selectedTags = arrayToFilter.filter((tag) => tag.value !== value && tag.type !== type)
-		console.log('after delete', this.selectedTags)
-		// this.updateRecipes()
 	}
 
 	getSelectedTags() {

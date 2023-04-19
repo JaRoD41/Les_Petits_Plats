@@ -72,6 +72,7 @@ export class ViewRecipes {
         `
 			})
 		}
+		console.log('liste des recettes affichée :', recipesToShow);
 	}
 
 	displayButtonLists(ingredientList = [], applianceList = [], ustensilList = []) {
