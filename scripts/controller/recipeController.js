@@ -186,9 +186,6 @@ export class ControllerRecipes {
 					this.model.addTag(keywordArray, this.tagToDisplay)
 					this.tagView.add(keywordArray, this.tagToDisplay)
 				}
-				console.log('get selected tags du modele apres ajout : ', this.model.getSelectedTags())
-				// this.selectedTags = this.model.getSelectedTags()
-
 				// On affiche les recettes filtrées par les tags sélectionnés
 				if (this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray)) {
 					this.view.displayRecipesList(this.model.getRecipesFilteredBySearchAndTags(this.tagToDisplay, keywordArray))
@@ -212,9 +209,6 @@ export class ControllerRecipes {
 	handleTagUnSelected() {
 		this.selectedTags = this.model.getSelectedTags()
 		const tagCloseBtn = document.querySelectorAll('.tag-close')
-		let resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
-		// resetFilteredRecipes = this.model.resetRecipes()
-		
 		tagCloseBtn.forEach((tag) => {
 			tag.addEventListener('click', (event) => {
 				// On récupère le type du tag à supprimer
@@ -230,46 +224,32 @@ export class ControllerRecipes {
 				// On supprime le tag de la liste des tags sélectionnés dans le Modèle
 				this.model.removeTag(this.selectedTags, tagType, tagContent)
 				this.selectedTags = this.model.getSelectedTags()
-				console.log('get selected tags du modele apres suppression : ', this.selectedTags)
-				// if (this.model.getRecipesFilteredBySearchAndTags(tagContent, tagType)) {
-				// on affiche les recettes mises à jour après suppression du tag
-				this.selectedTags.forEach((tag) => {
-					// console.log('tag.value : ', tag.value)
-					// console.log('tag.type : ', tag.type)
-					if (this.selectedTags.length !== 0) {
-						console.log('this.model.getRecipesFilteredBySearchAndTags(tag.value, tag.type) : ', this.model.getRecipesFilteredBySearchAndTags(tag.value, tag.type));
-						// this.view.displayRecipesList(this.model.getRecipesFilteredBySearchAndTags(tag.value, tag.type))
-						// this.view.displayButtonLists(
-						// 	this.model.getIngredientList(),
-						// 	this.model.getApplianceList(),
-						// 	this.model.getUstensilList()
-						// )
-						// this.handleToggleButtons()
-						// this.handleTagSelected()
-					} else {
-						console.log('resetFilteredRecipes : ', resetFilteredRecipes);
-						// this.view.displayRecipesList(resetFilteredRecipes)
-						// this.view.displayButtonLists(
-						// 	this.model.getIngredientList(),
-						// 	this.model.getApplianceList(),
-						// 	this.model.getUstensilList()
-						// )
-						// this.handleToggleButtons()
-						// this.handleTagSelected()
-					}
-				})
-			
-
-
-
-
-
-
-				// this.view.displayRecipesList(this.model.getRecipesFilteredBySearchAndTags(tagContent, tagType))
-				
-				// }
+				this.handleSearchAfterDeletedTag()
 			})
 		})
+	}
+
+	// Méthode de filtrage des mots-clés restants et d'affichage des recettes en fonction //
+
+	handleSearchAfterDeletedTag() {
+		let filteredRecipes = this.model.getRecipesFilteredBySearch()
+		if (this.selectedTags.length === 0) {
+			this.view.displayRecipesList(filteredRecipes)
+		} else {
+			this.selectedTags.forEach((tag) => {
+				filteredRecipes = filteredRecipes.filter((recipe) =>
+					this.model.getRecipesFilteredBySearchAndTags(tag.value, tag.type).includes(recipe)
+				)
+			})
+			this.view.displayRecipesList(filteredRecipes)
+		}
+		this.view.displayButtonLists(
+			this.model.getIngredientList(),
+			this.model.getApplianceList(),
+			this.model.getUstensilList()
+		)
+		this.handleToggleButtons()
+		this.handleTagSelected()
 	}
 
 	// Code des méthodes de recherche par mots-clés et affichage des mots-clés restants //
