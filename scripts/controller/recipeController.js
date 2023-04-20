@@ -1,5 +1,5 @@
-import { Recipes } from '../model/recipeModel.js'
-import { FilterTagView, ViewRecipes, KeywordsView } from '../view/recipeView.js'
+// import { Recipes } from '../model/recipeModel.js'
+import { FilterTagView, ViewRecipes } from '../view/recipeView.js'
 import { Event } from './Event.js'
 
 export class ControllerRecipes {
@@ -68,7 +68,7 @@ export class ControllerRecipes {
 					this.handleTagSelected()
 					this.handleTagUnSelected()
 				} else {
-					this.view.displayNoRecipeMessage()
+					this.view.checkDisplayNoRecipeMessage()
 				}
 
 				// Sinon, on affiche toutes les recettes
@@ -197,10 +197,11 @@ export class ControllerRecipes {
 					this.handleToggleButtons()
 					this.handleTagSelected()
 				} else {
-					this.view.displayNoRecipeMessage()
+					this.view.checkDisplayNoRecipeMessage()
 				}
 			})
 		}
+		// this.view.displayRecipesList(this.model.getRecipesFilteredBySearchAndTags())
 		this.handleTagUnSelected()
 	}
 
@@ -248,6 +249,7 @@ export class ControllerRecipes {
 			this.model.getApplianceList(),
 			this.model.getUstensilList()
 		)
+		// this.view.displayRecipesList(filteredRecipes)
 		this.handleToggleButtons()
 		this.handleTagSelected()
 	}
@@ -279,12 +281,6 @@ export class ControllerRecipes {
 	removeTag(type, value) {
 		this.selectedTags[type].delete(value)
 	}
-	// removeTag(tag) {
-	// 	const index = this.selectedTags.indexOf(tag)
-	// 	if (index > -1) {
-	// 		this.selectedTags.splice(index, 1)
-	// 	}
-	// }
 
 	// Méthode d'écoute si tag présent ou non dans la liste des tags sélectionnés
 	hasSelectedTags() {

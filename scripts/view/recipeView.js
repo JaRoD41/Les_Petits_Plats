@@ -1,6 +1,6 @@
-import { recipesToShow } from '../../index.js'
-import { ControllerRecipes } from '../controller/recipeController.js'
-import { Recipes } from '../model/recipeModel.js'
+// import { recipesToShow } from '../../index.js'
+// import { ControllerRecipes } from '../controller/recipeController.js'
+// import { Recipes } from '../model/recipeModel.js'
 
 export class ViewRecipes {
 	constructor(controller) {
@@ -20,6 +20,8 @@ export class ViewRecipes {
 	// Méthode pour afficher la liste des recettes à l'utilisateur
 
 	displayRecipesList(recipesToShow) {
+		this.checkDisplayNoRecipeMessage(recipesToShow)
+
 		this.recipeSnippet.innerHTML = ''
 		this.ingredientButtonList.innerHTML = ''
 		this.applianceButtonList.innerHTML = ''
@@ -72,43 +74,57 @@ export class ViewRecipes {
         `
 			})
 		}
-		console.log('liste des recettes affichées :', recipesToShow);
 	}
+
 
 	displayButtonLists(ingredientList = [], applianceList = [], ustensilList = []) {
+		// Supprimer les anciens éléments des listes
+		while (this.ingredientButtonList.firstChild) {
+			this.ingredientButtonList.removeChild(this.ingredientButtonList.firstChild)
+		}
+		while (this.applianceButtonList.firstChild) {
+			this.applianceButtonList.removeChild(this.applianceButtonList.firstChild)
+		}
+		while (this.ustensilsButtonList.firstChild) {
+			this.ustensilsButtonList.removeChild(this.ustensilsButtonList.firstChild)
+		}
+
+		// Ajouter les nouveaux éléments aux listes
 		this.ingredientButtonList.innerHTML += `
-		${ingredientList
-			.map((ingredient) => {
-				return `<li>${ingredient}</li>`
-			})
-			.join('')}
-		`
+        ${ingredientList
+					.map((ingredient) => {
+						return `<li>${ingredient}</li>`
+					})
+					.join('')}
+    `
 		this.applianceButtonList.innerHTML += `
-		${applianceList
-			.map((appliance) => {
-				return `<li>${appliance}</li>`
-			})
-			.join('')}
-		`
+        ${applianceList
+					.map((appliance) => {
+						return `<li>${appliance}</li>`
+					})
+					.join('')}
+    `
 		this.ustensilsButtonList.innerHTML += `
-		${ustensilList
-			.map((ustensil) => {
-				return `<li>${ustensil}</li>`
-			})
-			.join('')}
-		`
+        ${ustensilList
+					.map((ustensil) => {
+						return `<li>${ustensil}</li>`
+					})
+					.join('')}
+    `
 	}
 
-	// Méthode d'affichage du message d'erreur de recettes non trouvées
-	displayNoRecipeMessage() {
-		this.ingredientButtonList.innerHTML = ''
-		this.applianceButtonList.innerHTML = ''
-		this.ustensilsButtonList.innerHTML = ''
-		this.recipeSnippet.innerHTML = `
+	// Méthode de contrôle et d'affichage du message d'erreur de recettes non trouvées
+	checkDisplayNoRecipeMessage(recipesToCheck = []) {
+		if (recipesToCheck.length === 0) {
+			this.ingredientButtonList.innerHTML = ''
+			this.applianceButtonList.innerHTML = ''
+			this.ustensilsButtonList.innerHTML = ''
+			this.recipeSnippet.innerHTML = `
 			<div id="no-recipe" class="col-12 fs-4">
 				<p class="text-center">Aucune recette ne correspond à votre critère... Vous pouvez chercher "tarte aux pommes", "poisson", etc...</p>
 			</div>
 		`
+		}
 	}
 
 	// Méthode pour filtrer les recettes par ingrédient
@@ -139,13 +155,6 @@ export class ViewRecipes {
 				ustensilElement.style.display = 'none'
 			}
 		}
-	}
-}
-
-export class KeywordsView {
-	constructor(controller) {
-		this.controller = controller
-		this.keywordsToClick = document.querySelectorAll('.accordion-body ul li')
 	}
 }
 

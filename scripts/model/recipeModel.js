@@ -100,59 +100,89 @@ export class Recipes {
 		return this.filteredRecipes
 	}
 
-	getRecipesFilteredBySearchAndTags(tag, type) {
-		if (tag && type === 'ingredients') {
-			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-				recipe.ingredients.some(
-					(ingredient) =>
-						this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-				)
-			)
-			return this.filteredRecipes
-		} else if (tag && type === 'appliances') {
-			this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
-				(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-			)
-			return this.filteredRecipes
-		} else if (tag && type === 'ustensils') {
-			this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-				recipe.ustensils.some(
-					(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-				)
-			)
-			return this.filteredRecipes
-		} else {
-			return this.getRecipesFilteredBySearch()
-		}
+	// Méthode pour filtrer les recettes par ingrédient, appareil et ustensile dans le tableau recipes à partir des tags sélectionnés
+	getRecipesFilteredBySearchAndTags() {
+		let filteredRecipes = this.getRecipesFilteredBySearch()
+		this.selectedTags.forEach((tag) => {
+			filteredRecipes = filteredRecipes.filter((recipe) => {
+				if (tag.type === 'ingredients') {
+					return recipe.ingredients.some(
+						(ingredient) =>
+							this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.value.toLowerCase())
+					)
+				} else if (tag.type === 'appliances') {
+					return this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.value.toLowerCase())
+				} else if (tag.type === 'ustensils') {
+					return recipe.ustensils.some(
+						(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.value.toLowerCase())
+					)
+				}
+			})
+		})
+		return filteredRecipes
 	}
 
-	// Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
-	ingredientSearch(tag) {
-		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-			recipe.ingredients.some(
-				(ingredient) =>
-					this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-			)
-		)
-		return this.filteredRecipes
+	// // Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
+	// ingredientSearch(tag) {
+	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
+	// 		recipe.ingredients.some(
+	// 			(ingredient) =>
+	// 				this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+	// 		)
+	// 	)
+	// 	return this.filteredRecipes
+	// }
+
+	// // Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
+	// applianceSearch(tag) {
+	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
+	// 		(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+	// 	)
+	// 	return this.filteredRecipes
+	// }
+
+	// // Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
+	// ustensilsSearch(tag) {
+	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
+	// 		recipe.ustensils.some(
+	// 			(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
+	// 		)
+	// 	)
+	// 	return this.filteredRecipes
+	// }
+
+	getIngredientList() {
+		const ingredients = []
+		this.getRecipesFilteredBySearchAndTags().forEach((recipe) => {
+			recipe.ingredients.forEach((ingredient) => {
+				if (!ingredients.includes(ingredient.ingredient.toLowerCase())) {
+					ingredients.push(ingredient.ingredient.toLowerCase())
+				}
+			})
+		})
+		return ingredients.sort()
 	}
 
-	// Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
-	applianceSearch(tag) {
-		this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
-			(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-		)
-		return this.filteredRecipes
+	getApplianceList() {
+		const appliances = []
+		this.getRecipesFilteredBySearchAndTags().forEach((recipe) => {
+			if (!appliances.includes(recipe.appliance.toLowerCase())) {
+				appliances.push(recipe.appliance.toLowerCase())
+			}
+		})
+		return appliances.sort()
 	}
 
-	// Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
-	ustensilsSearch(tag) {
-		this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-			recipe.ustensils.some(
-				(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-			)
-		)
-		return this.filteredRecipes
+	getUstensilList() {
+		const ustensils = []
+		this.getRecipesFilteredBySearchAndTags().forEach((recipe) => {
+			recipe.ustensils.forEach((ustensil) => {
+				if (!ustensils.includes(ustensil.toLowerCase())) {
+					ustensils.push(ustensil.toLowerCase())
+				}
+			})
+		})
+		return ustensils.sort()
 	}
 
 	// Méthode pour mettre à jour le tableau des recettes filtrées en fonction des tags sélectionnés
