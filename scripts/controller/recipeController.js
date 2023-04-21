@@ -114,7 +114,7 @@ export class ControllerRecipes {
 			const inputButton = inputButtons[i]
 			const collapseElement = collapseElements[i]
 
-			// On écoute le clic sur les boutons de la liste déroulante pour modifier le placeholder
+			// On modifie le placeholder du bouton cliqué et son opacité à l'ouverture de la liste déroulante
 			collapseElement.addEventListener('show.bs.collapse', () => {
 				switch (inputButton.id) {
 					case 'ingredient-input':
@@ -141,7 +141,7 @@ export class ControllerRecipes {
 				}
 			})
 
-			// On restaure le placeholder initial lorsqu'on ferme la liste déroulante
+			// On restaure le placeholder initial et l'opacité lorsque la liste déroulante se ferme
 			collapseElement.addEventListener('hide.bs.collapse', () => {
 				switch (inputButton.id) {
 					case 'ingredient-input':
@@ -181,6 +181,14 @@ export class ControllerRecipes {
 				this.tagToDisplay = tag.textContent
 				// je vérifie si le tag sélectionné est déjà affiché
 				const isInTags = this.selectedTags.some((tag) => tag.value === this.tagToDisplay)
+
+				// Je récupère l'élément parent de l'élément cliqué et je referme le collapse du bouton
+				let collapseElement = tag.closest('.accordion-collapse')
+				let collapseInstance = bootstrap.Collapse.getInstance(collapseElement)
+				if (collapseInstance) {
+					collapseInstance.hide()
+				}
+
 				// On ajoute le tag sélectionné au tableau créé dans le modèle s'il n'est pas déjà présent
 				if (!isInTags) {
 					this.model.addTag(keywordArray, this.tagToDisplay)
