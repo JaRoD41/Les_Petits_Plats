@@ -36,6 +36,23 @@
     background-color: #E7E7E7;
 }
 
+/* Effet de survol sur les boutons */
+
+#ingredientButtonHeader:hover,
+#ingredientButtonHeader:focus {
+    box-shadow: 0px 0px 20px 3px rgba(50, 130, 247, 0.9);
+}
+
+#applianceButtonHeader:hover,
+#applianceButtonHeader:focus {
+    box-shadow: 0px 0px 20px 3px rgba(104, 217, 164, 0.9);
+}
+
+#ustensilsButtonHeader:hover,
+#ustensilsButtonHeader:focus {
+    box-shadow: 0px 0px 20px 3px rgba(237, 100, 84, 0.9);
+}
+
 /* Adaptation de la taille de l'icone de recherche en petit écran */
 
 @media (width <=600px) {
@@ -47,6 +64,10 @@
 }
 
 /* Style des cards de recettes */
+
+.card {
+    transition: transform .5s ease-in-out;
+}
 
 .ingredients-list {
     list-style: none;
@@ -85,12 +106,14 @@
     -webkit-box-orient: vertical;
 }
 
-/* Ajout d'un effet de survol sur les cards */
+/* Ajout d'un effet zoom au survol sur les cards */
 
-.card:hover {
+.card:hover,
+.card:focus {
     -webkit-box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
     -moz-box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
     box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
+    transform: scale(1.05);
 }
 
 /* Style du texte d'avertissement si aucune recette disponible */
@@ -228,7 +251,8 @@
     background-color: #3282F7;
 }
 
-.tag-ingredients:hover, .tag-ingredient:focus {
+.tag-ingredients:hover,
+.tag-ingredient:focus {
     box-shadow: 0px 0px 20px 3px rgba(50, 130, 247, 0.9);
 }
 
@@ -236,7 +260,8 @@
     background-color: #68D9A4;
 }
 
-.tag-appliances:hover, .tag-appliance:focus {
+.tag-appliances:hover,
+.tag-appliance:focus {
     box-shadow: 0px 0px 20px 3px rgba(104, 217, 164, 0.9);
 }
 
@@ -244,6 +269,7 @@
     background-color: #ED6454;
 }
 
-.tag-ustensils:hover, .tag-ustensil:focus {
+.tag-ustensils:hover,
+.tag-ustensil:focus {
     box-shadow: 0px 0px 20px 3px rgba(237, 99, 84, 0.9);
 }
