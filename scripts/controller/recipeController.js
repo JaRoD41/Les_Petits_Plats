@@ -146,6 +146,7 @@ export class ControllerRecipes {
 				switch (inputButton.id) {
 					case 'ingredient-input':
 						inputButton.placeholder = 'Ingredients'
+						inputButton.value = ''
 						if (inputButton.classList.contains('opacity-50')) {
 							inputButton.classList.remove('opacity-50')
 						}
@@ -153,6 +154,7 @@ export class ControllerRecipes {
 						break
 					case 'appliance-input':
 						inputButton.placeholder = 'Appareils'
+						inputButton.value = ''
 						if (inputButton.classList.contains('opacity-50')) {
 							inputButton.classList.remove('opacity-50')
 						}
@@ -160,6 +162,7 @@ export class ControllerRecipes {
 						break
 					case 'ustensils-input':
 						inputButton.placeholder = 'Ustensiles'
+						inputButton.value = ''
 						if (inputButton.classList.contains('opacity-50')) {
 							inputButton.classList.remove('opacity-50')
 						}
