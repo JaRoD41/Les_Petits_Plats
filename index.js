@@ -1,5 +1,5 @@
 import { recipes } from './scripts/data/recipes.js'
-import { FilterTagView, ViewRecipes } from './scripts/view/recipeView.js'
+import { ViewRecipes } from './scripts/view/recipeView.js'
 import { ControllerRecipes } from './scripts/controller/recipeController.js'
 import { Recipes } from './scripts/model/recipeModel.js'
 
