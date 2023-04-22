@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-22T14:00:44.649Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="QSFu6hiaqcYrOTOvOoar" version="21.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-22T14:02:51.516Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="1jCaFXWmC3-ypc10_XMS" version="21.2.1" type="github">
   <diagram name="Page-1" id="edf60f1a-56cd-e834-aa8a-f176f3a09ee4">
     <mxGraphModel dx="1190" dy="1131" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
@@ -44,8 +44,8 @@
             <mxPoint x="20" y="11" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="7xQFMuA-qO5Dn9zBe7eW-7" value="l&#39;entrée existe dans les noms des recettes ?" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;fontColor=#1A1A1A;fillColor=#F08E81;" vertex="1" parent="1">
-          <mxGeometry x="520" y="350" width="200" height="80" as="geometry" />
+        <mxCell id="7xQFMuA-qO5Dn9zBe7eW-7" value="l&#39;entrée existe dans les noms des recettes ?" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;fontColor=#1A1A1A;fillColor=#F08E81;autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="350" width="230" height="120" as="geometry" />
         </mxCell>
         <mxCell id="7xQFMuA-qO5Dn9zBe7eW-8" value="l&#39;entrée existe dans les ingrédients des recettes ?" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;fontColor=#1A1A1A;fillColor=#F08E81;" vertex="1" parent="1">
           <mxGeometry x="520" y="480" width="200" height="80" as="geometry" />
