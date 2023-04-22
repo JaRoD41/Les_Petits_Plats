@@ -102,7 +102,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 6;
-    line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
@@ -134,7 +133,6 @@
 .accordion-button:focus,
 .accordion-button:active,
 .accordion-button:not(.collapsed) {
-    border-color: none;
     box-shadow: none;
 }
 
@@ -198,10 +196,7 @@
 }
 
 .accordion-button .form-control::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #FFFFFF;
-    /* opacity: 1; */
-    /* Firefox */
 }
 
 .show {
