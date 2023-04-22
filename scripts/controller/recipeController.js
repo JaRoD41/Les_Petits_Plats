@@ -56,7 +56,7 @@ export class ControllerRecipes {
 			let resetFilteredRecipes = this.model.getRecipesFilteredBySearch()
 
 			// Si la longueur de la recherche est supérieure à 3, on affiche les recettes filtrées
-			if (this.mainInputLength > 3) {
+			if (this.mainInputLength >= 3) {
 				if (mainFilteredRecipes.length != 0) {
 					this.view.displayRecipesList(mainFilteredRecipes)
 					this.view.displayButtonLists(
