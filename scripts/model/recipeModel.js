@@ -83,62 +83,21 @@ export class Recipes {
 
 	// Méthode pour filtrer les recettes par nom, ingrédient, description dans le tableau recipes à partir du texte saisi dans la barre de recherche
 
-	// Algorithme de recherche par mot-clé utilisant les boucles natives
+	// Algorithme de recherche par mot-clé utilisant l'objet array
 	getRecipesFilteredBySearch() {
 		// Je vérifie si le tableau des recettes filtrées est vide, si oui je lui affecte le tableau de recettes
 		this.filteredRecipes = this.filteredRecipes.length ? this.filteredRecipes : this.recipeList
-
-		// je crée un tableau vide qui va contenir les recettes filtrées
-		let sortedArray = []
-		// je crée une variable qui va contenir le résultat de la recherche du mot-clé dans le nom ou la description de la recette initialisé à false
-		let recipeIsInSortedArray = false
-		// Pour chaque recette du tableau de recettes,
-		for (let recipe of this.filteredRecipes) {
-			if (
-				// je vérifie si le nom ou la description de la recette contient le mot-clé
-				// en utilisant la méthode indexOf pour vérifier si le mot-clé est présent dans le nom ou la description de la recette
-				// si j'obtiens un résultat différent de -1, cela signifie que le mot-clé est présent dans le nom ou la description de la recette
-				this.removeAccents(recipe.name.toLowerCase()).indexOf(this.removeAccents(this.mainSearch.toLowerCase())) !==
-					-1 ||
-				this.removeAccents(recipe.description.toLowerCase()).indexOf(
-					this.removeAccents(this.mainSearch.toLowerCase())
-				) !== -1
-			) {
-				// si oui, je l'ajoute au tableau de recettes filtrées
-				sortedArray.push(recipe)
-			}
-		}
-
-		// Puis, pour chaque recette du tableau de recettes,
-		for (let i = 0; i < this.filteredRecipes.length; i++) {
-			// je parcours le tableau d'ingrédients et
-			for (let j = 0; j < this.filteredRecipes[i].ingredients.length; j++) {
-				// je crée une variable qui contient l'ingrédient
-				const ingredient = this.filteredRecipes[i].ingredients[j]
-				// je vérifie si l'ingrédient contient le mot-clé
-				if (
+		this.filteredRecipes = this.filteredRecipes.filter(
+			(recipe) =>
+				this.removeAccents(recipe.name.toLowerCase()).includes(this.removeAccents(this.mainSearch.toLowerCase())) ||
+				recipe.ingredients.some((ingredient) =>
 					this.removeAccents(ingredient.ingredient.toLowerCase()).includes(
 						this.removeAccents(this.mainSearch.toLowerCase())
 					)
-				) {
-					// si oui, je vérifie si la recette n'est pas déjà dans le tableau de recettes filtrées
-					for (let k = 0; k < sortedArray.length; k++) {
-						if (sortedArray[k] === this.filteredRecipes[i]) {
-							// si oui, je passe la variable à true
-							recipeIsInSortedArray = true
-						}
-
-						// si non, je l'ajoute au tableau de recettes filtrées
-						if (!recipeIsInSortedArray) {
-							sortedArray.push(this.filteredRecipes[i])
-						}
-					}
-				}
-			}
-
-			this.filteredRecipes = sortedArray
-			return this.filteredRecipes
-		}
+				) ||
+				this.removeAccents(recipe.description.toLowerCase()).includes(this.removeAccents(this.mainSearch.toLowerCase()))
+		)
+		return this.filteredRecipes
 	}
 
 	// Méthode pour filtrer les recettes par ingrédient, appareil et ustensile dans le tableau recipes à partir des tags sélectionnés
