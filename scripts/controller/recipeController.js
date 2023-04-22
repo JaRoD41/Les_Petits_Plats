@@ -1,4 +1,3 @@
-// import { Recipes } from '../model/recipeModel.js'
 import { FilterTagView, ViewRecipes } from '../view/recipeView.js'
 import { Event } from './Event.js'
 

@@ -1,7 +1,3 @@
-// import { recipesToShow } from '../../index.js'
-// import { ControllerRecipes } from '../controller/recipeController.js'
-// import { Recipes } from '../model/recipeModel.js'
-
 export class ViewRecipes {
 	constructor(controller) {
 		this.controller = controller

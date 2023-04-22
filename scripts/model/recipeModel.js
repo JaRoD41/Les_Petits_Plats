@@ -122,35 +122,6 @@ export class Recipes {
 		return filteredRecipes
 	}
 
-	// // Méthode pour filtrer les recettes par ingrédient dans le tableau recipes à partir du tag sélectionné
-	// ingredientSearch(tag) {
-	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-	// 		recipe.ingredients.some(
-	// 			(ingredient) =>
-	// 				this.removeAccents(ingredient.ingredient.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-	// 		)
-	// 	)
-	// 	return this.filteredRecipes
-	// }
-
-	// // Méthode pour filtrer les recettes par appareil dans le tableau recipes à partir du tag sélectionné
-	// applianceSearch(tag) {
-	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter(
-	// 		(recipe) => this.removeAccents(recipe.appliance.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-	// 	)
-	// 	return this.filteredRecipes
-	// }
-
-	// // Méthode pour filtrer les recettes par ustensile dans le tableau recipes à partir du tag sélectionné
-	// ustensilsSearch(tag) {
-	// 	this.filteredRecipes = this.getRecipesFilteredBySearch().filter((recipe) =>
-	// 		recipe.ustensils.some(
-	// 			(ustensil) => this.removeAccents(ustensil.toLowerCase()) === this.removeAccents(tag.toLowerCase())
-	// 		)
-	// 	)
-	// 	return this.filteredRecipes
-	// }
-
 	getIngredientList() {
 		const ingredients = []
 		this.getRecipesFilteredBySearchAndTags().forEach((recipe) => {
