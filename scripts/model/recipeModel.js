@@ -156,32 +156,6 @@ export class Recipes {
 		return ustensils.sort()
 	}
 
-	// Méthode pour mettre à jour le tableau des recettes filtrées en fonction des tags sélectionnés
-	updateRecipes() {
-		// Je filtre les recettes en fonction des tags sélectionnés
-		this.filteredRecipes = this.recipeList.filter((recipe) => {
-			// Je vérifie si la recette contient tous les ingrédients sélectionnés
-			for (const ingredient of this.selectedTags.ingredients) {
-				if (!recipe.ingredients.includes(ingredient)) {
-					return false
-				}
-			}
-			// Je vérifie si la recette contient tous les appareils sélectionnés
-			for (const appliance of this.selectedTags.appliances) {
-				if (recipe.appliance !== appliance) {
-					return false
-				}
-			}
-			// Vérifier si la recette contient tous les ustensiles sélectionnés
-			for (const ustensil of this.selectedTags.ustensils) {
-				if (!recipe.ustensils.includes(ustensil)) {
-					return false
-				}
-			}
-			return true
-		})
-	}
-
 	// Méthode pour réinitialiser la recherche lorsque l'utilisateur efface le texte saisi dans la barre de recherche ou supprime les tags
 	resetRecipes() {
 		this.filteredRecipes = [...this.recipeList]
