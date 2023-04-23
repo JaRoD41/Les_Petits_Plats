@@ -50,8 +50,8 @@ export class ViewRecipes {
                                     <span id="timeValue">${recipe.time} min</span>
                                 </div>
                             </div>
-                            <div class="card-text py-3 d-flex flex-row">
-                                <ul class="ingredients-list w-50 pl-0">
+                            <div class="card-text py-2 d-flex flex-row">
+                                <ul class="ingredients-list w-50 pe-2">
                                     ${recipe.ingredients
 																			.map((ingredient) => {
 																				return `<li>${ingredient.ingredient}: ${
@@ -60,7 +60,7 @@ export class ViewRecipes {
 																			})
 																			.join('')}
                                 </ul>
-                                <p class="recipe-description w-50">
+                                <p class="recipe-description w-50 ps-2">
                                     ${recipe.description}
                                 </p>
                             </div>
