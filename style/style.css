@@ -81,6 +81,12 @@
     font-size: 12px;
 }
 
+@media (width <=1200px) {
+    .smallFont {
+        font-size: 0.8rem;
+    }
+}
+
 .card-title {
     font-size: 1rem;
 }

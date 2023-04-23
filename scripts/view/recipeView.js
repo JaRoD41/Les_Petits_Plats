@@ -43,11 +43,11 @@ export class ViewRecipes {
                         <div class="card-body rounded-bottom">
                             <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
                                 <h5 class="card-title w-75">${recipe.name}</h5>
-                                <div class="recipe-time">
+                                <div class="recipe-time text-nowrap">
                                     <span class="timeIcon me-1">
                                         <img src="./assets/icons/time.svg" alt="icone d'horloge">
                                     </span>
-                                    <span id="timeValue">${recipe.time} min</span>
+                                    <span id="timeValue" class="smallFont">${recipe.time} min</span>
                                 </div>
                             </div>
                             <div class="card-text py-2 d-flex flex-row mh-100">
