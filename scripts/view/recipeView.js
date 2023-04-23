@@ -50,7 +50,7 @@ export class ViewRecipes {
                                     <span id="timeValue">${recipe.time} min</span>
                                 </div>
                             </div>
-                            <div class="card-text py-2 d-flex flex-row">
+                            <div class="card-text py-2 d-flex flex-row overflow-hidden">
                                 <ul class="ingredients-list w-50 pe-2">
                                     ${recipe.ingredients
 																			.map((ingredient) => {
