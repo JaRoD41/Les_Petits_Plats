@@ -20,6 +20,17 @@
     overflow: hidden;
 }
 
+/* Style du header */
+
+#logo_txt {
+    font-family: 'DM Sans', sans-serif;
+    color: #D04F4F;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 47px;
+}
+
 /* Barre de recherche */
 
 .input-box {
