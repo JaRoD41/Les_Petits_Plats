@@ -11,6 +11,15 @@
     font-family: 'Lato', 'Roboto', sans-serif;
 }
 
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 /* Barre de recherche */
 
 .input-box {
