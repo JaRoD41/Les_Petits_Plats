@@ -23,6 +23,11 @@ Vous devez développer l'intégralité du visuel de l'application ainsi que les 
   </a>
 </p>
 
+Utilisation de `Bootstrap 5.2.3` pour le design et `Figma` pour la maquette.
+Utilisation de `GitHub` pour le versionning et `Vercel` pour le déploiement.
+Utilisation du pattern `MVC` pour la structure du projet.
+Projet orienté `Objet` avec utilisation de `Classes` et `Constructeurs`.
+
 ## Livrables
 
 - Une fiche d’investigation de fonctionnalité sur l’algorithme de recherche (format PDF). Vous y intégrerez le choix de l'algorithme définitif en comparaison à l’autre algorithme de recherche développé.
