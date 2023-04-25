@@ -17,9 +17,11 @@ Vous devez développer l'intégralité du visuel de l'application ainsi que les 
 
 ## Technos
 
-- ![Made-with-HTML](https://img.shields.io/badge/Made%20with-HTML-red)
-<!-- - ![Made-with-CSS](https://img.shields.io/badge/Made%20with-CSS-pink) -->
-- ![Made-with-Javascript](https://img.shields.io/badge/Made%20with-Javascript-green)
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=bootstrap,css,figma,github,html,js,vercel" />
+  </a>
+</p>
 
 ## Livrables
 
