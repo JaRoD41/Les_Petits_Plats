@@ -37,3 +37,7 @@ Projet orienté `Objet` avec utilisation de `Classes` et `Constructeurs`.
 
 - Analyser un problème informatique
 - Développer un algorithme pour résoudre un problème
+- Concevoir une solution technique
+- Tester et comparer deux algorithmes de recherche
+- Développer une interface utilisateur web dynamique
+- Réaliser une fiche d’investigation de fonctionnalité sur l’algorithme de recherche
