@@ -23,9 +23,9 @@ Vous devez développer l'intégralité du visuel de l'application ainsi que les 
   </a>
 </p>
 
-Utilisation de `Bootstrap 5.2.3` pour le design et `Figma` pour la maquette.
-Utilisation de `GitHub` pour le versionning et `Vercel` pour le déploiement.
-Utilisation du pattern `MVC` pour la structure du projet.
+Utilisation de `Bootstrap 5.2.3` pour le design et `Figma` pour la maquette.<br>
+Utilisation de `GitHub` pour le versionning et `Vercel` pour le déploiement.<br>
+Utilisation du pattern `MVC` pour la structure du projet.<br>
 Projet orienté `Objet` avec utilisation de `Classes` et `Constructeurs`.
 
 ## Livrables
@@ -33,8 +33,8 @@ Projet orienté `Objet` avec utilisation de `Classes` et `Constructeurs`.
 - Une fiche d’investigation de fonctionnalité sur l’algorithme de recherche (format PDF). Vous y intégrerez le choix de l'algorithme définitif en comparaison à l’autre algorithme de recherche développé.
 - Un fichier au format TXT contenant le lien vers votre code sur GitHub comprenant les deux branches avec les deux solutions différentes pour la recherche.
 
-La branche 'main' contient la solution avec l'algorithme de recherche définitif (méthodes de l'objet `Array`).
-La branche 'alternative-algorithm' contient la solution avec l'autre algorithme de recherche (boucles natives FOR).
+La branche `main` contient la solution avec l'algorithme de recherche définitif (méthodes de l'objet `Array`). <br>
+La branche `alternative-algorithm` contient la solution avec l'autre algorithme de recherche (boucles natives FOR).
 
 ## Compétences évaluées
 
