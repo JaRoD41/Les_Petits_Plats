@@ -1,6 +1,8 @@
 # Projet n°7 - Développeur Applications Javascript React
 
+<p align="center">
 ![logo-du-projet](https://user.oc-static.com/upload/2020/08/14/15973932905401_logo%20%281%29.png)
+</p>
 
 # Les Petits Plats
 
