@@ -33,6 +33,9 @@ Projet orienté `Objet` avec utilisation de `Classes` et `Constructeurs`.
 - Une fiche d’investigation de fonctionnalité sur l’algorithme de recherche (format PDF). Vous y intégrerez le choix de l'algorithme définitif en comparaison à l’autre algorithme de recherche développé.
 - Un fichier au format TXT contenant le lien vers votre code sur GitHub comprenant les deux branches avec les deux solutions différentes pour la recherche.
 
+La branche 'main' contient la solution avec l'algorithme de recherche définitif (méthodes de l'objet `Array`).
+La branche 'alternative-algorithm' contient la solution avec l'autre algorithme de recherche (boucles natives FOR).
+
 ## Compétences évaluées
 
 - Analyser un problème informatique
