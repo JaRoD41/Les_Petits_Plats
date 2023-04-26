@@ -42,7 +42,7 @@ export class ViewRecipes {
 				}" class="card-img-top" height="178px">
                         <div class="card-body rounded-bottom">
                             <div id="recipe-name-time" class="d-flex flex-row justify-content-between">
-                                <h5 class="card-title w-75">${recipe.name}</h5>
+                                <h2 class="card-title w-75">${recipe.name}</h2>
                                 <div class="recipe-time text-nowrap">
                                     <span class="timeIcon me-1">
                                         <img src="./assets/icons/time.svg" alt="icone d'horloge">
