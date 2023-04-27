@@ -21,7 +21,7 @@ function init() {
 	applianceArray = controller.getBaseAppliances()
 	ustensilsArray = controller.getBaseUstensils()
 
-	// je crée une instance de ma vue et de controleur pour pouvoir afficher les recettes et gérer les mots-clés lors de la première ouverture de la page
+	// je crée une instance de ma vue et de mon controleur pour pouvoir afficher les recettes et gérer les mots-clés lors de la première ouverture de la page
 	const recipesDisplay = new ViewRecipes()
 	recipesDisplay.displayRecipesList(recipesToShow)
 	recipesDisplay.displayButtonLists(ingredientArray, applianceArray, ustensilsArray)
