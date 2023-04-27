@@ -52,7 +52,6 @@ export class Recipes {
 	}
 
 	getFirstApplianceList() {
-		// Je crée un tableau d'appareils à partir du tableau de recettes en utilisant la méthode map pour récupérer l'appareil de chaque recette
 		const appliances = this.recipeList.map((recipe) => recipe.appliance)
 		return Array.from(new Set(appliances))
 	}
