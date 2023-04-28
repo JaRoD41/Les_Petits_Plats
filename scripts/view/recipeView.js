@@ -125,6 +125,7 @@ export class ViewRecipes {
 
 	// Méthode pour filtrer les recettes par ingrédient
 	filterIngredients(search) {
+		// Je parcours la liste des ingrédients et je cache ceux qui ne correspondent pas à la recherche
 		for (let ingredientElement of this.ingredientButtonList.children) {
 			ingredientElement.style.display = 'block'
 			if (!ingredientElement.textContent.toLowerCase().includes(search)) {
