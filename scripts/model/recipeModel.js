@@ -103,6 +103,7 @@ export class Recipes {
 	// Méthode pour filtrer les recettes par ingrédient, appareil et ustensile dans le tableau recipes à partir des tags sélectionnés
 	getRecipesFilteredBySearchAndTags() {
 		let filteredRecipes = this.getRecipesFilteredBySearch()
+		// Pour chaque tag sélectionné, je filtre les recettes en fonction du type de tag
 		this.selectedTags.forEach((tag) => {
 			filteredRecipes = filteredRecipes.filter((recipe) => {
 				if (tag.type === 'ingredients') {
@@ -122,10 +123,12 @@ export class Recipes {
 		return filteredRecipes
 	}
 
+	// Méthode pour filtrer les recettes par ingrédient, appareil et ustensile dans le tableau recipes à partir des tags sélectionnés
 	getIngredientList() {
 		const ingredients = []
 		this.getRecipesFilteredBySearchAndTags().forEach((recipe) => {
 			recipe.ingredients.forEach((ingredient) => {
+				// Je vérifie si l'ingrédient n'est pas déjà dans le tableau, si non je l'ajoute
 				if (!ingredients.includes(ingredient.ingredient.toLowerCase())) {
 					ingredients.push(ingredient.ingredient.toLowerCase())
 				}
@@ -141,6 +144,7 @@ export class Recipes {
 				appliances.push(recipe.appliance.toLowerCase())
 			}
 		})
+		// Je trie le tableau par ordre alphabétique
 		return appliances.sort()
 	}
 
