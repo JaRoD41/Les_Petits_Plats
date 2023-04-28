@@ -16,6 +16,7 @@ export class Recipes {
 
 	// Méthode de suppression des accents //
 	removeAccents(str) {
+		// je normalise la chaîne de caractères en utilisant la méthode normalize et la forme normalisée NFD puis j'utilise une regex pour supprimer les accents et autres signes diacritiques et obtenir une chaîne de caractères sans accents
 		return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 	}
 
